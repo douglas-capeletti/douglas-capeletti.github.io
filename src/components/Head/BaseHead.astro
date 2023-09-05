@@ -1,5 +1,4 @@
 ---
-import GoogleAnalytics from './GoogleAnalytics.astro'
 import '../../styles/main.scss'
 
 export interface Props {
@@ -10,8 +9,6 @@ const { title, description} = Astro.props;
 
 let permalink = 'https://howtocode.io';
 ---
-
-<GoogleAnalytics />
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
@@ -30,14 +27,14 @@ let permalink = 'https://howtocode.io';
 <meta property="og:url" content={permalink} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content="/images/social.jpg" />
+<meta property="og:image" content="/images/favicon.png" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={permalink} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content="/images/social.jpg" />
+<meta property="twitter:image" content="/images/favicon.png" />
 
 <!-- Prism CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css" />

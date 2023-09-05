@@ -1,23 +1,30 @@
 ---
-import Nav from '../components/Nav.astro';
-import BaseHead from '../components/Head/BaseHead.astro';
-import BlogPost from '../components/BlogPost.astro';
+import Nav from "../components/Nav.astro";
+import BaseHead from "../components/Head/BaseHead.astro";
+import BlogPost from "../components/BlogPost.astro";
 
-const {content} = Astro.props;
-const {title, description, date, hero, youtube} = content;
+const { content } = Astro.props;
+const { title, pubDate, description, hero, tags, youtube } = content;
 ---
-<html lang={ content.lang || 'en' }>
+
+<html lang={content.lang || "en"}>
   <head>
     <BaseHead title={title} description={description} />
   </head>
 
-  <body>
+  <body class="bg-white text-black font-body leading-normal personality-casual">
     <Nav />
     <main class="py-12 lg:py-20">
-      <BlogPost title={title} hero={hero} date={date} youtube={youtube} >
+      <BlogPost
+        title={title}
+        pubDate={new Date(pubDate)}
+        description={description}
+        hero={hero}
+        tags={tags}
+        youtube={youtube}
+      >
         <slot />
       </BlogPost>
     </main>
   </body>
 </html>
-

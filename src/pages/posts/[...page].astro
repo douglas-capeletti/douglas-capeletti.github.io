@@ -3,7 +3,6 @@ import BaseHead from '../../components/Head/BaseHead.astro';
 import Nav from '../../components/Nav.astro';
 import HomeHeader from '../../components/HomeHeader.astro';
 import Card from '../../components/Card.astro';
-import Footer from '../../components/Footer/Footer.astro'
 import Paginator from '../../components/Paginator.astro'
 
 export async function getStaticPaths({ paginate }) {
@@ -17,9 +16,9 @@ export async function getStaticPaths({ paginate }) {
 }
 
 const { page } = Astro.props
-let pageTitle = 'Articles';
-let pageDescription = `page ${page.currentPage} of all articles`;
-let seoTitle = 'Articles | Capeletti.dev';
+let pageTitle = 'Posts';
+let pageDescription = `page ${page.currentPage} of all posts`;
+let seoTitle = 'Posts | Capeletti.dev';
 let seoDescription = '';
 ---
 
@@ -43,7 +42,6 @@ let seoDescription = '';
     </article>
   </main>
   <Paginator page={page} />
-  <Footer />
 </body>
 
 </html>
