@@ -24,7 +24,7 @@ const { title, pubDate, hero, tags, youtube } = Astro.props;
         <div class="flex flex-wrap justify-center">
           {tags.map((tag) => (
             <a class="text-sm text-gray-600 mr-2 mt-4" href={`/search?${tag}`}>
-              <button class="bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1">
+              <button class="font-bold underline bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1">
                 #{tag}
               </button>
             </a>

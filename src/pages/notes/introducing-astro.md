@@ -4,7 +4,7 @@ description: "We're excited to announce Astro as a new way to build static websi
 pubDate: "2021-06-08"
 hero: "/images/introducing-astro.jpg"
 tags: ["astro"]
-layout: "../../layouts/BlogPostLayout.astro"
+layout: "../../layouts/PostLayout.astro"
 ---
 
 There's a simple secret to building a faster website — _just ship less_.

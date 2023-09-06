@@ -1,6 +1,6 @@
 ---
 import BackToPage from "../components/BackToPage.astro";
-import BlogPost from "../components/BlogPost.astro";
+import Post from "../components/Post.astro";
 import DefaultPageLayout from "./DefaultPageLayout.astro";
 
 const { content } = Astro.props;
@@ -8,7 +8,7 @@ const { title, pubDate, description, hero, tags, youtube } = content;
 ---
 
 <DefaultPageLayout title={title} disableBlur>
-  <BlogPost
+  <Post
     title={title}
     pubDate={new Date(pubDate)}
     description={description}
@@ -17,6 +17,6 @@ const { title, pubDate, description, hero, tags, youtube } = content;
     youtube={youtube}
   >
     <slot />
-  </BlogPost>
+  </Post>
   <BackToPage pageName="Notes" path="/notes" />
 </DefaultPageLayout>
