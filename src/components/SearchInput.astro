@@ -32,6 +32,7 @@
   let lunrIndex;
   let lunrResult;
   let pagesIndex;
+  let prevQuery;
 
   const bigramTokeniser = (obj, metadata) => {
     if (obj == null || obj == undefined) {
@@ -110,20 +111,24 @@
     if (searchBox === null) {
       return;
     }
-    searchBox.addEventListener("keyup", function (event) {
+    function triggerFunction (event) {
       let searchResultsArea = document.querySelector("#searchResults");
       let query = event.currentTarget.value;
 
-      // Only trigger a search when 2 chars. at least have been provided
+      // Only trigger a search when 2 chars. at least have been provided and the query has changed
       if (query.length < 2) {
         searchResultsArea.style.display = "none";
         return;
+      } else if(prevQuery === query) {
+        return;
       }
-
       // Display search results
+      prevQuery = query;
       renderResults(search(query));
       searchResultsArea.style.display = "block";
-    });
+    }
+    searchBox.addEventListener("keyup", triggerFunction);
+    searchBox.addEventListener("focus", triggerFunction);
   };
 
   /**
@@ -164,7 +169,7 @@
 
       let resultTitle = document.createElement("a");
       resultTitle.className = "searchResultTitle";
-      resultTitle.href = `/notes/${result.slug}`;
+      resultTitle.href = `/posts/${result.slug}`;
       resultTitle.innerHTML = result.title;
       resultPage.append(resultTitle);
 
@@ -184,6 +189,7 @@
 
 <script client:load>
 document.getElementById("searchBox").value = document.location.search?.substring(1) ?? "";
-document.getElementById("searchBox").focus();
-document.getElementById("searchBox").enterKeyHint();
+setTimeout(() => {
+  document.getElementById("searchBox").focus();
+}, 500);
 </script>
