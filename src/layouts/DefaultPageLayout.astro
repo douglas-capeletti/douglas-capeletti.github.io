@@ -1,0 +1,29 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Nav from "../components/Nav.astro";
+import BlurBackgroudLayout from "./BlurBackgroudLayout.astro";
+
+export interface Props {
+  title: string;
+  disableBlur?: boolean;
+  disableNav?: boolean;
+}
+
+const { title, disableBlur, disableNav } = Astro.props;
+const seoTitle = `${title} | Capeletti.dev`;
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={seoTitle} />
+  </head>
+
+  <body class="bg-white text-black font-body leading-normal personality-casual">
+    {!disableNav && <Nav />}
+    <BlurBackgroudLayout disable={disableBlur}>
+      <main class="py-12 lg:py-20">
+        <slot />
+      </main>
+    </BlurBackgroudLayout>
+  </body>
+</html>

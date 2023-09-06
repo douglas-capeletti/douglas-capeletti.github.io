@@ -1,29 +1,18 @@
 ---
-import BaseHead from '../components/Head/BaseHead.astro';
-import Nav from '../components/Nav.astro';
-
-let title = 'How To Code';
-let description = '';
+import DefaultPageLayout from "../layouts/DefaultPageLayout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <BaseHead title={title} description={description} />
-  </head>
-
-  <body class="bg-white text-black font-body leading-normal personality-casual">
-    <Nav />
-
-    <main class="py-12 lg:py-20">
-      <article class="max-w-6xl mx-auto px-3">
-        <header class="mx-auto max-w-3xl text-center content">
-          <h1 class="mb-4">Oops, I think you're lost</h1>
-          <p>Not much to see here. Don't wait for your life to be over. There are other pages. Go find one!</p>
-          <div>
-            <img alt="Sad cat" src="images/404_cat.jpg"/>
-          </div>
-        </header>
-      </article>
-    </main>
-  </body>
-</html>
+<DefaultPageLayout title="Page not found">
+  <article class="max-w-6xl mx-auto px-3">
+    <header class="mx-auto max-w-3xl text-center content">
+      <h1 class="mb-4">Oops, I think you're lost</h1>
+      <p>
+        Not much to see here. Don't wait for your life to be over. There are
+        other pages. Go find one!
+      </p>
+      <div>
+        <img alt="Sad cat" src="images/404_cat.jpg" />
+      </div>
+    </header>
+  </article>
+</DefaultPageLayout>

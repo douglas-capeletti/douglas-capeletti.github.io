@@ -1,0 +1,24 @@
+---
+import BackToPage from "../components/BackToPage.astro";
+import DefaultPageLayout from "../layouts/DefaultPageLayout.astro";
+import TopicListLayout from "../layouts/TopicListLayout.astro";
+import { newIPageMock } from "../utils";
+
+const title = "Projects";
+---
+
+<DefaultPageLayout title={title}>
+  <TopicListLayout
+    title={title}
+    page={newIPageMock([
+      {
+        title: "Voting IO",
+        url: "https://github.com/voting-io",
+        pubDate: "2023-06-22T00:00:00",
+      },
+    ])}
+    blank
+    wideCard
+  />
+  <BackToPage />
+</DefaultPageLayout>

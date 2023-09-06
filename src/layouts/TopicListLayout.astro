@@ -1,0 +1,35 @@
+---
+import BackToPage from "../components/BackToPage.astro";
+import Card from "../components/Card.astro";
+import HomeHeader from "../components/HomeHeader.astro";
+import Paginator from "../components/Paginator.astro";
+import { IPage } from "../utils/types";
+
+export interface Props {
+  title: string;
+  page: IPage;
+  blank?: boolean;
+  wideCard?: boolean;
+}
+
+const { title, page, blank, wideCard } = Astro.props;
+const totalPages = Math.ceil(page.total / page.size);
+let description = `page ${page.currentPage} of ${totalPages}`;
+---
+
+<article class="max-w-6xl mx-auto px-3">
+  <HomeHeader title={title} description={totalPages > 1 ? description : null} />
+  <section
+    class=`grid grid-cols-1 ${wideCard ? '' : 'md:grid-cols-2 lg:grid-cols-3'} gap-6 py-8`
+    data-test="articles-section"
+  >
+    {
+      page.data.map((p) => (
+        <div class="col-span-1">
+          <Card post={p} blank={blank} />
+        </div>
+      ))
+    }
+  </section>
+</article>
+<Paginator page={page} />

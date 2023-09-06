@@ -1,4 +1,6 @@
 ---
+
+import { formatDate } from "../utils";
 export interface Props {
   title: string;
   pubDate: Date;
@@ -16,7 +18,7 @@ const { title, pubDate, hero, tags, youtube } = Astro.props;
     class="mx-auto max-w-3xl flex flex-col flex-start content items-center justify-start mb-10"
   >
     <h1 class="basis-1/2">{title}</h1>
-    {pubDate && <h5 class="font-semibold ">{pubDate.toLocaleDateString()}</h5>}
+    {pubDate && <h5 class="font-semibold ">{formatDate(pubDate)}</h5>}
     {
       tags && (
         <div class="flex flex-wrap justify-center">
@@ -64,8 +66,3 @@ const { title, pubDate, hero, tags, youtube } = Astro.props;
     <slot />
   </section>
 </article>
-<section class="flex space-x-8 justify-center text-xl pt-8 font-bold">
-  <a href="/posts" class="ml-8" data-test="see-all-link">
-    <span>&larr;</span> Back to posts
-  </a>
-</section>
