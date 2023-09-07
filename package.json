@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "astro dev --host",
     "start": "astro dev",
-    "prepare-search": "node ./scripts/search/prepare-index.js",
-    "build": "astro build",
+    "build": "node ./scripts/search/prepare-index.js && astro build",
     "preview": "astro preview"
   },
   "devDependencies": {
