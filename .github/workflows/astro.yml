@@ -34,7 +34,7 @@ jobs:
         run: 'yarn install --frozen-lockfile'
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build Astro
-        run: yarn astro build
+        run: yarn build
         working-directory: ${{ env.BUILD_PATH }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
