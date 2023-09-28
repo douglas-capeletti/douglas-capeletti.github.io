@@ -1,0 +1,23 @@
+---
+import BackToPage from "../components/BackToPage.astro";
+import DefaultPageLayout from "../layouts/DefaultPageLayout.astro";
+import TopicListLayout from "../layouts/TopicListLayout.astro";
+import { newIPageMock } from "../utils";
+
+const title = "About";
+---
+
+<DefaultPageLayout title={title}>
+  <TopicListLayout
+    title={title}
+    page={newIPageMock([
+      {
+        title: "Douglas Capeletti",
+        url: "https://www.linkedin.com/in/douglas-capeletti/",
+      },
+    ])}
+    blank
+    wideCard
+  />
+  <BackToPage />
+</DefaultPageLayout>

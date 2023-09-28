@@ -9,7 +9,8 @@
 ## How to run
 
 * Clone this repo
-* Run `yarn` to install dependencies
-* Run `yarn dev` to start the dev server
-* Run `yarn index` to generate the search index
-* Run `yarn build` to build the site
+* Run `pnpm` to install dependencies
+* Run `pnpm dev` to start the dev server
+* Run `pnpm check` to check for any astro or TS issue
+* Run `pnpm index` to generate the search index
+* Run `pnpm build` to build the site

@@ -5,7 +5,14 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/Thumbs.db": true
+    "**/Thumbs.db": true,
+    ".vscode": true,
+    ".github/workflows": true,
+    ".github": true
   },
-  "hide-files.files": []
+  "hide-files.files": [
+    ".vscode",
+    ".github/workflows",
+    ".github"
+  ]
 }

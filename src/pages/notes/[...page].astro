@@ -1,23 +1,21 @@
 ---
-import { IPage } from "../../utils/types";
+import { type IPage } from "../../utils/types";
 import TopicListLayout from "../../layouts/TopicListLayout.astro";
 import DefaultPageLayout from "../../layouts/DefaultPageLayout.astro";
 import BackToPage from "../../components/BackToPage.astro";
+import type { GetStaticPathsOptions, InferGetStaticPropsType } from "astro";
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths(options: GetStaticPathsOptions) {
   const allNotes = await Astro.glob<any>("./*.md");
-  const sortedNotes = allNotes.sort(
-    (a, b) =>
-      new Date(b.frontmatter.pubDate).valueOf() -
-      new Date(a.frontmatter.pubDate).valueOf()
-  );
-  return paginate(sortedNotes, {
+  const sortedNotes = allNotes.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+  return options.paginate(sortedNotes, {
     pageSize: 21,
   });
 }
 
-const page: IPage = Astro.props.page;
-let title = "Notes";
+const props = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>;
+const page = props.page as IPage;
+const title = "Notes";
 ---
 
 <DefaultPageLayout title={title}>

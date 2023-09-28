@@ -1,4 +1,4 @@
-import { IPage } from "./types";
+import { type IPage } from "./types";
 
 export function formatDate(date: string | number | Date): string {
   return date ? new Date(date).toLocaleDateString('pt-BR') : '--/--/----'

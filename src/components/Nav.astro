@@ -1,64 +1,37 @@
 ---
+
 ---
 
 <script>
-  document.getElementById("closeMenu").addEventListener("click", () => {
-    console.log('close')
-    document.getElementById("sideMenu").style.display = "none";
+  const sideMenu = document?.getElementById("sideMenu") as HTMLElement;
+  document?.getElementById("closeMenu")?.addEventListener("click", () => {
+    sideMenu.style.display = "none";
   });
-  document.getElementById("openMenu").addEventListener("click", () => {
-    console.log('open')
-    document.getElementById("sideMenu").style.display = "flex";
+  document?.getElementById("openMenu")?.addEventListener("click", () => {
+    sideMenu.style.display = "flex";
   });
 </script>
 
 <div>
   <nav>
-    <div
-      class="max-w-5xl mx-auto px-3 py-3 flex items-center justify-between h-16"
-    >
-      <a href="/" class="font-bold text-xl hover:text-hot-pink">Capeletti.dev</a
-      >
+    <div class="max-w-5xl mx-auto px-3 py-3 flex items-center justify-between h-16">
+      <a href="/" class="font-bold text-xl hover:text-hot-pink">Capeletti.dev</a>
       <div class="hidden md:flex font-semibold -ml-6">
         <a href="/projects" class="mr-5 hover:text-hot-pink">Projects</a>
         <a href="/notes" class="mr-5 hover:text-hot-pink">Notes</a>
-        <a href="/links" class="mr-5 hover:text-hot-pink">Links</a>
+        <a href="/about" class="mr-5 hover:text-hot-pink">About</a>
         <a href="/search" class="h6 w-6">
           <span class="sr-only">Search note</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </a>
       </div>
       <div class="flex md:hidden">
-        <button
-          id="openMenu"
-          type="button"
-          class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-        >
+        <button id="openMenu" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
           <span class="sr-only">Open main menu</span>
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
           </svg>
         </button>
       </div>
@@ -69,72 +42,29 @@
   <div id="sideMenu" role="dialog" aria-modal="true" style="display: none;">
     <!-- Background backdrop, show/hide based on slide-over state. -->
     <div class="fixed inset-0 z-50"></div>
-    <div
-      class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-    >
+    <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
       <div class="flex items-center justify-between">
-        <a href="/" class="font-bold text-xl hover:text-hot-pink"
-          >Capeletti.dev</a
-        >
-        <button
-          id="closeMenu"
-          type="button"
-          class="-m-2.5 rounded-md p-2.5 text-gray-700"
-        >
+        <a href="/" class="font-bold text-xl hover:text-hot-pink">Capeletti.dev</a>
+        <button id="closeMenu" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
           <span class="sr-only">Close main menu</span>
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18L18 6M6 6l12 12"></path>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
       <div class="mt-6 flow-root">
         <div class="-my-6 divide-y divide-gray-500/10">
           <div class="space-y-2 py-6">
-            <a
-              href="/projects"
-              class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink"
-              >Projects</a
-            >
-            <a
-              href="/notes"
-              class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink"
-              >Notes</a
-            >
-            <a
-              href="/links"
-              class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink"
-              >Links</a
-            >
+            <a href="/projects" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink">Projects</a>
+            <a href="/notes" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink">Notes</a>
+            <a href="/about" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink">About</a>
           </div>
           <div class="py-6">
-            <a
-              href="/search"
-              class="-mx-3 flex gap-1 rounded-lg px-3 py-2.5 font-semibold leading-7 text-md hover:text-hot-pink"
-            >
+            <a href="/search" class="-mx-3 flex gap-1 rounded-lg px-3 py-2.5 font-semibold leading-7 text-md hover:text-hot-pink">
               Search
               <span class="sr-only">Search note</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
               </svg>
             </a>
           </div>

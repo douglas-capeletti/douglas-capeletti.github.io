@@ -1,5 +1,4 @@
 ---
-
 import { formatDate } from "../utils";
 export interface Props {
   title: string;
@@ -14,9 +13,7 @@ const { title, pubDate, hero, tags, youtube } = Astro.props;
 ---
 
 <article class="max-w-5xl mx-auto px-3">
-  <header
-    class="mx-auto max-w-3xl flex flex-col flex-start content items-center justify-start mb-10"
-  >
+  <header class="mx-auto max-w-3xl flex flex-col flex-start content items-center justify-start mb-10">
     <h1 class="basis-1/2">{title}</h1>
     {pubDate && <h5 class="font-semibold ">{formatDate(pubDate)}</h5>}
     {
@@ -24,9 +21,7 @@ const { title, pubDate, hero, tags, youtube } = Astro.props;
         <div class="flex flex-wrap justify-center">
           {tags.map((tag) => (
             <a class="text-sm text-gray-600 mr-2 mt-4" href={`/search?${tag}`}>
-              <button class="font-bold underline bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1">
-                #{tag}
-              </button>
+              <button class="font-bold underline bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1">#{tag}</button>
             </a>
           ))}
         </div>
@@ -35,30 +30,13 @@ const { title, pubDate, hero, tags, youtube } = Astro.props;
   </header>
 
   <!-- Image -->
-  {
-    hero && (
-      <img
-        class="rounded-xl mx-auto"
-        style="min-width: 80%;"
-        loading="lazy"
-        src={hero}
-        alt={title}
-      />
-    )
-  }
+  {hero && <img class="rounded-xl mx-auto" style="min-width: 80%;" loading="lazy" src={hero} alt={title} />}
 
   <!-- YouTube Video -->
   {
     youtube && (
       <div class="embed-responsive aspect-ratio-16/9 mt-6 lg:mt-12">
-        <iframe
-          width="700"
-          height="500"
-          class="embed-responsive-item"
-          src={`https://www.youtube.com/embed/${youtube}`}
-          allow="accelerometer; autoplay; encrypted-media; gyroscope;"
-          allowfullscreen
-        />
+        <iframe width="700" height="500" class="embed-responsive-item" src={`https://www.youtube.com/embed/${youtube}`} allow="accelerometer; autoplay; encrypted-media; gyroscope;" allowfullscreen />
       </div>
     )
   }
