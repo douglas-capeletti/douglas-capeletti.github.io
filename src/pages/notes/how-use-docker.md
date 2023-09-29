@@ -107,6 +107,49 @@ A forma mais elegante e atual de executar essa mesma ação
 
 diferenças: --mount é mais explicito o bind, se o source for incorreto, o -v cria o diretorio novo, o --mount da erro
 
+### Como criar volumes
+
+``` sh
+  docker create volume meuVolume
+```
+
+agora para ver os detalhes do volume
+
+``` sh
+  docker volume inspect meuVolume  
+```
+
+resultado:
+
+``` json
+  [
+    {
+        "CreatedAt": "2023-09-28T16:40:47-03:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/meuVolume/_data",
+        "Name": "meuVolume",
+        "Options": null,
+        "Scope": "local"
+    }
+  ]
+```
+agora da pra usar o volume criado igual qualquer outro e estes arquivos vao ser compartilhados pelos containers que utilizarem estes volumes
+
+``` sh
+  docker run -d -p 8080:80 --mount source=meuVolume,target=/app --name server nginx
+```
+ou
+``` sh
+  docker run -d -p 8080:80 -v meuVolume:/app --name server nginx
+```
+
+porem criando varios volumes, ao longo do tempo vamos tomando muito espaco em disco, para limpar os volumes do docker, use:
+
+``` sh
+  docker volume prune
+```
+
 ...
 #### #todo
 * ver diferencas de docker [kill | stop | rm];

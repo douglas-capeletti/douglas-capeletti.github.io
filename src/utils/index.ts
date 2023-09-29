@@ -27,3 +27,36 @@ export function newIPageMock(data: any[]): IPage {
     },
   }
 }
+
+export function enableCopyToClipboardButton() {
+  const copyButtonLabel = "Copy🪄";
+
+  document.querySelectorAll("pre").forEach((preBlock: HTMLPreElement) => {
+    if (navigator.clipboard) {
+      let wrapper = document.createElement("div");
+      wrapper.className = "copy-wrapper";
+
+      preBlock?.parentNode?.insertBefore(wrapper, preBlock);
+      preBlock.setAttribute("tabindex", "0");
+
+      let copy = document.createElement("button");
+      copy.className = "copy-button";
+      copy.innerHTML = copyButtonLabel;
+
+      wrapper.appendChild(copy);
+      wrapper.appendChild(preBlock);
+
+      const copyOnClick = async () => {
+        let code = preBlock.querySelector("code");
+        await navigator.clipboard.writeText(code?.innerText ?? "");
+        copy.innerText = "Copied✨";
+        setTimeout(() => {
+          copy.innerText = copyButtonLabel;
+        }, 1500);
+      }
+
+      copy.addEventListener("click", copyOnClick );
+      preBlock.addEventListener("click", copyOnClick );
+    }
+  });
+}
