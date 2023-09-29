@@ -150,6 +150,29 @@ porem criando varios volumes, ao longo do tempo vamos tomando muito espaco em di
   docker volume prune
 ```
 
+## Dockerfile
+
+podemos criar arquivos docker para criar uma imagem personalizada de acordo com a nossa necessidade
+
+``` Dockerfile
+  # imagem base usada para a criacao da nova imagem
+  FROM nginx:latest
+
+  # comandos a serem executados na criacao da imagem
+  RUN apt update
+  RUN apt install -y vim
+```
+
+para executarmos este docker file, abrimos o terminal na pasta onde o arquivo se encontra e executamos o comando:
+
+``` sh
+  docker build -t nginx-vim:latest .
+```
+
+o parametro '-t' define a tag da imagem, assim como usamos antes o nginx antes, agora temos uma versao do 'nginx' com o vim instalado chamada de 'nginx-vim'
+
+já o '.' no final se refere a localizacao do arquivo Dockerfile, como estamos com o terminal aberto no mesmo diretorio do arquivo Dockerfile, usamos o ponto, caso nao seja o caso, devemos usar o caminho relativo do arquivo
+
 ...
 #### #todo
 * ver diferencas de docker [kill | stop | rm];
