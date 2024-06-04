@@ -154,7 +154,7 @@ porem criando varios volumes, ao longo do tempo vamos tomando muito espaco em di
 
 podemos criar arquivos docker para criar uma imagem personalizada de acordo com a nossa necessidade
 
-``` Dockerfile
+``` yaml
   # imagem base usada para a criacao da nova imagem
   FROM nginx:latest
 

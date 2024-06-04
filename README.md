@@ -9,7 +9,7 @@
 ## How to run
 
 * Clone this repo
-* Run `pnpm` to install dependencies
+* Run `pnpm i` to install dependencies
 * Run `pnpm dev` to start the dev server
 * Run `pnpm check` to check for any astro or TS issue
 * Run `pnpm index` to generate the search index
