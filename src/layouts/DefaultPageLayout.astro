@@ -1,15 +1,13 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Nav from "../components/Nav.astro";
-import BlurBackgroudLayout from "./BlurBackgroudLayout.astro";
 
 export interface Props {
   title: string;
-  disableBlur?: boolean;
   disableNav?: boolean;
 }
 
-const { title, disableBlur, disableNav } = Astro.props;
+const { title, disableNav } = Astro.props;
 const seoTitle = `${title} | TechTrekTales.com`;
 ---
 
@@ -20,10 +18,8 @@ const seoTitle = `${title} | TechTrekTales.com`;
 
   <body class="bg-white text-black font-body leading-normal personality-casual">
     {!disableNav && <Nav />}
-    <BlurBackgroudLayout disable={disableBlur}>
-      <main class="py-12 lg:py-20">
-        <slot />
-      </main>
-    </BlurBackgroudLayout>
+    <main class="py-12 lg:py-20">
+      <slot />
+    </main>
   </body>
 </html>
