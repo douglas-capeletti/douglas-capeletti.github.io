@@ -1,4 +1,4 @@
-# [TECHTREKTALES.COM](http://techtrektales.com)
+# [DEVELOPINGNOTES.COM](http://developingnotes.com)
 
 ## What is this?
 
@@ -23,3 +23,4 @@
 * toggle for draft notes
 * i18n multi language translation
 * maybe a new name, i'm not 100% on this one
+* search by tag on notes page
