@@ -1,6 +1,6 @@
 ---
 import BackToPage from "../components/BackToPage.astro";
-import HomeHeader from "../components/HomeHeader.astro";
+import Header from "../components/Header.astro";
 import SearchInput from "../components/SearchInput.astro";
 import DefaultPageLayout from "../layouts/DefaultPageLayout.astro";
 
@@ -10,7 +10,7 @@ let pageDescription = "Search all Notes";
 
 <DefaultPageLayout title={title}>
   <article class="max-w-6xl mx-auto px-3 content">
-    <HomeHeader title={title} description={pageDescription} />
+    <Header title={title} description={pageDescription} />
     <SearchInput />
   </article>
   <BackToPage />

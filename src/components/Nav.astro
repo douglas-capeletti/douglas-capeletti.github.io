@@ -1,5 +1,5 @@
 ---
-
+const options = { Notes: "/notes", Drafts: "/drafts", Shards: "/shards", Projects: "/projects", About: "/about" };
 ---
 
 <script>
@@ -17,9 +17,11 @@
     <div class="max-w-5xl mx-auto px-3 py-3 flex items-center justify-between h-16">
       <a href="/" class="font-bold text-xl hover:text-hot-pink">DevelopingNotes.com</a>
       <div class="hidden md:flex font-semibold -ml-6">
-        <a href="/projects" class="mr-5 hover:text-hot-pink">Projects</a>
-        <a href="/notes" class="mr-5 hover:text-hot-pink">Notes</a>
-        <a href="/about" class="mr-5 hover:text-hot-pink">About</a>
+        {
+          Object.entries(options).map((value) => (
+            <a href={value[1]} class="mr-5 hover:text-hot-pink">{value[0]}</a>
+          ))
+        }
         <a href="/search" class="h6 w-6">
           <span class="sr-only">Search note</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -55,9 +57,11 @@
       <div class="mt-6 flow-root">
         <div class="-my-6 divide-y divide-gray-500/10">
           <div class="space-y-2 py-6">
-            <a href="/projects" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink">Projects</a>
-            <a href="/notes" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink">Notes</a>
-            <a href="/about" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink">About</a>
+            {
+              Object.entries(options).map((value) => (
+                <a href={value[1]} class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 mr-5 hover:text-hot-pink">{value[0]}</a>
+              ))
+            }
           </div>
           <div class="py-6">
             <a href="/search" class="-mx-3 flex gap-1 rounded-lg px-3 py-2.5 font-semibold leading-7 text-md hover:text-hot-pink">

@@ -1,0 +1,24 @@
+---
+import { type IPage } from "../../utils/types";
+import TopicListLayout from "../../layouts/TopicListLayout.astro";
+import DefaultPageLayout from "../../layouts/DefaultPageLayout.astro";
+import BackToPage from "../../components/BackToPage.astro";
+import type { GetStaticPathsOptions } from "astro";
+
+export async function getStaticPaths(options: GetStaticPathsOptions): Promise<any> {
+  const allNotes = await Astro.glob<any>("./*.md");
+  const sortedNotes = allNotes.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+  return options.paginate(sortedNotes, {
+    pageSize: 21,
+  });
+}
+
+const props = Astro.props as any;
+const page = props.page as IPage;
+const title = "Shards";
+---
+
+<DefaultPageLayout title={title}>
+  <TopicListLayout title={title} page={page} />
+  <BackToPage />
+</DefaultPageLayout>

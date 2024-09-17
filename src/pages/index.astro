@@ -1,16 +1,16 @@
 ---
-import HomeHeader from "../components/HomeHeader.astro";
+import Header from "../components/Header.astro";
 import DefaultPageLayout from "../layouts/DefaultPageLayout.astro";
 
 const title = "Developing Notes";
 const description = "My codes and notes as a software engineer.";
-const options = { Projects: "/projects", Notes: "/notes", About: "/about" };
+const options = { Notes: "/notes", Drafts: "/drafts", Shards: "/shards", Projects: "/projects", About: "/about" };
 ---
 
 <DefaultPageLayout title={description}>
   <article class="py-12 lg:py-20 max-w-6xl mx-auto my-auto px-3">
-    <HomeHeader title={title} description={description} />
-    <section class="flex justify-center gap-5 justify-items-center items-center" data-test="articles-section">
+    <Header title={title} description={description} />
+    <section class="flex sm:flex-row flex-col gap-5 justify-center justify-items-center items-center" data-test="articles-section">
       {
         Object.entries(options).map((value) => (
           <a href={value[1]}>
