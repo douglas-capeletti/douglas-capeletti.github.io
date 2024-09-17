@@ -12,6 +12,5 @@ node_modules/
 # macOS-specific files
 .DS_Store
 
-#cypress
-cypress/videos
-cypress/screenshots
+# another folders
+playground

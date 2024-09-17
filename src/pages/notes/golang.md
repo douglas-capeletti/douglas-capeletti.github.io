@@ -79,15 +79,6 @@ Executar um programa go
 
 ### Tipos
 
-#### Tipos de variáveis
-``` go
-  const myConst // imutável ou constante
-  var myVar  // mutável porém de tipagem forte e estática
-
-  myVar = "some value" // tipo inferido (string)
-  myVar = 10 // erro 
-```
-
 ### Tipos da dados básicos
 ``` yaml
   Booleano: 
@@ -118,6 +109,15 @@ Executar um programa go
     - uint64: min = 0 | max = -18446744073709551615
 ```
 
+#### Tipos de variáveis
+``` go
+  const myConst // imutável ou constante
+  var myVar  // mutável porém de tipagem forte e estática
+
+  myVar = "some value" // tipo inferido (string)
+  myVar = 10 // erro 
+```
+
 ### Declaração de variáveis
 ``` go
   var intNum int
@@ -125,6 +125,66 @@ Executar um programa go
   var some, other = 1, 2
   look, again := 3, 4
   // only one way for constants, sorry
+```
+
+### STRINGS, RUNES & BYTES
+Strings em go são imutáveis e naturalmente UTF-8, e ocupam 7 bits + 1 bit de sinal, porém UTF-8 tem um encoding dinâmico que pode se extender até 32 bits, cobrindo UTF-32, e podendo armazenar caracteres chineses, emojis e outros símbolos,
+
+Strings em go são uma coleção de Runas ou uint8 devido o encoding, porém
+``` go
+  var simpleString string = "Hello \nworld!"
+  var stringBlock string = `Hello
+  world!`
+
+  fmt.Println(simpleString) // mesmo resultado
+  fmt.Println(stringBlock) // nos dois
+
+  fmt.Println(len("atenção")) // 9 | número de bytes em ASCII 256
+  fmt.Println(len("atencao")) // 7 | parece estar certo, mas não funciona sempre
+
+  import "unicode/utf8"
+  fmt.Println(utf8.RuneCountInString("atenção")) // resultado correto sempre
+
+	var myString = "atenção"
+  // Ao buscar o 'a' teremos o valor correto dele na tabela ascii
+	var stringIndex uint8 = myString[0]
+	fmt.Println(stringIndex) // 97
+
+  // Ao buscar o 'ç' teremos o valor do primeiro byte
+  // porém como 'ç' precisa de mais de um byte, o valor correto seria 231
+	var stringIndex4 uint8 = myString[4]
+	fmt.Println(stringIndex4) // 167
+	for i, v := range myString {
+		fmt.Println(i, v)
+	}
+	/*
+		0 97
+		1 116
+		2 101
+		3 110 
+		4 231 <- ocupa o espaço do 4 e do 5
+		6 227 <- por isso aqui é 6
+		8 111
+	*/
+
+  var myRune rune = 'a'
+  fmt.Println(myRune) // 97 | int32 ele imprime o valor numérico
+
+	// Manipulando Strings
+	var strSlice = []string{"H", "e", "l", "l", "o"}
+	var concatStr = ""
+	for i := range strSlice {
+		// podemos fazer uma concatenação básica
+		// a cada iteração uma nova string será gerada
+		concatStr += strSlice[i]
+	}
+
+	var strBuilder strings.Builder
+	for i := range strSlice {
+		// ou usando um string builder, melhor alternativa
+		strBuilder.WriteString(strSlice[i])
+	}
+	fmt.Println(strBuilder.String())
 ```
 
 ### Cálculos básicos
@@ -139,22 +199,6 @@ Executar um programa go
   var numInt2 int = 2
   fmt.Println(numInt1/numInt2) // 1 | arredondamento para int
   fmt.Println(numInt1%numInt2) // 1 | operação com resto de divisão
-
-  var simpleString string = "Hello \nworld!"
-  var stringBlock string = `Hello
-  world!`
-
-  fmt.Println(simpleString) // mesmo resultado
-  fmt.Println(stringBlock) // nos dois
-
-  fmt.Println(len("atenção")) // 9 | número de bytes em ASCII 256
-  fmt.Println(len("atencao")) // 7 | parece estar certo, mas não funciona sempre
-
-  import "unicode/utf8"
-  fmt.Println(utf8.RuneCountInString("atenção")) // resultado correto sempre
-
-  var myRune rune = 'a'
-  fmt.Println(myRune) // 97 | int32 ele imprime o valor numérico
 
   var myBoolean bool = false // como alquer linguagem, simples
 ```
@@ -196,8 +240,8 @@ Executar um programa go
   _, response2 := withError(false)
 
   // funcoes também podem ser atribuídas a objetos
-  func (ball) roll() {
-    ball.position++
+  func (b ball) roll() {
+    b.position++
   }
   // assim quando declaramos uma nova bola
   newBall := ball.New()
@@ -353,7 +397,7 @@ ponto importante, golang não tem 'while', então existem variações no for par
     i += 1
   }
 
-  // for range (ou foreach)
+  // for range (ou foreach in range)
   intSlice := []int32{1, 2, 3}
   for index, value := range intSlice {
     fmt.Println("Index: " + index + " Value: " + value)
@@ -365,7 +409,79 @@ ponto importante, golang não tem 'while', então existem variações no for par
   }
 ```
 
-### Tomorrow, will see STRINGS, RUNES & BYTES
+### Structs & Interfaces
+Struct em go nada mais é que um objeto, ele contém atributos e pode conter funções/métodos internos.
+Mas go é orientado a objetos? Não necessariamente, em go não existe herança.
+Interfaces em go tem um comportamento mais 'passivo', ao definir as funções contidas em uma interface, toda struct que conter estas funções vai ser considerada como compatível com a interface, sem a necessidade de explicitamente atribuir a interface para aquela struct, desta forma podemos trabalhar melhor com bibliotecas externas definindo interfaces que seja compatíveis com structs já criadas externamente e criando novas structs compativeis com estas mesmas interfaces
 
+``` go
+  // structs podem ser declaradas de forma anonima
+  // porém assim não podem ser reutilizadas
+  var person = struct{
+    name string
+    age uint8
+  }{"Spock", 83}
 
+  // esta é a forma comum de declarar structs
+  type owner struct {
+    name string
+  }
 
+  type gasCar struct {
+    kml     uint8
+    tankCap uint8
+    owner   // caso tipo e variavel tenham o mesmo nome, podemos omitir
+  }
+
+  // desta forma atribuimos uma funcao para a struct gasEngine
+  func (e gasCar) kmLeft() uint {
+    return uint(e.tankCap) * uint(e.kml)
+  }
+
+  type eletricCar struct {
+    kpkwh      uint8
+    batteryCap uint8
+    owner      owner // podemos por ambos sem problemas também
+  }
+
+  // desta forma atribuimos uma funcao para a struct gasEngine
+  func (e eletricCar) kmLeft() uint {
+    return uint(e.batteryCap) * uint(e.kpkwh)
+  }
+
+  // ao declarar a interface, tanto o carro a gasolina quanto o eletrico
+  // poderão satisfazer este requisito e serem considerados somente carros
+  type car interface {
+    kmLeft() uint
+  }
+
+  func willReachDestination(c car, distance uint) bool {
+    return c.kmLeft() >= distance
+  }
+
+  func main() {
+    // uma struct pode ser inicializada desta forma
+    var myCar gasCar = gasCar{kml: 15, tankCap: 40, owner: owner{"Someone"}}
+    // e ser alterada desta forma (pegando estrada né)
+    myCar.kml = 20
+    fmt.Println(myCar.kmLeft())
+
+    // nomes de variáveis podem ser omitidos, enviando os parametros em ordem
+    var myOtherCar eletricCar = eletricCar{4, 100, owner{"Someone"}}
+    fmt.Println(myOtherCar.kmLeft())
+
+    // ao usar a funcao podemos utilizar ambos os carros
+    // pois ambos satisfazem os requisitos da interface
+    var distance uint = 500
+    fmt.Println("Gas Car: ", willReachDestination(myCar, distance))
+    fmt.Println("Eletric car: ", willReachDestination(myOtherCar, distance))
+  }
+```
+
+## Tomorrow it's to time for POINTERS
+
+### TODO LIST
+- revisar ortografia
+- segmentar melhor os blocos de código
+- organizar melhor a ordem dos tópicos
+- revisar o tamanho dos títulos
