@@ -22,6 +22,48 @@
   let lunrResult;
   let pagesIndex;
   let prevQuery;
+  const MAX_PAGES = 10;
+  const BODY_LENGTH = 100;
+
+
+  const searchResults = {
+    element: document.querySelector("#searchResults") as HTMLElement,
+    show() {
+      this.element.style.display = "block"; 
+    },
+    hide() {
+      this.element.style.display = "none";
+    },
+    clear() {
+      while (this.element.firstChild) this.element.removeChild(this.element.firstChild);
+    },
+    showEmpty(query) {
+      let resultPage = document.createElement("div");
+      resultPage.className = "searchResultPage";
+      resultPage.innerHTML = 'No results found for query "' + query + '"';
+      this.element.append(resultPage);
+    },
+    add(result, metadata){
+      let resultPage = document.createElement("div");
+      resultPage.className = "searchResultPage";
+      let matchPosition = metadata[Object.keys(metadata)[0]].body.position[0][0];
+      let bodyStartPosition = matchPosition - BODY_LENGTH / 2 > 0 ? matchPosition - BODY_LENGTH / 2 : 0;
+
+      let resultTitle = document.createElement("a");
+      resultTitle.className = "searchResultTitle";
+      resultTitle.href = `/${result.category}/${result.slug}`;
+      resultTitle.innerHTML = result.title;
+      resultPage.append(resultTitle);
+
+      let resultBody = document.createElement("div");
+      resultBody.className = "searchResultBody";
+      resultBody.innerHTML = result.body.substr(bodyStartPosition, BODY_LENGTH);
+      resultPage.append(resultBody);
+      console.log(result)
+      this.element.append(resultPage);
+    }
+    
+  }
 
   const bigramTokeniser = (obj, metadata) => {
     if (obj == null || obj == undefined) {
@@ -52,11 +94,9 @@
     return tokens.join(" ");
   };
 
-  const index = "/search-index.json";
-
   const initLunr = () => {
     let request = new XMLHttpRequest();
-    request.open("GET", index, true);
+    request.open("GET", "/search-index.json", true);
     request.onload = function () {
       if (this.status >= 200 && this.status < 400) {
         pagesIndex = JSON.parse(this.response);
@@ -71,8 +111,6 @@
             this.add(page);
           }, this);
         });
-      } else {
-        console.error("Error getting Hugo index flie");
       }
     };
     request.onerror = function () {
@@ -96,12 +134,11 @@
       return;
     }
     function triggerFunction(event) {
-      let searchResultsArea = document.querySelector("#searchResults") as HTMLElement;
       let query = event.currentTarget.value;
 
       // Only trigger a search when 2 chars. at least have been provided and the query has changed
       if (query.length < 2) {
-        searchResultsArea.style.display = "none";
+        searchResults.hide();
         return;
       } else if (prevQuery === query) {
         return;
@@ -109,52 +146,27 @@
       // Display search results
       prevQuery = query;
       renderResults(search(query));
-      searchResultsArea.style.display = "block";
+      searchResults.show();
     }
     searchBox.addEventListener("keyup", triggerFunction);
     searchBox.addEventListener("focus", triggerFunction);
   };
 
   const renderResults = (results: Object[]) => {
-    const searchResults = document.querySelector("#searchResults") as HTMLElement;
     const searchBox = document.querySelector("#searchBox") as HTMLInputElement;
     const query = searchBox.value;
-    const BODY_LENGTH = 100;
-    const MAX_PAGES = 10;
-
     // Clear search result
-    while (searchResults.firstChild) searchResults.removeChild(searchResults.firstChild);
-
+    searchResults.clear();
     // Show message when results is empty
     if (!results.length) {
-      let resultPage = document.createElement("div");
-      resultPage.className = "searchResultPage";
-      resultPage.innerHTML = 'No results found for query "' + query + '"';
-      searchResults.append(resultPage);
+      searchResults.showEmpty();
       return;
     }
-
-    let instance = new Mark(document.querySelector("#searchResults"));
     // Only show the ten first results
+    let instance = new Mark(searchResults.element);
     results.slice(0, MAX_PAGES).forEach((result, idx) => {
-      let resultPage = document.createElement("div");
-      resultPage.className = "searchResultPage";
       let metadata = lunrResult[idx].matchData.metadata;
-      let matchPosition = metadata[Object.keys(metadata)[0]].body.position[0][0];
-      let bodyStartPosition = matchPosition - BODY_LENGTH / 2 > 0 ? matchPosition - BODY_LENGTH / 2 : 0;
-
-      let resultTitle = document.createElement("a");
-      resultTitle.className = "searchResultTitle";
-      resultTitle.href = `/posts/${result.slug}`;
-      resultTitle.innerHTML = result.title;
-      resultPage.append(resultTitle);
-
-      let resultBody = document.createElement("div");
-      resultBody.className = "searchResultBody";
-      resultBody.innerHTML = result.body.substr(bodyStartPosition, BODY_LENGTH);
-      resultPage.append(resultBody);
-      searchResults.append(resultPage);
-
+      searchResults.add(result, metadata)
       instance.mark(query);
     });
   };
@@ -165,6 +177,6 @@
 
 <script>
   const search = document.getElementById("searchBox") as HTMLInputElement;
-  search.value = document.location.search?.substring(1) ?? "";
+  search.value = decodeURI(document.location.search?.substring(1) ?? "");
   setTimeout(() => search.focus(), 500);
 </script>

@@ -94,7 +94,7 @@ Executar um programa go
     - rune: alias for int32
   Texto:
     Default: ''
-    - string
+    - string: coleção de bytes UTF-8
   Inteiro:
     Default: 0
     - int: tamanho depende da arquitetura do sistema 32 ou 64 bits

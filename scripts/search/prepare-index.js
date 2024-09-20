@@ -4,41 +4,37 @@ import { globby } from "globby";
 import grayMatter from "gray-matter";
 
 (async function () {
-  // prepare the dirs
-  const srcDir = path.join(process.cwd(), "src");
-  const publicDir = path.join(process.cwd(), "public");
-  const contentDir = path.join(srcDir, "pages", "notes");
-  const contentFilePattern = path.join(contentDir, "*.md");
-  const indexFile = path.join(publicDir, "search-index.json");
-  const getSlugFromPathname = (pathname) =>
-    path.basename(pathname, path.extname(pathname));
+  const index = [];
+  const getSlugFromPathname = (pathname) => path.basename(pathname, path.extname(pathname));
+  const indexFiles = async (category) => {
+    const contentDir = path.join(process.cwd(), "src", "pages", category);
+    const contentFilePaths = await globby([path.join(contentDir, "*.md")]);
 
-  const contentFilePaths = await globby([contentFilePattern]);
-
-  if (contentFilePaths.length) {
-    const files = contentFilePaths.map(
-      async (filePath) => await fs.readFile(filePath, "utf8")
-    );
-    const index = [];
-    let i = 0;
-    for await (let file of files) {
-      const {
-        data: { title, description, tags },
-        content,
-      } = grayMatter(file);
-      index.push({
-        slug: getSlugFromPathname(contentFilePaths[i]),
-        category: "blog",
-        title,
-        description,
-        tags,
-        body: content,
-      });
-      i++;
+    if (contentFilePaths.length) {
+      const files = contentFilePaths.map(
+        async (filePath) => await fs.readFile(filePath, "utf8")
+      );
+      let i = 0;
+      for await (let file of files) {
+        const { data: { title, description, tags }, content: body } = grayMatter(file);
+        index.push({
+          slug: getSlugFromPathname(contentFilePaths[i]),
+          category,
+          title,
+          tags,
+          body,
+        });
+        i++;
+      }
+      console.log(`Indexed ${i} posts from ${contentDir}`);
     }
-    await fs.writeFile(indexFile, JSON.stringify(index));
-    console.log(
-      `Indexed ${index.length} documents from ${contentDir} to ${indexFile}`
-    );
+  }
+
+  await indexFiles("drafts")
+  await indexFiles("notes")
+  await indexFiles("shards")
+  if (index.length > 0) {
+    const indexOutputFile = path.join(process.cwd(), "public", "search-index.json");
+    await fs.writeFile(indexOutputFile, JSON.stringify(index), {encoding:'utf8',flag:'w'});
   }
 })();

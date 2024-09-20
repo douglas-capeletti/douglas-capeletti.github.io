@@ -22,5 +22,4 @@
 * improve color and use color variables
 * toggle for draft notes
 * i18n multi language translation
-* maybe a new name, i'm not 100% on this one
 * search by tag on notes page
