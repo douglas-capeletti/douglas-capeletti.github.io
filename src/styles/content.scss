@@ -31,10 +31,10 @@
   }
 
   a {
-    @apply font-bold underline text-hot-pink;
+    @apply font-bold underline text-contrast;
 
     &:hover {
-      @apply text-black;
+      color: var(--color-text-primary);
     }
   }
 
@@ -58,16 +58,17 @@
     position: relative;
 
     &:hover>button {
-      background-color: #fd2d78;
+      background-color: var(--color-bg-contrast);
     }
 
     button {
+      color: var(--color-text-secondary);
       position: absolute;
       top: 0;
       right: 0;
       padding: 0.1rem 0.2rem;
       border-radius: 0.2rem;
-      background-color: #2dfdfd;
+      background-color: var(--color-btn-primary);
       font-size: 0.8rem;
       line-height: 1rem;
       z-index: 1000;

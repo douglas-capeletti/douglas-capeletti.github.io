@@ -5,10 +5,13 @@ export default {
   ],
   important: true,
   theme: {
-    borderColor: (theme) => ({
-      ...theme("colors"),
-      default: theme("colors.black", "currentColor"),
-    }),
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1280px',
+      '2xl': '1536px',
+    },
     rotate: {
       "-180": "-180deg",
       "-90": "-90deg",
@@ -95,8 +98,16 @@ export default {
         xl: ".75rem",
       },
       colors: {
-        black: "#12151E",
-        "hot-pink": "#fd2d78",
+        "text-primary": "var(--color-text-primary)",
+        "text-secondary": "var(--color-text-secondary)",
+        "text-terciary": "var(--color-text-terciary)",
+        "bg-primary": "var(--color-bg-primary)",
+        "bg-secondary": "var(--color-bg-secondary)",
+        "bg-terciary": "var(--color-bg-terciary)",
+        "bg-terciary-hover": "var(--color-bg-terciary-hover)",
+        "btn-primary": "var(--color-btn-primary)",
+        "border": "var(--color-border)",
+        "contrast": "var(--color-contrast)"
       },
       fontFamily: {
         display: ["Londrina Solid", "sans-serif"],

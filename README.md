@@ -17,9 +17,11 @@
 
 ## Roadmap
 
-* Implement Dark Mode
-* better contrast for cards
-* improve color and use color variables
-* toggle for draft notes
+* Implement Dark Mode TOGGLE
+
+* toggle for draft notes (remove drafts button and add a button on notes pages to see drafts)
+* add draft tag on search
 * i18n multi language translation
-* search by tag on notes page
+* review some css classes 
+* search by tag on notes page (use a # for full match maybe)
+* review if search need to be a full match (maybe a full word match)
