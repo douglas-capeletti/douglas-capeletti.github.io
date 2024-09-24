@@ -164,8 +164,7 @@
     // Only show the ten first results
     let instance = new Mark(searchResults.element);
     results.slice(0, MAX_PAGES).forEach((result, idx) => {
-      let metadata = lunrResult[idx].matchData.metadata;
-      searchResults.add(result, metadata)
+      searchResults.add(result, lunrResult[idx].matchData.metadata)
       instance.mark(query);
     });
   };

@@ -2,8 +2,7 @@
 title: "Links úteis"
 pubDate: "2024-08-08:00:00"
 slug: "usefull-links"
-hero: "/images/C4.png"
-tags: ["documentation", "arquitecture"]
+tags: ["links"]
 layout: "../../layouts/PostLayout.astro"
 ---
 
