@@ -40,9 +40,9 @@ o container contem uma parte com comada(s) de estado imutável, e uma de leitura
 descrição de quais os comandos serão executados ao criar o container para que ele funcione da forma esperada
 
 ``` yaml
-  FROM: ubuntu:latest
-  RUN: ./build-script
-  EXPOSE: 8080
+FROM: ubuntu:latest
+RUN: ./build-script
+EXPOSE: 8080
 ```
 
 a cada nova execucao o Dockerfile é gerada uma nova imagem
