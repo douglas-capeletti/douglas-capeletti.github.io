@@ -16,9 +16,10 @@ layout: "../../layouts/PostLayout.astro"
 
 ### Aliases & Path
 <br>
-Primeiro entre no arquivo de aliases
+Primeiro entre no arquivo de aliases (caso não goste do vim, troque pelo nano ou outro)
 
 ``` sh
+sudo apt install -y vim
 vim ~/.bash_aliases
 ```
 <br>
@@ -52,7 +53,7 @@ com estes aliases fica muito mais fácil daqui para frente
 ### Pacotes básicos
 ``` sh
 update
-sudo apt install -y vim git zip unzip nautilus
+sudo apt install -y git zip unzip nautilus
 ```
 
 <br>
