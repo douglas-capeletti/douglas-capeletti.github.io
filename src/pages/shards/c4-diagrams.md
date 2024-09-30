@@ -1,7 +1,7 @@
 ---
-title: "Links úteis"
-pubDate: "2024-08-08:00:00"
-slug: "usefull-links"
+title: "Diagrama C4"
+pubDate: "2024-09-29-08:00:00"
+slug: "c4-diagrams"
 tags: ["links"]
 layout: "../../layouts/PostLayout.astro"
 ---

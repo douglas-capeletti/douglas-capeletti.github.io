@@ -1,5 +1,5 @@
 ---
-const options = { Notes: "/notes", Drafts: "/drafts", Shards: "/shards", Projects: "/projects", About: "/about" };
+const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", About: "/about" };
 ---
 
 <script>
@@ -22,7 +22,7 @@ const options = { Notes: "/notes", Drafts: "/drafts", Shards: "/shards", Project
             <a href={value[1]} class="mr-5 text-text-primary font-semibold hover:text-contrast">{value[0]}</a>
           ))
         }
-        <a href="/search" class="h6 w-6">
+        <a href="/search" class="h6 w-6 hover:text-contrast">
           <span class="sr-only">Search note</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>

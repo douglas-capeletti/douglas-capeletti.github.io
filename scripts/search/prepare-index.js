@@ -30,7 +30,6 @@ import grayMatter from "gray-matter";
     }
   }
 
-  await indexFiles("drafts")
   await indexFiles("notes")
   await indexFiles("shards")
   if (index.length > 0) {

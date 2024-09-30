@@ -1,5 +1,5 @@
 ---
-title: "Como usar o Docker"
+title: "Como usar o Docker (WIP)"
 pubDate: "2023-09-28:00:00"
 slug: "how-use-docker"
 hero: "/images/docker.jpg"
