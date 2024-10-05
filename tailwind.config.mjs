@@ -93,6 +93,7 @@ export default {
       0: "0",
       auto: "auto",
     }),
+    darkMode: 'class',
     extend: {
       borderRadius: {
         xl: ".75rem",

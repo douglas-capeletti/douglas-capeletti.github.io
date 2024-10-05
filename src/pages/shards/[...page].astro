@@ -1,7 +1,7 @@
 ---
 import { type IPage } from "../../utils/types";
 import TopicListLayout from "../../layouts/TopicListLayout.astro";
-import DefaultPageLayout from "../../layouts/DefaultPageLayout.astro";
+import BasePageLayout from "../../layouts/BasePageLayout.astro";
 import BackToPage from "../../components/BackToPage.astro";
 import type { GetStaticPathsOptions } from "astro";
 
@@ -18,7 +18,7 @@ const page = props.page as IPage;
 const title = "Shards";
 ---
 
-<DefaultPageLayout title={title}>
+<BasePageLayout title={title}>
   <TopicListLayout title={title} page={page} />
   <BackToPage />
-</DefaultPageLayout>
+</BasePageLayout>

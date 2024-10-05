@@ -1,4 +1,6 @@
 ---
+import DarkModeToggle from "./DarkModeToggle.astro";
+
 const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", About: "/about" };
 ---
 
@@ -22,12 +24,13 @@ const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", Abo
             <a href={value[1]} class="mr-5 text-text-primary font-semibold hover:text-contrast">{value[0]}</a>
           ))
         }
-        <a href="/search" class="h6 w-6 hover:text-contrast">
+        <a href="/search" class="mr-5 h6 w-6 hover:text-contrast">
           <span class="sr-only">Search note</span>
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </a>
+        <DarkModeToggle props="h6 w-6 hover:text-contrast"/>
       </div>
       <div class="flex md:hidden">
         <button id="openMenu" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">

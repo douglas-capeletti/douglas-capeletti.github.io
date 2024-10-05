@@ -1,13 +1,13 @@
 ---
 import Header from "../components/Header.astro";
-import DefaultPageLayout from "../layouts/DefaultPageLayout.astro";
+import BasePageLayout from "../layouts/BasePageLayout.astro";
 
 const title = "Developing Notes";
 const description = "My codes and notes as a software engineer.";
 const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", About: "/about" };
 ---
 
-<DefaultPageLayout title={description}>
+<BasePageLayout title={description}>
   <article class="py-12 lg:py-20 max-w-6xl mx-auto my-auto px-3">
     <Header title={title} description={description} />
     <section class="flex sm:flex-row flex-col gap-5 justify-center justify-items-center items-center" data-test="articles-section">
@@ -20,4 +20,4 @@ const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", Abo
       }
     </section>
   </article>
-</DefaultPageLayout>
+</BasePageLayout>

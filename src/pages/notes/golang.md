@@ -3,7 +3,7 @@ title: "Golang - Guia básico (WIP)"
 pubDate: "2024-09-16:00:00"
 slug: "golang-quick-guide"
 hero: "/images/golang.jpg"
-tags: ["golang", "programming languages"]
+tags: ["draft", "golang", "programming languages"]
 layout: "../../layouts/PostLayout.astro"
 ---
 

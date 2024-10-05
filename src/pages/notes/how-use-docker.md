@@ -3,7 +3,7 @@ title: "Como usar o Docker (WIP)"
 pubDate: "2023-09-28:00:00"
 slug: "how-use-docker"
 hero: "/images/docker.jpg"
-tags: ["docker", "containers"]
+tags: ["draft", "docker", "containers"]
 layout: "../../layouts/PostLayout.astro"
 ---
 

@@ -14,14 +14,3 @@
 * Run `pnpm check` to check for any astro or TS issue
 * Run `pnpm index` to generate the search index
 * Run `pnpm build` to build the site
-
-## Roadmap
-
-* Implement Dark Mode TOGGLE
-
-* toggle for draft notes (remove drafts button and add a button on notes pages to see drafts)
-* add draft tag on search
-* i18n multi language translation
-* review some css classes 
-* search by tag on notes page (use a # for full match maybe)
-* review if search need to be a full match (maybe a full word match)

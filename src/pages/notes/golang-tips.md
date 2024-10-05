@@ -3,7 +3,7 @@ title: "Golang Tips (WIP)"
 pubDate: "2024-08-08:00:00"
 slug: "golang-tips"
 hero: "/images/work-in-progress.png"
-tags: ["golang"]
+tags: ["draft", "golang"]
 layout: "../../layouts/PostLayout.astro"
 ---
 
