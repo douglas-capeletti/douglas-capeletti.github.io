@@ -1,13 +1,12 @@
 ---
 import "../styles/main.scss";
+import { SITE_URL } from "../utils/constants";
 
 export interface Props {
   title: string;
   description?: string;
 }
 const { title, description } = Astro.props;
-
-let permalink = "https://developingnotes.com";
 ---
 
 <script>
@@ -35,14 +34,14 @@ let permalink = "https://developingnotes.com";
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-<meta property="og:url" content={permalink} />
+<meta property="og:url" content={SITE_URL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description ?? title} />
 <meta property="og:image" content="/images/favicon.png" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={permalink} />
+<meta property="twitter:url" content={SITE_URL} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description ?? title} />
 <meta property="twitter:image" content="/images/favicon.png" />

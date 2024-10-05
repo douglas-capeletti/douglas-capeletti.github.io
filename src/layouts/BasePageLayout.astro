@@ -1,6 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Nav from "../components/Nav.astro";
+import { SITE_URI } from "../utils/constants";
 
 export interface Props {
   title: string;
@@ -8,7 +9,7 @@ export interface Props {
 }
 
 const { title, disableNav } = Astro.props;
-const seoTitle = `${title} | DevelopingNotes.com`;
+const seoTitle = `${title} | ${SITE_URI}`;
 ---
 
 <html lang="en" class="dark">
