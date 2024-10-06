@@ -1,5 +1,5 @@
 ---
-title: "Golang Tips (WIP)"
+title: "Golang Tips"
 pubDate: "2024-08-08:00:00"
 slug: "golang-tips"
 hero: "/images/work-in-progress.png"

@@ -1,5 +1,5 @@
 ---
-title: "Golang - Guia básico (WIP)"
+title: "Golang - Guia básico"
 pubDate: "2024-09-16:00:00"
 slug: "golang-quick-guide"
 hero: "/images/golang.jpg"

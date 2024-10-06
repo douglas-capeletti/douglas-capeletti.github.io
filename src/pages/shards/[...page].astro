@@ -4,12 +4,13 @@ import TopicListLayout from "../../layouts/TopicListLayout.astro";
 import BasePageLayout from "../../layouts/BasePageLayout.astro";
 import BackToPage from "../../components/BackToPage.astro";
 import type { GetStaticPathsOptions } from "astro";
+import { PAGE_SIZE } from "../../utils/constants";
 
 export async function getStaticPaths(options: GetStaticPathsOptions): Promise<any> {
-  const allNotes = await Astro.glob<any>("./*.md");
-  const sortedNotes = allNotes.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
+  const allPosts = await Astro.glob<any>("./*.md");
+  const sortedNotes = allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf());
   return options.paginate(sortedNotes, {
-    pageSize: 21,
+    pageSize: PAGE_SIZE,
   });
 }
 

@@ -14,3 +14,15 @@ export interface IPageURL {
   prev: string | undefined;
   next: string | undefined;
 }
+
+export interface IPost {
+  url: string;
+  frontmatter: {
+    title: string;
+    pubDate: string;
+    slug: string;
+    hero: string;
+    tags: string[];
+    layout: string;
+  }
+}
