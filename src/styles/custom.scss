@@ -19,3 +19,24 @@
   color: white;
   background: var(--color-contrast);
 }
+
+.tag-wrapper {
+  position: relative;
+
+  &:hover>.tag {
+    background-color: var(--color-contrast);
+  }
+
+  .tag {
+    color: var(--color-text-secondary);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.2rem 0.3rem;
+    border-radius: 0.3rem;
+    background-color: var(--color-btn-primary);
+    font-size: 0.8rem;
+    line-height: 1rem;
+    z-index: 1000;
+  }
+}

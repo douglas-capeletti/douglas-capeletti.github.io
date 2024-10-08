@@ -54,27 +54,6 @@
     overflow: auto;
   }
 
-  .copy-wrapper {
-    position: relative;
-
-    &:hover>button {
-      background-color: var(--color-contrast);
-    }
-
-    button {
-      color: var(--color-text-secondary);
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 0.2rem 0.3rem;
-      border-radius: 0.5rem;
-      background-color: var(--color-btn-primary);
-      font-size: 0.8rem;
-      line-height: 1rem;
-      z-index: 1000;
-    }
-  }
-
   ol {
     @apply pl-0 list-decimal ml-10 mb-8 text-lg;
 

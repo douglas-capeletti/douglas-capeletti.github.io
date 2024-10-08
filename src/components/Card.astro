@@ -8,12 +8,12 @@ export interface Props {
 }
 
 const { blank, post } = Astro.props;
-const isDraft = post.frontmatter?.tags?.[0] === "draft"
-const draftStyle = "border-4 border-btn-primary hover:border-contrast"
+const enableTag = post.frontmatter?.tags?.[0] === "draft"
+const tagStyle = "tag-wrapper border-4 border-btn-primary hover:border-contrast"
 ---
 
-<a href={post.url} class=`transition-all duration-75 ease-in-out h-full block relative top-0 hover:-top-3 shadow-lg hover:shadow-xl bg-bg-terciary hover:bg-bg-terciary-hover rounded-xl overflow-hidden ${isDraft ? draftStyle : "is border-2 border-border"}` data-test="article-card" target={blank ? "_blank" : "_self"}>
-  {isDraft && <div class="draft hover:bg-contrast">Draft✏️</div>}
+<a href={post.url} class=`transition-all duration-75 ease-in-out h-full block relative top-0 hover:-top-3 shadow-lg hover:shadow-xl bg-bg-terciary hover:bg-bg-terciary-hover rounded-xl overflow-hidden ${enableTag ? tagStyle : "is border-2 border-border"}` data-test="article-card" target={blank ? "_blank" : "_self"}>
+  {enableTag && <div class="tag">Draft✏️</div>}
   {post.frontmatter.hero && <img src={post.frontmatter.hero} alt={post.frontmatter.title} width="360" height="192" />}
   <div class="py-6 px-8">
     <h2 class="font-bold text-2xl leading-tight text-text-terciary">
@@ -24,18 +24,6 @@ const draftStyle = "border-4 border-btn-primary hover:border-contrast"
 </a>
 
 <style>
-  .draft {
-    color: var(--color-text-secondary);
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0.2rem 0.3rem;
-    border-radius: 0.5rem;
-    background-color: var(--color-btn-primary);
-    font-size: 0.8rem;
-    line-height: 1rem;
-    z-index: 1000;
-  }
   img {
     width: 100%;
     aspect-ratio: 15/7;

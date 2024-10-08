@@ -34,13 +34,13 @@ export function enableCopyToClipboardButton() {
   document.querySelectorAll("pre").forEach((preBlock: HTMLPreElement) => {
     if (navigator.clipboard) {
       let wrapper = document.createElement("div");
-      wrapper.className = "copy-wrapper";
+      wrapper.className = "tag-wrapper";
 
       preBlock?.parentNode?.insertBefore(wrapper, preBlock);
       preBlock.setAttribute("tabindex", "0");
 
       let copy = document.createElement("button");
-      copy.className = "copy-button";
+      copy.className = "tag";
       copy.innerHTML = copyButtonLabel;
 
       wrapper.appendChild(copy);
