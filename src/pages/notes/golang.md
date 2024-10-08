@@ -477,7 +477,9 @@ func main() {
 }
 ```
 
-## Tomorrow it's to time for POINTERS
+### POINTERS
+um tipo especial de dados que armazena (ou 'aponta') um endereço de memória
+
 
 ### TODO LIST
 - revisar ortografia
