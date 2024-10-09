@@ -477,9 +477,102 @@ func main() {
 }
 ```
 
-### POINTERS
-um tipo especial de dados que armazena (ou 'aponta') um endereço de memória
+### Pointers
+um tipo especial de dados que armazena (ou 'aponta') um endereço de memória.
+Ponteiros são identificados por um `*` na declaração da variável.
 
+``` go
+var x int32 = 10
+// ao inicializar um ponteiro desta forma, estamos criando um novo valor na memória
+// neste caso 0 (default do int32) e armazenando uma referencia para ele em 'a'
+var a *int32 = new(int32)
+
+// com o '*' antes do ponteiro, estamos dereferenciando
+// indo até o espaço de memória que é apontado
+fmt.Printf("'a' point to the value: %v \n", *a)
+fmt.Printf("'x' value is: %v \n", x)
+
+// caso queira atualizar o valor de 'a' use '*'
+// caso contrário, estará atualizando o endereço de memória
+*a = 5
+
+var y int32 = 70
+// '&' é usado para capturar o endereço de memória de uma variável
+// neste caso, estamos referenciando a variável 'y'
+var b *int32 = &y
+fmt.Printf("'b' point to the value: %v \n", *b)
+fmt.Printf("'y' value is: %v \n", y)
+
+// agora como 'b' e 'y' apontam para o mesmo local na memória
+// qualquer mudança em no valor de um deles, causa um efeito no outro
+*b = 80
+fmt.Println("updating by reference...")
+fmt.Printf("'b' point to the value: %v \n", *b)
+fmt.Printf("'y' value is: %v \n", y)
+
+//e se nao fosse um ponteiro?
+c := 2
+d := c
+fmt.Printf("'c' value is: %v \n", c)
+fmt.Printf("'d' value is: %v \n", d)
+
+d = 5
+fmt.Println("updating by value...")
+fmt.Printf("'c' value is: %v \n", c)
+fmt.Printf("'d' value is: %v \n", d)
+```
+| Variável | Conteúdo | Endereço de memória |
+| -------- | -------- | ------------------- |
+| a        | _0x1b05_ | 0x1b00              |
+| b        | _0x1b04_ | 0x1b01              |
+|          |          | 0x1b03              |
+| x        | 10       | 0x1b02              |
+| y        | 70 -> 80 | _0x1b04_            |
+|          | 0  ->  5 | _0x1b05_            |
+
+porém... nem tudo é tão simples assim, no caso de estruturas de dados complexas como _slices_ qualquer cópia será por referência dado que  um _slice_ nada mais é que um conjunto de ponteiros para um _array_
+``` go
+var slice = []int32{1, 2, 3}
+var sliceCopy = slice
+// ao atualizar um, atualizamos o outro
+sliceCopy[2] = 4
+fmt.Println(slice)
+fmt.Println(sliceCopy)
+```
+voltando no ponto sobre atualizar por referência ou por valor, todo parâmetro de função será implicitamente passado por valor, ou seja, ao enviar um _array_ por exemplo, ao receber este array a função terá uma cópia do _array_ original, desta forma DUPLICANDO a memória, o que pode fazer sentido para alguns casos, mas não para todos. Sendo assim podemos enviar um ponteiro, quando quisermos evitar este tipo de cenário porém tendo em mente que o array possivelmente será modificado, causando efeitos colaterais, desejados ou não
+
+``` go
+var thing1 = [5]int32{1, 2, 3, 4, 5}
+fmt.Printf("Memory location of thing1: %p \n", &thing1)
+var resultSquare [5]int32 = square(thing1)
+fmt.Printf("Result value: %v \n", resultSquare)
+fmt.Printf("thing1 value: %v \n", thing1)
+
+var resultSquareRef [5]int32 = squareRef(&thing1)
+fmt.Printf("Result ref value: %v \n", resultSquareRef)
+fmt.Printf("thing1 new value: %v \n", thing1)
+```
+``` go
+func square(thing2 [5]int32) [5]int32 {
+	fmt.Printf("Memory location of thing2: %p \n", &thing2)
+	for i := range thing2 {
+		thing2[i] = thing2[i] * thing2[i]
+	}
+	return thing2
+}
+
+func squareRef(thing3 *[5]int32) [5]int32 {
+	// aqui nao precisa do '&' esta variável já é um ponteiro
+	// usando '&' o resultado será o endereço do ponteiro (ponteiro do ponteiro)
+	fmt.Printf("Memory location of thing3: %p \n", thing3)
+	for i := range thing3 {
+		thing3[i] = thing3[i] * thing3[i]
+	}
+	return *thing3
+}
+```
+
+### Next stop... GOROUTINES
 
 ### TODO LIST
 - revisar ortografia
