@@ -572,7 +572,13 @@ func squareRef(thing3 *[5]int32) [5]int32 {
 }
 ```
 
-### Next stop... GOROUTINES
+### GOROUTINES
+
+Primeira coisa a ser comentada sobre Goroutines é, Goroutine é uma ferramenta de concorrência e não paralelismo. Caso este assunto cause alguma confusão ainda na sua cabeça, tente [dar uma lida aqui antes](/shards/concurrency-is-not-parallelism).
+
+
+
+
 
 ### TODO LIST
 - revisar ortografia

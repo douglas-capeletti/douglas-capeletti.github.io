@@ -17,9 +17,9 @@ export async function getStaticPaths(options: GetStaticPathsOptions): Promise<an
 const props = Astro.props as any;
 const page = props.page as IPage;
 const title = "Notes";
+const description = "Minhas anotações sobre assuntos diversos, divirta-se lendo 👀"
 ---
-
 <BasePageLayout title={title}>
-  <TopicListLayout title={title} page={page} />
+  <TopicListLayout title={title} description={description} page={page} />
   <BackToPage />
 </BasePageLayout>

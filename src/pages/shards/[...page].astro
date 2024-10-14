@@ -17,9 +17,9 @@ export async function getStaticPaths(options: GetStaticPathsOptions): Promise<an
 const props = Astro.props as any;
 const page = props.page as IPage;
 const title = "Shards";
+const description = 'Shards ou "Fragmentos", anotações menores de assuntos complementares para o entendimento de outras notas'
 ---
-
 <BasePageLayout title={title}>
-  <TopicListLayout title={title} page={page} />
+  <TopicListLayout title={title} description={description} page={page} />
   <BackToPage />
 </BasePageLayout>

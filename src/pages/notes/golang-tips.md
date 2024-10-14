@@ -12,3 +12,8 @@ layout: "../../layouts/PostLayout.astro"
 | Variável   | Descrição                                                                 |
 | ---------- | ------------------------------------------------------------------------- |
 | GOMAXPROCS | configura o numero maximo de processos que podem ser criados pela runtime |
+
+## TODO
+
+- Govulncheck
+- Race detector golang

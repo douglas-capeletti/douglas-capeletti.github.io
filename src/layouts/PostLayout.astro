@@ -4,11 +4,11 @@ import Post from "../components/Post.astro";
 import BasePageLayout from "./BasePageLayout.astro";
 
 const { content } = Astro.props;
-const { title, pubDate, description, hero, tags, youtube } = content;
+const { title, pubDate, description, hero, tags, video } = content;
 ---
 
 <BasePageLayout title={title}>
-  <Post title={title} pubDate={new Date(pubDate)} description={description} hero={hero} tags={tags} youtube={youtube}>
+  <Post title={title} pubDate={new Date(pubDate)} description={description} hero={hero} tags={tags} video={video}>
     <slot />
   </Post>
   <BackToPage pageName="notes" path="/notes" />
