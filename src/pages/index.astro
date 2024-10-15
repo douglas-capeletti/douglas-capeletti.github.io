@@ -1,8 +1,9 @@
 ---
 import Header from "../components/Header.astro";
 import BasePageLayout from "../layouts/BasePageLayout.astro";
+import { SITE_NAME } from "../utils/constants";
 
-const title = "Developing Notes";
+const title = SITE_NAME;
 const description = "My codes and notes as a software engineer.";
 const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", About: "/about" };
 ---
