@@ -2,7 +2,7 @@
 title: "Diagrama C4"
 pubDate: "2024-09-29:00:00"
 slug: "c4-diagrams"
-tags: ["draft", "links"]
+tags: ["draft", "documentation"]
 layout: "../../layouts/PostLayout.astro"
 ---
 

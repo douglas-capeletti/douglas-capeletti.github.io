@@ -10,7 +10,7 @@ layout: "../../layouts/PostLayout.astro"
 
 A: É, existe uma diferença.
 <br>
-B: Mas eu escrevo tudo com *`func`*, então é tudo função, certo?
+B: Mas eu escrevo tudo com *`func ou fun ou function`*, então é tudo função, certo?
 <br>
 A: Sim, e não
 <br>

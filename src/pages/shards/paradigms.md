@@ -2,7 +2,7 @@
 title: "Paradigmas"
 pubDate: "2024-10-08:00:00"
 slug: "paradigms"
-tags: ["paradigms"]
+tags: ["paradigm"]
 layout: "../../layouts/PostLayout.astro"
 ---
 

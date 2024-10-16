@@ -3,7 +3,7 @@ title: "Golang - Guia básico"
 pubDate: "2024-09-16:00:00"
 slug: "golang-quick-guide"
 hero: "/images/golang.jpg"
-tags: ["draft", "golang", "programming languages"]
+tags: ["draft", "golang", "programming language"]
 layout: "../../layouts/PostLayout.astro"
 ---
 
@@ -575,13 +575,309 @@ func squareRef(thing3 *[5]int32) [5]int32 {
 ### GOROUTINES
 
 Primeira coisa a ser comentada sobre Goroutines é, Goroutine é uma ferramenta de concorrência e não paralelismo. Caso este assunto cause alguma confusão ainda na sua cabeça, tente [dar uma olhada aqui antes](/shards/concurrency-is-not-parallelism).
+<br>
 
+Alguns pontos sobre Goroutines
+- não são threads, são bem mais leves 
+- são gerenciadas pelo scheduler interno do go e não pelo Sistema operacional
+- é um modelo concorrente, podendo também ser paralelo (mas não necessariamente)
 
-To be continued...
+Goroutines são disparadas/agendadas em background atraves da palavra chave *`go`* antes da chamada,
+no exemplo abaixo utilizamos o *`go`* antes da chamada à função *`dbCall(i)`*, desta forma a execução da função vai acontecer de forma concorrente.<br>
+Porém ao analisar o código você também notará algo a mais de novo: `WaitGroup`, nada mais é do que uma ferramenta de sincronização de Goroutines, adicionamos ao contador do WaitGroup o número de Goroutines que estamos esperando ser concluídas, e chamamos o `Done` para decrementar este valor que deve resultar em zero (se não der zero, teremos problemas). Assim garantimos que o programa irá aguardar todas as Goroutines agendadas terminem
 
+``` go
+var wg = sync.WaitGroup{}
+var dbData = []string{"ID[1]", "ID[2]", "ID[3]", "ID[4]", "ID[5]"}
 
+func main() {
+	t0 := time.Now()
+	for i := 0; i < len(dbData); i++ {
+		// adiciona 1 ao contador
+		wg.Add(1)
+		go dbCall(i)
+	}
+	wg.Wait()
+	fmt.Printf("Total execution time: %v \n", time.Since(t0))
+}
 
-### TODO LIST
+// simulate DB call delay
+func dbCall(i int) {
+	var delay float32 = rand.Float32() * 2000
+	time.Sleep(time.Duration(delay) * time.Millisecond)
+	fmt.Println("Result from DB:", dbData[i])
+	// remove 1 do contador
+	wg.Done()
+}
+```
+
+Ok, legal!<br>
+Mas se eu precisar armazenar esse resultado em algum lugar? Preciso saber a ordem com que os processos terminaram de executar, Como lidar com a condição de corrida?<br>
+Go assim como grande parte das linguagens de programação, implementa tanto o _Mutex_ quanto o _Semaphore_ para estes casos.
+
+``` go
+var m = sync.Mutex{}
+var wg = sync.WaitGroup{}
+var dbData = []string{"ID[1]", "ID[2]", "ID[3]", "ID[4]", "ID[5]"}
+var results = []string{}
+
+func main() {
+	t0 := time.Now()
+	for i := 0; i < len(dbData); i++ {
+		// adiciona 1 ao contador
+		wg.Add(1)
+		go dbCall(i)
+	}
+	wg.Wait()
+	fmt.Printf("Total execution time: %v \n", time.Since(t0))
+	fmt.Printf("The results are: %v \n", results)
+}
+
+// simulate DB call delay
+func dbCall(i int) {
+	// fixando o tempo para forçar cenários concorrentes
+	var delay float32 = 2000
+	time.Sleep(time.Duration(delay) * time.Millisecond)
+	fmt.Println("Result from DB:", dbData[i])
+	save(dbData[i])
+	// remove 1 do contador
+	wg.Done()
+}
+
+func save(result string) {
+	// bloqueando a escrita para evitar condição de corrida
+	m.Lock()
+	results = append(results, result)
+	// liberando o acesso para outras Goroutines
+	m.Unlock()
+}
+```
+
+Agora sim, funcionando bem, mas... e se eu quiser ir logando conforme os valores são inseridos? O _Mutex_ em go tem uma funcionalidade a mais, utilizando um _RWMutex_ mutex de leitura e escrita, podemos especificar se nosso lock será somente de leitura ou não
+
+``` go
+var m = sync.RWMutex{}
+var wg = sync.WaitGroup{}
+var dbData = []string{"ID[1]", "ID[2]", "ID[3]", "ID[4]", "ID[5]"}
+var results = []string{}
+
+func main() {
+	t0 := time.Now()
+	for i := 0; i < len(dbData); i++ {
+		// adiciona 1 ao contador
+		wg.Add(1)
+		go dbCall(i)
+	}
+	wg.Wait()
+	fmt.Printf("Total execution time: %v \n", time.Since(t0))
+}
+
+// simulate DB call delay
+func dbCall(i int) {
+	// fixando o tempo para forçar cenários concorrentes
+	var delay float32 = 2000
+	time.Sleep(time.Duration(delay) * time.Millisecond)
+	save(dbData[i])
+	log()
+	// remove 1 do contador
+	wg.Done()
+}
+
+func save(result string) {
+	// bloqueando a escrita para evitar condição de corrida
+	m.Lock()
+	results = append(results, result)
+	// liberando o acesso para outras Goroutines
+	m.Unlock()
+}
+
+func log() {
+	// bloaqueia somente a leitura
+	m.RLock()
+	fmt.Printf("Current results: %v \n", results)
+	// desbloqueia a leitura
+	m.RUnlock()
+}
+```
+
+Bom, isso é o básico para mexer com Goroutines, para fazer mais que isso precisamos dar uma olhada em _Channels_
+
+### Channels
+
+O que é isso? São canais de comunicação, desenhados para trabalhar com Goroutines.
+O que isso faz?
+- Escuta/espera por dados
+- Armazena dados
+- Formato FIFO (fila)
+- Thread safe
+
+Vamos ver como declarar e utilizar os channels
+
+``` go
+// Declarando um channel de tamanho 1
+var ch1 = make(chan int)
+// adicionando o valor 1 no channel ch1=[1]
+// Exatamente aqui, teremos um lock
+ch1 <- 1
+// removendo o primeiro valor do channel e armazenando na variável
+var i = <-ch1
+// criando um channel com um valor inicial pré determinado
+var ch2 = make(chan int, 10)
+ch2 <- i
+// ERRO
+fmt.Println("Valor processado:", <-ch2)
+```
+
+Como channels foram desenhadas para trabalhar junto com Goroutines, no momento em que um valor é inserido no canal, o processo irá parar, resultando em um DeadLock, para corrigir isto, teremos que fazer da seguinte forma:
+
+``` go
+func main() {
+	var c = make(chan int)
+	go process(c)
+	fmt.Println("Valor processado:", <-c)
+}
+
+func process(c chan int) {
+	c <- 1
+}
+```
+
+OK, mas... e se eu não souber quantos valores vão estar no meu channel e quiser ficar escutando ele até que ele termine?<br>
+Podemos utilizar os channels dentro de _for-range_, porém caso o channel não for fechado corretamente, teremos novamente um Deadlock, então não esqueça de usar o _close_ no channel
+
+``` go
+func main() {
+  // Inicializando o chan com 5 irá liberar espaço para a execução toda neste caso
+  // teste removendo o 5 e veja o que muda
+	var c = make(chan int, 5)
+	go process(c)
+	for i := range c {
+		fmt.Println("Valor processado:", i)
+	}
+	fmt.Println("Fim do processamento")
+}
+
+func process(c chan int) {
+  // defer??? é uma palavra reservada
+  // uma expressão que será executada no momento antes da função terminar
+	defer close(c)
+	for i := 0; i < 5; i++ {
+		c <- i
+	}
+}
+```
+
+Outra ferramenta útil é o *`select`*, que funciona como um _switch_ para channels
+
+``` go
+func main() {
+	oddChan := make(chan int)
+	pairChan := make(chan int)
+	numbers := []int{1, 3, 6, 8, 9, 10}
+
+	for i := range numbers {
+		go processNumber(numbers[i], oddChan, pairChan)
+	}
+	for range numbers {
+		results(oddChan, pairChan)
+	}
+
+}
+
+func results(oddChan chan int, pairChan chan int) {
+	select {
+	case value := <-oddChan:
+		fmt.Println("Valor ímpar encontrado:", value)
+	case value := <-pairChan:
+		fmt.Println("Valor Par encontrado:", value)
+	}
+}
+
+func processNumber(number int, oddChan chan int, pairChan chan int) {
+	if number%2 > 0 {
+		oddChan <- number
+	} else {
+		pairChan <- number
+	}
+}
+```
+
+### Generics
+
+Tipos genéricos demoraram um pouco para entrar na linguagem devido o uso de interfaces em go, porém o uso de tipos genéricos dão muito mais flexibilidade para o código
+
+``` go
+func main() {
+	ints := []int{1, 3, 6, 8, 9, 10}
+	intSum := processNumbers(ints)
+	fmt.Println("Soma dos Ints:", intSum)
+
+	floats := []float32{1.2, 3.1, 6.4, 8.3, 9.2, 10.8}
+	floatSum := processNumbers(floats)
+	fmt.Println("Soma dos Floats:", floatSum)
+}
+
+// Aqui definimos que o tipo T pode ser [int | float32 | float64]
+// podemos utilizar o any também assim como outras linguagens como Typescript
+// outro detalhe any nada mais é do que um alias para uma interface vazia :P
+// Bônus: em go podemos dar um nome para a variável que vai ser retornada
+// desta forma não precisamos declara-la, podemos us-la e somente usar um return
+func processNumbers[T int | float32 | float64](slice []T) (sum T) {
+	for _, v := range slice {
+		sum += v
+	}
+	return
+}
+```
+
+Lembra do exemplo de interfaces com structs? vamos adapta-lo para utilizar tipos genéricos, porém fica um pouco mais complicado.
+
+``` go
+type eletricCar struct {
+	kpkwh      uint8
+	batteryCap uint8
+}
+
+func (e eletricCar) kmLeft() uint {
+	return uint(e.batteryCap) * uint(e.kpkwh)
+}
+
+type car[T gasCar | eletricCar] struct {
+	owner
+	engine T
+}
+
+type engine interface {
+	kmLeft() uint
+}
+
+func willReachDestination(e engine, distance uint) bool {
+	return e.kmLeft() >= distance
+}
+
+func main() {
+	// uma struct pode ser inicializada desta forma
+	var myCar car[gasCar] = car[gasCar]{owner: owner{"Someone"}, engine: gasCar{kml: 15, tankCap: 40}}
+	// e ser alterada desta forma
+	myCar.engine.kml = 20
+	fmt.Println(myCar.engine.kmLeft())
+
+	// nomes de variáveis podem ser omitidos, enviando os parametros em ordem
+	var myOtherCar car[eletricCar] = car[eletricCar]{owner{"Someone"}, eletricCar{4, 100}}
+	fmt.Println(myOtherCar.engine.kmLeft())
+
+	// ao usar a funcao podemos utilizar ambos os carros
+	// pois ambos satisfazem os requisitos da interface
+	var distance uint = 500
+	fmt.Println("Gas Car: ", willReachDestination(myCar.engine, distance))
+	fmt.Println("Eletric car: ", willReachDestination(myOtherCar.engine, distance))
+}
+```
+<br>
+
+Fim✨, do básico até o não tão básico, cobrindo grande parte das estruturas da linguagem. Espero ter ajudado pelo menos um pouco no entendimento de como utilizar Golang
+
+### TODO LIST (para demover a tag de draft)
 - revisar ortografia
 - segmentar melhor os blocos de código
 - organizar melhor a ordem dos tópicos

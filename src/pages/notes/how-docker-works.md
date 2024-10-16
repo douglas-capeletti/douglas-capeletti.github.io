@@ -3,7 +3,7 @@ title: "Como Docker funciona"
 pubDate: "2023-09-13:00:00"
 slug: "how-docker-works"
 hero: "/images/docker-inside.png"
-tags: ["draft", "docker", "containers"]
+tags: ["draft", "docker", "container"]
 layout: "../../layouts/PostLayout.astro"
 ---
 
