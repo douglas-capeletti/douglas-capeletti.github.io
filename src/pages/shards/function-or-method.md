@@ -8,12 +8,9 @@ layout: "../../layouts/PostLayout.astro"
 
 ## Mas qual a diferença?
 
-A: É, existe uma diferença.
-<br>
-B: Mas eu escrevo tudo com *`func ou fun ou function`*, então é tudo função, certo?
-<br>
-A: Sim, e não
-<br>
+A: É, existe uma diferença.<br>
+B: Mas eu escrevo tudo com *func ou fun ou function*, então é tudo função, certo?<br>
+A: Sim, e não.<br>
 
 Sim, são todas funções, porém funções associadas a um objeto ou classe são chamadas de métodos, eles geralmente processam valores internos daquele objeto ou classe dado que estas funções não poderão ser utilizadas fora daquele objeto, o que chamamos de encapsulamento (um dos pilares da POO)
 

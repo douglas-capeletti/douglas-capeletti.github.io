@@ -1,33 +1,50 @@
 .content {
   h1 {
-    @apply font-display uppercase font-bold leading-none;
+    @apply font-display uppercase font-bold leading-none mb-4;
 
-    font-size: min(max(3rem, 6.25vw), 7rem);
+    font-size: min(max(3rem, 6vw), 6rem);
 
-    @supports (font-size: clamp(3rem, 6.25vw, 7rem)) {
-      font-size: clamp(3rem, 6.25vw, 7rem);
+    @supports (font-size: clamp(3rem, 6vw, 6rem)) {
+      font-size: clamp(3rem, 6vw, 6rem);
     }
   }
 
   h2 {
-    @apply text-4xl font-bold leading-none mt-12 py-6 tracking-tight;
+    @apply font-display uppercase leading-none mb-4;
+
+    font-size: min(max(2.5rem, 5vw), 5rem);
+
+    @supports (font-size: clamp(2.5rem, 5vw, 5rem)) {
+      font-size: clamp(2.5rem, 5vw, 5rem);
+    }
   }
 
   h3 {
-    @apply text-xl font-bold leading-none py-6;
+    @apply font-display tracking-widest leading-none mb-4;
+
+    font-size: min(max(2rem, 4vw), 4rem);
+
+    @supports (font-size: clamp(2rem, 4vw, 4rem)) {
+      font-size: clamp(2rem, 4vw, 4rem);
+    }
   }
 
   h4 {
-    @apply font-bold uppercase tracking-widest leading-none py-6;
+    @apply font-display tracking-widest leading-none mb-4;
+
+    font-size: min(max(1.5rem, 3vw), 3rem);
+
+    @supports (font-size: clamp(1.5rem, 3vw, 3rem)) {
+      font-size: clamp(1.5rem, 3vw, 3rem);
+    }
   }
 
   >p {
-    @apply text-lg leading-relaxed;
-    margin-bottom: 2em;
+    @apply text-lg leading-relaxed mb-4;
   }
 
   >img {
-    @apply my-12;
+    @apply my-8;
   }
 
   a {
@@ -44,14 +61,6 @@
     li {
       @apply mb-1;
     }
-  }
-
-  pre {
-    position: relative;
-    margin: 5px 0;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    overflow: auto;
   }
 
   ol {
@@ -76,6 +85,19 @@
     p {
       @apply leading-normal;
     }
+  }
+
+  pre {
+    position: relative;
+    margin: 0.25rem 0 1rem 0;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    overflow: auto;
+  }
+
+  em {
+    letter-spacing: 0.05em;
+    text-decoration: underline;
   }
 }
 

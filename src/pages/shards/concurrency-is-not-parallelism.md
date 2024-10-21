@@ -26,4 +26,3 @@ video: oV9rvDllKEg
 
 - Dica de leitura: [Communicating Sequencial Processes, Hoare - 1978](https://www.cs.cmu.edu/~crary/819-f09/Hoare78.pdf)
 - Comentários sobre a leitura: [Hoare on communicating sequential processes](https://www.youtube.com/watch?v=QUOlyIHmBrM&ab_channel=TuringAwardeeClips)
-<br>

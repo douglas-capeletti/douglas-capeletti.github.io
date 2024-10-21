@@ -15,8 +15,6 @@ layout: "../../layouts/PostLayout.astro"
 - Chave SSH
 
 ### Aliases & Path
-
-<br>
 Primeiro vamos baixar o vim (opcional) para editar alguns arquivos durante o processo
 
 ``` sh
@@ -55,7 +53,7 @@ agora recarregue o arquivo para ter acesso a estes comandos
 ``` sh
 source ~/.bash_aliases
 ```
-com estes aliases fica muito mais fácil daqui para frente, agora podemos utilizar o comando *`refresh`* para fazer isso
+com estes aliases fica muito mais fácil daqui para frente, agora podemos utilizar o comando *refresh* para fazer isso
 
 ### Pacotes básicos
 ``` sh
@@ -73,7 +71,7 @@ git config --global user.email "your@email.com"
 
 ### Google Chrome
 
-após a instalação, poderemos utilizar os atalhos que configuramos antes, *`google`*, *`chrome`* ou o comando padrão *`google-chrome`* (este vai travar o terminar)
+após a instalação, poderemos utilizar os atalhos que configuramos antes, *google*, *chrome* ou o comando padrão *google-chrome* (este vai travar o terminar)
 
 ``` sh
 rm -rf ~/tmp
@@ -106,7 +104,7 @@ docker --version
 
 ### Java
 
-SDKman é com certeza absoluta a forma mais prática de instalar e gerenciar uma ou várias versões do java no linux, mas também te ajuda a baixar `Kotlin`, `gradle`, `maven`, `gradle` entre outras ferramentas.
+SDKman é com certeza absoluta a forma mais prática de instalar e gerenciar uma ou várias versões do java no linux, mas também te ajuda a baixar `Kotlin`, `Groovy`, `Maven`, `Gradle` entre outras ferramentas.
 
 ``` sh
 curl -s "https://get.sdkman.io" | bash
@@ -123,7 +121,7 @@ sdk --help
 
 ### Node
 
-*`Fast node manager`*, é um gerenciador de versões do Node recomendado no site oficial, então vamos utiliza-lo
+*Fast node manager*, é um gerenciador de versões do Node recomendado no site oficial, então vamos utiliza-lo
 ``` sh
 curl -fsSL https://fnm.vercel.app/install | bash
 source ~/.bashrc
@@ -170,7 +168,7 @@ copie a chave no final da execução, aí é só [colar no github](https://githu
 
 Parabéns✨ 
 
-Agora você já tem o essencial instalado dentro do WSL. Caso queira utilizar o [VSCode](https://code.visualstudio.com/), instale diretamente no windows e utilize diretamente do linux a partir do comando *`code`*, em caso de problemas com a sua instalação, remova os arquivos de configuração do linux utilizando:
+Agora você já tem o essencial instalado dentro do WSL. Caso queira utilizar o [VSCode](https://code.visualstudio.com/), instale diretamente no windows e utilize diretamente do linux a partir do comando *code*, em caso de problemas com a sua instalação, remova os arquivos de configuração do linux utilizando:
 
 ``` sh
 rm -rf ~/.vscode-*

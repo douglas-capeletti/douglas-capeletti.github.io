@@ -9,18 +9,15 @@ layout: "../../layouts/PostLayout.astro"
 ## O que significa isso?
 
 Por definição paradigma é uma estrutura mental composta por teorias, experiências, métodos e instrumentos que serve para o pensamento organizar, de determinado modo, a realidade e os seus eventos. É a representação de um padrão a ser seguido.
-<br>
 
 ### E um paradigma de programação?
 
 Seguindo a definição da palavra em si, um paradigma de programação nada mais é do que a forma como uma linguagem de programação estrutura suas partes dando ferramentas para que os programadores possam modelar um sistema ou estrutura.
 Dada a estrutura proposta pelo paradigma, cabe ao utilizador dessa estrutura (no caso programador) que escolha o paradigma que mais se adeque ao problema.
-<br>
 
 ### Quais paradigmas de programação existem?
 
 Existem diversos paradigmas, uns mais comuns do que outros e alguns que coexistem dentro de uma mesma linguagem de programação
-<br>
 
 Os mais comuns são:
 - Paradigma Funcional

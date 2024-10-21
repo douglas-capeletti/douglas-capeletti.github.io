@@ -52,7 +52,7 @@ go 1.23 # active version
 ```
 
 
-Pacote Main <br>
+Pacote Main
 todo pacote main precisa ter uma funcao chamada main, caso contrato terá um erro de compilação
 
 ``` go
@@ -575,16 +575,16 @@ func squareRef(thing3 *[5]int32) [5]int32 {
 ### GOROUTINES
 
 Primeira coisa a ser comentada sobre Goroutines é, Goroutine é uma ferramenta de concorrência e não paralelismo. Caso este assunto cause alguma confusão ainda na sua cabeça, tente [dar uma olhada aqui antes](/shards/concurrency-is-not-parallelism).
-<br>
+
 
 Alguns pontos sobre Goroutines
 - não são threads, são bem mais leves 
 - são gerenciadas pelo scheduler interno do go e não pelo Sistema operacional
 - é um modelo concorrente, podendo também ser paralelo (mas não necessariamente)
 
-Goroutines são disparadas/agendadas em background atraves da palavra chave *`go`* antes da chamada,
-no exemplo abaixo utilizamos o *`go`* antes da chamada à função *`dbCall(i)`*, desta forma a execução da função vai acontecer de forma concorrente.<br>
-Porém ao analisar o código você também notará algo a mais de novo: `WaitGroup`, nada mais é do que uma ferramenta de sincronização de Goroutines, adicionamos ao contador do WaitGroup o número de Goroutines que estamos esperando ser concluídas, e chamamos o `Done` para decrementar este valor que deve resultar em zero (se não der zero, teremos problemas). Assim garantimos que o programa irá aguardar todas as Goroutines agendadas terminem
+Goroutines são disparadas/agendadas em background atraves da palavra chave *go* antes da chamada,
+no exemplo abaixo utilizamos o *go* antes da chamada à função *dbCall(i)*, desta forma a execução da função vai acontecer de forma concorrente.<br>
+Porém ao analisar o código você também notará algo a mais de novo: *WaitGroup*, nada mais é do que uma ferramenta de sincronização de Goroutines, adicionamos ao contador do WaitGroup o número de Goroutines que estamos esperando ser concluídas, e chamamos o *Done* para decrementar este valor que deve resultar em zero (se não der zero, teremos problemas). Assim garantimos que o programa irá aguardar todas as Goroutines agendadas terminem
 
 ``` go
 var wg = sync.WaitGroup{}
@@ -767,7 +767,7 @@ func process(c chan int) {
 }
 ```
 
-Outra ferramenta útil é o *`select`*, que funciona como um _switch_ para channels
+Outra ferramenta útil é o *select*, que funciona como um _switch_ para channels
 
 ``` go
 func main() {
