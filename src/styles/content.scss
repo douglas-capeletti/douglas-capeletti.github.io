@@ -1,6 +1,6 @@
 .content {
   h1 {
-    @apply font-display uppercase font-bold leading-none mb-4;
+    @apply font-display uppercase font-bold leading-none mb-4 mt-10;
 
     font-size: min(max(3rem, 6vw), 6rem);
 
@@ -10,7 +10,7 @@
   }
 
   h2 {
-    @apply font-display uppercase leading-none mb-4;
+    @apply font-display uppercase leading-none mb-4 mt-10;
 
     font-size: min(max(2.5rem, 5vw), 5rem);
 
@@ -20,7 +20,7 @@
   }
 
   h3 {
-    @apply font-display tracking-widest leading-none mb-4;
+    @apply font-display tracking-widest leading-none mb-4 mt-10;
 
     font-size: min(max(2rem, 4vw), 4rem);
 
@@ -30,7 +30,7 @@
   }
 
   h4 {
-    @apply font-display tracking-widest leading-none mb-4;
+    @apply font-display tracking-widest leading-none mb-4 mt-10;
 
     font-size: min(max(1.5rem, 3vw), 3rem);
 
@@ -56,7 +56,7 @@
   }
 
   ul:not(.list-none) {
-    @apply pl-0 list-disc ml-10 mb-8 text-lg;
+    @apply pl-0 list-disc ml-8 mb-4 text-lg;
 
     li {
       @apply mb-1;
@@ -64,7 +64,7 @@
   }
 
   ol {
-    @apply pl-0 list-decimal ml-10 mb-8 text-lg;
+    @apply pl-0 list-decimal ml-8 mb-4 text-lg;
 
     li {
       @apply mb-1;

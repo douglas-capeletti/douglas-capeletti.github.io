@@ -68,7 +68,7 @@ os containers tambem podem ser nomeados para serem removidos pelo nome dado a el
 docker run -d -p 8080:80 --name server nginx
 ```
 
-agora o nginx esta rodando e o container se chama _server_ e pode ser referenciado desta forma.
+agora o nginx esta rodando e o container se chama *server* e pode ser referenciado desta forma.
 para acessar um container já em execução, utilizamos o exec
 
 ``` sh
@@ -76,7 +76,7 @@ docker exec -it server bash
 ```
 
 ### Bind mounts 
-mapeamento de pastas para dentro de um container atraves de _volumes_
+mapeamento de pastas para dentro de um container atraves de *volumes*
 Primeiro criando um arquivo na máquina local
 
 ```` html

@@ -11,12 +11,12 @@
 }
 
 ::-moz-selection {
-  color: white;
+  color: var(--color-bg-primary);
   background: var(--color-contrast);
 }
 
 ::selection {
-  color: white;
+  color: var(--color-bg-primary);
   background: var(--color-contrast);
 }
 

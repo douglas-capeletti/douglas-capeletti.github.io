@@ -31,7 +31,7 @@ Usado para limitar e isolar recursos, exemplo: Esse processo/namespace vai utili
 
 ### Overlay File Systems (OFS)
 
-Usado para criar e modificar imagens, através deste mecanismo que o docker reutiliza camadas/partes (_layers_) de um uma imagem ou dependências em todos os containers que precisarem, sem a necessidade de duplicar a informação
+Usado para criar e modificar imagens, através deste mecanismo que o docker reutiliza camadas/partes (*layers*) de um uma imagem ou dependências em todos os containers que precisarem, sem a necessidade de duplicar a informação
 
 o container contem uma parte com comada(s) de estado imutável, e uma de leitura e escrita
 
