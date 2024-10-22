@@ -1,9 +1,7 @@
 ---
 title: "Função ou método?"
-pubDate: "2024-09-29:00:00"
-slug: "function-or-method"
+pubDate: "2024-09-29"
 tags: ["function", "method"]
-layout: "../../layouts/PostLayout.astro"
 ---
 
 ## Mas qual a diferença?

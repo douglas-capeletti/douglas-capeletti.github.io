@@ -1,9 +1,7 @@
 ---
 title: "Diagrama C4"
-pubDate: "2024-09-29:00:00"
-slug: "c4-diagrams"
+pubDate: "2024-09-29"
 tags: ["draft", "documentation"]
-layout: "../../layouts/PostLayout.astro"
 ---
 
 ## Documentação de código

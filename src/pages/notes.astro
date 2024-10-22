@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import BackToPage from "../components/BackToPage.astro";
+import BasePageLayout from "../layouts/BasePageLayout.astro";
+import TopicListLayout from "../layouts/TopicListLayout.astro";
+
+const title = "Notes";
+const description = "Minhas anotações sobre assuntos diversos, divirta-se lendo 👀";
+const allPosts = await getCollection("notes");
+---
+
+<BasePageLayout title={title}>
+  <TopicListLayout
+    title={title}
+    description={description}
+    cards={allPosts.map((p) => {
+      return { tag: p.data.tags[0] === "draft" ? "Draft✏️" : undefined, hero: p.data.hero, title: p.data.title, description: p.data.description, pubDate: p.data.pubDate, url: `/${p.collection}/${p.slug}`, blank: undefined };
+    })}
+  />
+  <BackToPage />
+</BasePageLayout>

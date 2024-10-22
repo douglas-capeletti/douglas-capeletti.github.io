@@ -1,10 +1,8 @@
 ---
 title: "Golang Tips"
-pubDate: "2024-08-08:00:00"
-slug: "golang-tips"
+pubDate: "2024-08-08"
 hero: "/images/gopher.webp"
 tags: ["draft", "golang"]
-layout: "../../layouts/PostLayout.astro"
 ---
 
 # Variáveis de ambiente do golang

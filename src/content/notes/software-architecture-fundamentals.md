@@ -1,10 +1,8 @@
 ---
 title: "Fundamentos de arquitetura de software"
-pubDate: "2024-10-17:00:00"
-slug: "software-architecture-fundamentals"
+pubDate: "2024-10-17"
 hero: "/images/C4.png"
 tags: ["draft", "architecture", "fundamental"]
-layout: "../../layouts/PostLayout.astro"
 ---
 
 ## Tipos de arquiteto

@@ -7,6 +7,9 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true
   },
-  "hide-files.files": [],
-  "cSpell.language": "en,pt-BR"
+  "cSpell.language": "en,pt-BR",
+  "plantuml.exportFormat": "svg",
+  "plantuml.exportSubFolder": false,
+  "plantuml.diagramsRoot": "public/diagrams",
+  "plantuml.exportOutDir": "public/images",
 }

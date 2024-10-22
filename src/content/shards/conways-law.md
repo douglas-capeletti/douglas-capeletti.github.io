@@ -1,9 +1,7 @@
 ---
 title: "Lei de Conway"
-pubDate: "2024-10-17:00:00"
-slug: "conways-law"
-tags: ["arquitecture"]
-layout: "../../layouts/PostLayout.astro"
+pubDate: "2024-10-17"
+tags: ["architecture"]
 ---
 
 "Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure."

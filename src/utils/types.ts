@@ -1,28 +1,23 @@
-export interface IPage {
-  data: any[];
-  start: number;
-  end: number;
-  size: number;
-  total: number;
-  currentPage: number;
-  lastPage: number;
-  url: IPageURL;
-}
-
-export interface IPageURL {
-  current: string;
-  prev: string | undefined;
-  next: string | undefined;
-}
-
 export interface IPost {
+  collection: string,
+  slug: string,
+  data: IPostData
+}
+
+export interface IPostData {
+  title: string;
+  description?: string;
+  pubDate?: Date;
+  hero?: string;
+  tags: string[];
+}
+
+export interface ICard {
+  tag: string | undefined;
+  hero: string | undefined;
+  title: string;
+  description: string | undefined;
+  pubDate: Date | undefined;
   url: string;
-  frontmatter: {
-    title: string;
-    pubDate: string;
-    slug: string;
-    hero: string;
-    tags: string[];
-    layout: string;
-  }
+  blank: boolean | undefined;
 }

@@ -1,10 +1,8 @@
 ---
 title: "Setup linux (wsl)"
-pubDate: "2024-09-25:00:00"
-slug: "setup-linux-wsl"
+pubDate: "2024-09-25"
 hero: "/images/wsl.webp"
 tags: ["linux", "wsl", "ubuntu"]
-layout: "../../layouts/PostLayout.astro"
 ---
 
 ## O que vamos instalar?

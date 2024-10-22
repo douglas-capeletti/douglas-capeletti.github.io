@@ -1,10 +1,8 @@
 ---
 title: "Como usar o Docker"
-pubDate: "2023-09-28:00:00"
-slug: "how-use-docker"
+pubDate: "2023-09-28"
 hero: "/images/docker.jpg"
 tags: ["draft", "docker", "container"]
-layout: "../../layouts/PostLayout.astro"
 ---
 
 ## Comandos Docker

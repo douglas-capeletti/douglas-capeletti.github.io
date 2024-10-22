@@ -1,9 +1,7 @@
 ---
 title: "Paradigmas"
-pubDate: "2024-10-08:00:00"
-slug: "paradigms"
+pubDate: "2024-10-08"
 tags: ["paradigm"]
-layout: "../../layouts/PostLayout.astro"
 ---
 
 ## O que significa isso?

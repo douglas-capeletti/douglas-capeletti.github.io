@@ -1,9 +1,7 @@
 ---
-title: "Os Doze Fatores da contrução de software"
-pubDate: "2024-10-17:00:00"
-slug: "twelve-factors"
-tags: ["arquitecture"]
-layout: "../../layouts/PostLayout.astro"
+title: "Os Doze Fatores da construção de software"
+pubDate: "2024-10-17"
+tags: ["architecture"]
 ---
 
 I - Base de Código <br>

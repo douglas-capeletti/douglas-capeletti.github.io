@@ -7,7 +7,7 @@ import grayMatter from "gray-matter";
   const index = [];
   const getSlugFromPathname = (pathname) => path.basename(pathname, path.extname(pathname));
   const indexFiles = async (category) => {
-    const contentDir = path.join(process.cwd(), "src", "pages", category);
+    const contentDir = path.join(process.cwd(), "src", "content", category);
     const contentFilePaths = await globby([path.join(contentDir, "*.md")]);
 
     if (contentFilePaths.length) {
@@ -32,6 +32,7 @@ import grayMatter from "gray-matter";
 
   await indexFiles("notes")
   await indexFiles("shards")
+
   if (index.length > 0) {
     const indexOutputFile = path.join(process.cwd(), "public", "search-index.json");
     await fs.writeFile(indexOutputFile, JSON.stringify(index), {encoding:'utf8',flag:'w'});

@@ -2,6 +2,7 @@
   "moduleResolution": "node",
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
+    "strictNullChecks": true,
     "plugins": [
       {
         "verbatimModuleSyntax": true,

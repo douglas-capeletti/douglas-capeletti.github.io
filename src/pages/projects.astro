@@ -2,7 +2,6 @@
 import BackToPage from "../components/BackToPage.astro";
 import BasePageLayout from "../layouts/BasePageLayout.astro";
 import TopicListLayout from "../layouts/TopicListLayout.astro";
-import { newIPageMock } from "../utils";
 
 const title = "Projects";
 ---
@@ -10,14 +9,17 @@ const title = "Projects";
 <BasePageLayout title={title}>
   <TopicListLayout
     title={title}
-    page={newIPageMock([
+    cards={[
       {
-        title: "Voting IO",
+        title: "Voting",
         url: "https://github.com/voting-io",
-        pubDate: "2023-06-22T00:00:00",
+        tag: undefined,
+        hero: undefined,
+        description: undefined,
+        pubDate: undefined,
+        blank: true
       },
-    ])}
-    blank
+    ]}
     wideCard
   />
   <BackToPage />

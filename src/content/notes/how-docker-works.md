@@ -1,10 +1,8 @@
 ---
 title: "Como Docker funciona"
-pubDate: "2023-09-13:00:00"
-slug: "how-docker-works"
+pubDate: "2023-09-13"
 hero: "/images/docker-inside.png"
 tags: ["draft", "docker", "container"]
-layout: "../../layouts/PostLayout.astro"
 ---
 
 ## O que são Containers?

@@ -1,10 +1,8 @@
 ---
 title: "Golang - Guia básico"
-pubDate: "2024-09-16:00:00"
-slug: "golang-quick-guide"
+pubDate: "2024-09-16"
 hero: "/images/golang.jpg"
 tags: ["golang", "programming language"]
-layout: "../../layouts/PostLayout.astro"
 ---
 
 # o que veremos aqui:
