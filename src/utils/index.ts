@@ -3,34 +3,34 @@ export function formatDate(date: string | number | Date): string {
 }
 
 export function enableCopyToClipboardButton() {
-  const copyButtonLabel = "Copy🪄";
+  const copyButtonLabel = "Copy🪄"
 
   document.querySelectorAll("pre").forEach((preBlock: HTMLPreElement) => {
     if (navigator.clipboard) {
-      let wrapper = document.createElement("div");
-      wrapper.className = "tag-wrapper";
+      const wrapper = document.createElement("div")
+      wrapper.className = "tag-wrapper"
 
-      preBlock?.parentNode?.insertBefore(wrapper, preBlock);
-      preBlock.setAttribute("tabindex", "0");
+      preBlock?.parentNode?.insertBefore(wrapper, preBlock)
+      preBlock.setAttribute("tabindex", "0")
 
-      let copy = document.createElement("button");
-      copy.className = "tag";
-      copy.innerHTML = copyButtonLabel;
+      const copy = document.createElement("button")
+      copy.className = "tag"
+      copy.innerHTML = copyButtonLabel
 
-      wrapper.appendChild(copy);
-      wrapper.appendChild(preBlock);
+      wrapper.appendChild(copy)
+      wrapper.appendChild(preBlock)
 
       const copyOnClick = async () => {
-        let code = preBlock.querySelector("code");
-        await navigator.clipboard.writeText(code?.innerText ?? "");
-        copy.innerText = "Copied✨";
+        const code = preBlock.querySelector("code")
+        await navigator.clipboard.writeText(code?.innerText ?? "")
+        copy.innerText = "Copied✨"
         setTimeout(() => {
-          copy.innerText = copyButtonLabel;
-        }, 1500);
+          copy.innerText = copyButtonLabel
+        }, 1500)
       }
 
-      copy.addEventListener("click", copyOnClick );
-      preBlock.addEventListener("click", copyOnClick );
+      copy.addEventListener("click", copyOnClick)
+      preBlock.addEventListener("click", copyOnClick)
     }
-  });
+  })
 }

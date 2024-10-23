@@ -11,7 +11,7 @@
 * Clone this repo
 * Run `pnpm i` to install dependencies
 * Run `pnpm dev` to start the dev server
-* Run `pnpm check` to check for any astro or TS issue
+* Run `pnpm check` to check for any issues
 * Run `pnpm index` to generate the search index
 * Run `pnpm build` to build the site
 
