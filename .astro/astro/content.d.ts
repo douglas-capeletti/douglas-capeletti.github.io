@@ -279,13 +279,6 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "voting": {
-"01-site.md": {
-	id: "01-site.md";
-  slug: "01-site";
-  body: string;
-  collection: "voting";
-  data: any
-} & { render(): Render[".md"] };
 "02-mobile.md": {
 	id: "02-mobile.md";
   slug: "02-mobile";

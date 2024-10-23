@@ -5,7 +5,7 @@
 
 Especificação para construção da API versão 1
 
-![Estrutura analítica da versão 1](../../static/img/diagrams/eap_v1/eap_v1.svg)
+<!-- ![Estrutura analítica da versão 1](../../static/img/diagrams/eap_v1/eap_v1.svg) -->
 
 ## Sessão
 
@@ -79,4 +79,4 @@ Ao final do tempo de votação, a sessão será encerrada e o resultado será ex
 
 # Sequência de eventos
 
-![Sequência de eventos da versão 1](../../static/img/diagrams/sequence_v1/sequence_v1.svg)
+<!-- ![Sequência de eventos da versão 1](../../static/img/diagrams/sequence_v1/sequence_v1.svg) -->
