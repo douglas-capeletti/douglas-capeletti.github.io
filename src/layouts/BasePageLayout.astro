@@ -5,10 +5,9 @@ import { SITE_URI } from "../utils/constants";
 
 export interface Props {
   title: string;
-  disableNav?: boolean;
 }
 
-const { title, disableNav } = Astro.props;
+const { title } = Astro.props;
 const seoTitle = `${title} | ${SITE_URI}`;
 ---
 
@@ -18,7 +17,7 @@ const seoTitle = `${title} | ${SITE_URI}`;
   </head>
 
   <body class="bg-bg-primary text-text-primary font-body leading-normal personality-casual">
-    {!disableNav && <Nav />}
+    <Nav />
     <main class="py-12 lg:py-20">
       <slot />
     </main>

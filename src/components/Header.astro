@@ -1,15 +1,15 @@
 ---
 export interface Props {
   title: string;
-  description?: Array<string | undefined>;
+  subTitles?: Array<string | undefined>;
 }
 const title = Astro.props.title;
-const description = (Astro.props.description ?? []).filter(x => x)
+const subTitles = (Astro.props.subTitles ?? []).filter(x => x)
 ---
 
 <header class="mx-auto max-w-xl text-center content">
   <h1 class="mb-4" data-test="header-title">{title}</h1>
-  {description && description?.map((desc) => {
+  {subTitles && subTitles?.map((desc) => {
     return <p data-test="header-description">{desc}</p>
   })}
 </header>

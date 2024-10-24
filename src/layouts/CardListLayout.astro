@@ -1,0 +1,23 @@
+---
+import Card from "../components/Card.astro";
+import { type ICard } from "../utils/types";
+
+export interface Props {
+  cards: ICard[];
+  wideCards?: boolean;
+}
+
+const { cards, wideCards } = Astro.props;
+---
+
+<article class="max-w-6xl mx-auto px-3">
+  <section class=`grid grid-cols-1 ${wideCards ? '' : 'md:grid-cols-2 lg:grid-cols-3'} gap-6 py-8` data-test="articles-section">
+    {
+      cards.map((c) => (
+        <div class="col-span-1">
+          <Card tag={c.tag} hero={c.hero} title={c.title} description={c.description} pubDate={c.pubDate} url={c.url} blank={c.blank ?? false} />
+        </div>
+      ))
+    }
+  </section>
+</article>

@@ -1,0 +1,24 @@
+---
+import BackToPage from "../components/BackToPage.astro";
+import Header from "../components/Header.astro";
+import Paginator from "../components/Paginator.astro";
+import type { ICard, IPaginator } from "../utils/types";
+import BasePageLayout from "./BasePageLayout.astro";
+import CardListLayout from "./CardListLayout.astro";
+
+export interface Props {
+    title: string;
+    subTitles?: Array<string | undefined>;
+    cards: ICard[];
+    wideCards?: boolean
+    paginator?: IPaginator;
+}
+const { title, subTitles, cards, paginator } = Astro.props;
+---
+
+<BasePageLayout title={title}>
+    <Header title={title} subTitles={subTitles} />
+    <CardListLayout cards={cards} wideCards/>
+    {paginator && <Paginator prev={paginator.prev} next={paginator.next} />}
+    <BackToPage />
+</BasePageLayout>

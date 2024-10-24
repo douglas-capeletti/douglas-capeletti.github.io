@@ -1,26 +1,15 @@
 ---
-import BackToPage from "../components/BackToPage.astro";
-import BasePageLayout from "../layouts/BasePageLayout.astro";
-import TopicListLayout from "../layouts/TopicListLayout.astro";
-
-const title = "Projects";
+import TopicLayout from "../layouts/TopicLayout.astro";
 ---
 
-<BasePageLayout title={title}>
-  <TopicListLayout
-    title={title}
-    cards={[
-      {
-        title: "Voting",
-        url: "https://github.com/voting-io",
-        tag: undefined,
-        hero: undefined,
-        description: undefined,
-        pubDate: undefined,
-        blank: true
-      },
-    ]}
-    wideCard
-  />
-  <BackToPage />
-</BasePageLayout>
+<TopicLayout
+  title={"Projects"}
+  cards={[
+    {
+      title: "Voting",
+      url: "https://github.com/voting-io",
+      blank: true,
+    },
+  ]}
+  wideCards
+/>

@@ -1,17 +1,11 @@
 ---
 import { formatDate } from "../utils";
-export interface Props {
-  title: string;
-  pubDate: Date;
-  description: string;
-  hero: string;
-  tags: string[];
-  video: string;
-}
+import type { IPostData } from "../utils/types";
 
+export interface Props extends IPostData {}
 const { title, pubDate, hero, tags, video } = Astro.props;
 
-// primeiro rascunho da funcionalidade de back-reference 
+// primeiro rascunho da funcionalidade de back-reference
 // existe uma forma de escanear os arquivos md capturando as informações para isso
 // https://docs.astro.build/en/guides/markdown-content/
 // porém implementar isso pode ser um pouco complicado
@@ -22,7 +16,7 @@ const { title, pubDate, hero, tags, video } = Astro.props;
 // ai lendo do arquivo fica muito menos custoso, dado que...
 // no futuro podem ter MUITOS posts e MUITAS referencias e POUCO processamento no tier gratuito 🤣
 const references: { link: string; name: string }[] = [];
-const hasReferences: boolean = references?.length > 0
+const hasReferences: boolean = references?.length > 0;
 ---
 
 <article class="max-w-5xl mx-auto px-3">
@@ -62,7 +56,9 @@ const hasReferences: boolean = references?.length > 0
           <ul>
             {references?.map((ref) => {
               return (
-                <li><a href={ref.link}>{ref.name}</a></li>
+                <li>
+                  <a href={ref.link}>{ref.name}</a>
+                </li>
               );
             })}
           </ul>

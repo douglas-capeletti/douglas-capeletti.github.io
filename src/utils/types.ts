@@ -10,14 +10,20 @@ export interface IPostData {
   pubDate?: Date;
   hero?: string;
   tags: string[];
+  video?: string;
 }
 
 export interface ICard {
-  tag: string | undefined;
-  hero: string | undefined;
+  tag?: string;
+  hero?: string;
   title: string;
-  description: string | undefined;
-  pubDate: Date | undefined;
+  description?: string;
+  pubDate?: Date;
   url: string;
-  blank: boolean | undefined;
+  blank?: boolean;
+}
+
+export interface IPaginator {
+  prev?: string;
+  next?: string;
 }

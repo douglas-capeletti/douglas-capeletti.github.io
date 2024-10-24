@@ -1,21 +1,24 @@
 ---
-// TODO Fix pagination
+import type { IPaginator } from "../utils/types";
+
+export interface Props extends IPaginator {}
+const { prev, next } = Astro.props;
 ---
 
-<!-- <section class="flex space-x-8 justify-center text-xl pt-16 font-bold">
+<section class="flex space-x-8 justify-center text-xl pt-16 font-bold">
   {
-    page.url.prev && (
-      <a href={page.url.prev} class="mr-8" data-test="paginator-prev">
+    prev && (
+      <a href={prev} class="mr-8" data-test="paginator-prev">
         <span>&larr;</span> Previus page
       </a>
     )
   }
 
   {
-    page.url.next && (
-      <a href={page.url.next} data-test="paginator-next">
+    next && (
+      <a href={next} data-test="paginator-next">
         Next Page <span>&rarr;</span>
       </a>
     )
   }
-</section> -->
+</section>

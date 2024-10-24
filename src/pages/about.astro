@@ -1,26 +1,15 @@
 ---
-import BackToPage from "../components/BackToPage.astro";
-import BasePageLayout from "../layouts/BasePageLayout.astro";
-import TopicListLayout from "../layouts/TopicListLayout.astro";
-
-const title = "About";
+import TopicLayout from "../layouts/TopicLayout.astro";
 ---
 
-<BasePageLayout title={title}>
-  <TopicListLayout
-    title={title}
-    cards={[
-      {
-        title: "Douglas Capeletti",
-        url: "https://www.linkedin.com/in/douglas-capeletti/",
-        tag: undefined,
-        hero: undefined,
-        description: undefined,
-        pubDate: undefined,
-        blank: true,
-      },
-    ]}
-    wideCard
-  />
-  <BackToPage />
-</BasePageLayout>
+<TopicLayout
+  title={"About"}
+  cards={[
+    {
+      title: "Douglas Capeletti",
+      url: "https://www.linkedin.com/in/douglas-capeletti/",
+      blank: true,
+    },
+  ]}
+  wideCards
+/>

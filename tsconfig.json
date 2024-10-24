@@ -3,6 +3,7 @@
   "extends": "astro/tsconfigs/strictest",
   "compilerOptions": {
     "strictNullChecks": true,
+    "exactOptionalPropertyTypes": false,
     "plugins": [
       {
         "verbatimModuleSyntax": true,
