@@ -10,15 +10,15 @@ export interface Props {
     title: string;
     subTitles?: Array<string | undefined>;
     cards: ICard[];
-    wideCards?: boolean
+    wideCards?: boolean;
     paginator?: IPaginator;
 }
-const { title, subTitles, cards, paginator } = Astro.props;
+const { title, subTitles, cards, paginator, wideCards } = Astro.props;
 ---
 
 <BasePageLayout title={title}>
     <Header title={title} subTitles={subTitles} />
-    <CardListLayout cards={cards} wideCards/>
+    <CardListLayout cards={cards} wideCards={wideCards} />
     {paginator && <Paginator prev={paginator.prev} next={paginator.next} />}
     <BackToPage />
 </BasePageLayout>
