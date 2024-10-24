@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import PostLayout from "../../layouts/PostLayout.astro";
+import BackToPage from "../../components/BackToPage.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("notes");
@@ -16,3 +17,4 @@ const { Content } = await entry.render();
 <PostLayout post={entry}>
   <Content />
 </PostLayout>
+<BackToPage pageName={"Notes"} path={`/notes`} />

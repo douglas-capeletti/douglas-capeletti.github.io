@@ -1,7 +1,6 @@
 ---
 title: "Voting"
-subTitle: "An multi framework voting API project for compare code and learning"
-hero: "/images/voting-log.png"
+hero: "/images/voting-logo.svg"
 ---
 
 # Sobre este projeto

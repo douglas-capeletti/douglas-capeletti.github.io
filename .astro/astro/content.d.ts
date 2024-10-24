@@ -279,44 +279,65 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "voting": {
-"02-mobile.md": {
-	id: "02-mobile.md";
-  slug: "02-mobile";
+"index.md": {
+	id: "index.md";
+  slug: "index";
   body: string;
   collection: "voting";
   data: any
 } & { render(): Render[".md"] };
-"03-version1.md": {
-	id: "03-version1.md";
-  slug: "03-version1";
+"specs/openapi.md": {
+	id: "specs/openapi.md";
+  slug: "specs/openapi";
   body: string;
   collection: "voting";
   data: any
 } & { render(): Render[".md"] };
-"04-version2.md": {
-	id: "04-version2.md";
-  slug: "04-version2";
+"specs/version-1.md": {
+	id: "specs/version-1.md";
+  slug: "specs/version-1";
   body: string;
   collection: "voting";
   data: any
 } & { render(): Render[".md"] };
-"05-version3.md": {
-	id: "05-version3.md";
-  slug: "05-version3";
+"specs/version-2.md": {
+	id: "specs/version-2.md";
+  slug: "specs/version-2";
   body: string;
   collection: "voting";
   data: any
 } & { render(): Render[".md"] };
-"06-tools.md": {
-	id: "06-tools.md";
-  slug: "06-tools";
+"specs/version-3.md": {
+	id: "specs/version-3.md";
+  slug: "specs/version-3";
   body: string;
   collection: "voting";
   data: any
 } & { render(): Render[".md"] };
-"about.md": {
-	id: "about.md";
-  slug: "about";
+"tools/errors.md": {
+	id: "tools/errors.md";
+  slug: "tools/errors";
+  body: string;
+  collection: "voting";
+  data: any
+} & { render(): Render[".md"] };
+"tools/mobile.md": {
+	id: "tools/mobile.md";
+  slug: "tools/mobile";
+  body: string;
+  collection: "voting";
+  data: any
+} & { render(): Render[".md"] };
+"tools/site.md": {
+	id: "tools/site.md";
+  slug: "tools/site";
+  body: string;
+  collection: "voting";
+  data: any
+} & { render(): Render[".md"] };
+"tools/testing.md": {
+	id: "tools/testing.md";
+  slug: "tools/testing";
   body: string;
   collection: "voting";
   data: any

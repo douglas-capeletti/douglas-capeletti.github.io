@@ -6,7 +6,7 @@ export interface Props {
 let { pageName, path } = Astro.props;
 ---
 
-<section class="flex space-x-8 justify-center text-xl pt-8 font-bold">
+<section class="flex space-x-8 justify-center text-xl pt-4 pb-12 font-bold">
   <a href={`${path ?? "/"}`} class="ml-8 hover:text-contrast" data-test="see-all-link">
     <span>&larr;</span> Back to {pageName ?? "Home"} page
   </a>

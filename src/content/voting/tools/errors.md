@@ -1,6 +1,8 @@
-# Ferramentas do projeto
+---
+title: "Códigos de erro"
+---
 
-Ferramentais adicionais para contsrução do projeto
+Ferramentais adicionais para construção do projeto
 
 ## Tabela de Erros internos
 

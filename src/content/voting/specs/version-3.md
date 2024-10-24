@@ -1,7 +1,6 @@
 ---
+title: "Versão 3"
 ---
-
-# Versão 3
 
 Especificação para construção da API versão 3
 

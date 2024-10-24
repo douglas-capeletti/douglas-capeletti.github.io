@@ -1,0 +1,52 @@
+---
+import { getCollection } from "astro:content";
+import BackToPage from "../../components/BackToPage.astro";
+import PostLayout from "../../layouts/PostLayout.astro";
+import type { IPost } from "../../utils/types";
+import CardList from "../../components/CardList.astro";
+
+const votingEntries = await getCollection("voting");
+const entriesByType: any = {};
+votingEntries.forEach((v) => {
+    const type = v.id.split("/")?.[0] ?? "none";
+    if (!entriesByType[type]) entriesByType[type] = [];
+    entriesByType[type].push(v);
+});
+
+const indexEntry = entriesByType["index.md"][0];
+const { Content } = await indexEntry.render();
+
+const specs = entriesByType["specs"];
+const tools = entriesByType["tools"];
+---
+
+<PostLayout post={indexEntry}>
+    <Content />
+    <h2>Project Specs</h2>
+    {
+        (
+            <CardList
+                cards={specs.map((x: IPost) => {
+                    return {
+                        title: x.data.title,
+                        url: `/projects/voting/${x.slug}`,
+                    };
+                })}
+            />
+        )
+    }
+    <h2>Project Tools</h2>
+    {
+        (
+            <CardList
+                cards={tools.map((x: IPost) => {
+                    return {
+                        title: x.data.title,
+                        url: `/projects/voting/${x.slug}`,
+                    };
+                })}
+            />
+        )
+    }
+</PostLayout>
+<BackToPage pageName={"Projects"} path={`/projects`} />

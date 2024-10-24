@@ -1,5 +1,4 @@
 ---
-import BackToPage from "../components/BackToPage.astro";
 import Post from "../components/Post.astro";
 import type { IPost } from "../utils/types";
 import BasePageLayout from "./BasePageLayout.astro";
@@ -9,10 +8,9 @@ const { title, pubDate, description, hero, tags, video } = post.data;
 ---
 
 <BasePageLayout title={title}>
-  <Post title={title} pubDate={new Date(pubDate as Date)} description={description} hero={hero} tags={tags} video={video}>
+  <Post title={title} pubDate={pubDate} description={description} hero={hero} tags={tags} video={video}>
     <slot />
   </Post>
-  <BackToPage pageName={post.collection} path={`/${post.collection}`} />
 </BasePageLayout>
 
 <script>
