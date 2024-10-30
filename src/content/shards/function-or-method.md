@@ -1,7 +1,7 @@
 ---
 title: "Função ou método?"
 pubDate: "2024-09-29"
-tags: ["function", "method"]
+tags: ["functions", "methods"]
 ---
 
 ## Mas qual a diferença?

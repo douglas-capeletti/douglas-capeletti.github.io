@@ -2,7 +2,7 @@
 title: "Golang - Guia básico"
 pubDate: "2024-09-16"
 hero: "/images/golang.jpg"
-tags: ["golang", "programming language"]
+tags: ["golang", "programming languages"]
 ---
 
 # o que veremos aqui:

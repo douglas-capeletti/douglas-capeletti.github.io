@@ -1,7 +1,7 @@
 ---
 title: "Paradigmas"
 pubDate: "2024-10-08"
-tags: ["paradigm"]
+tags: ["paradigms"]
 ---
 
 ## O que significa isso?

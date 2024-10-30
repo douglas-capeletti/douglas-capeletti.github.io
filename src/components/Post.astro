@@ -29,7 +29,7 @@ const hasReferences: boolean = references?.length > 0;
       tags && (
         <div class="flex flex-wrap justify-center">
           {tags.map((tag) => (
-            <a class="text-sm text-text-terciary mr-2 mt-4" href={`/search?${tag}`}>
+            <a class="text-sm text-text-terciary mr-2 mt-4" href={`/search?query=%23${tag}`}>
               <button class="font-bold underline bg-bg-terciary hover:bg-bg-terciary-hover rounded-full px-3 py-1">#{tag}</button>
             </a>
           ))}

@@ -1,5 +1,5 @@
 ---
 title: "Variáveis e Constantes"
 pubDate: "2024-09-29"
-tags: ["draft", "variable", "constant"]
+tags: ["draft", "variables", "constants"]
 ---

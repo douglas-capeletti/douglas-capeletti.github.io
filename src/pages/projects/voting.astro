@@ -7,7 +7,7 @@ import CardList from "../../components/CardList.astro";
 
 const votingEntries = await getCollection("voting");
 const entriesByType: any = {};
-votingEntries.forEach((v) => {
+votingEntries.forEach((v: IPost) => {
     const type = v.id.split("/")?.[0] ?? "none";
     if (!entriesByType[type]) entriesByType[type] = [];
     entriesByType[type].push(v);

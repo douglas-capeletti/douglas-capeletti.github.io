@@ -1,6 +1,8 @@
 export interface IPost {
+  id: string,
   collection: string,
   slug: string,
+  body: string,
   data: IPostData
 }
 

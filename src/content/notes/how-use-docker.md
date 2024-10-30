@@ -2,7 +2,7 @@
 title: "Como usar o Docker"
 pubDate: "2023-09-28"
 hero: "/images/docker.jpg"
-tags: ["draft", "docker", "container"]
+tags: ["draft", "docker", "containers"]
 ---
 
 ## Comandos Docker

@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm index && astro dev --host",
-    "index": "node ./scripts/search/prepare-index.js",
+    "dev": "astro dev --host",
     "check": "astro check && tsc --noEmit && pnpm lint",
     "lint": "npx eslint",
-    "build": "pnpm index && astro build",
+    "build": "astro build",
     "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.3",
     "@stylistic/eslint-plugin": "^2.9.0",
+    "@types/dompurify": "^3.0.5",
     "astro": "^4.16.7",
     "eslint": "^9.13.0",
     "globals": "^15.11.0",
@@ -27,9 +27,8 @@
     "@astrojs/sitemap": "^3.1.6",
     "@astrojs/ts-plugin": "^1.10.2",
     "autoprefixer": "^10.4.14",
-    "gray-matter": "^4.0.3",
-    "lunr": "^2.3.9",
-    "mark.js": "^8.11.1",
+    "dompurify": "^3.1.7",
+    "fuse.js": "^7.0.0",
     "sitemap": "^7.1.1"
   },
   "prettier": {

@@ -1,0 +1,17 @@
+---
+import BackToPage from "../../components/BackToPage.astro";
+import Header from "../../components/Header.astro";
+import SearchInput from "../../components/SearchInput.astro";
+import BasePageLayout from "../../layouts/BasePageLayout.astro";
+
+let title = "Search";
+let pageDescription = "Search for any Note or Shard";
+---
+
+<BasePageLayout title={title}>
+  <article class="max-w-6xl mx-auto px-3 content">
+    <Header title={title} subTitles={[pageDescription]} />
+    <SearchInput />
+  </article>
+  <BackToPage />
+</BasePageLayout>

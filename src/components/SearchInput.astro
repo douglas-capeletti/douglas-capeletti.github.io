@@ -2,35 +2,56 @@
 
 ---
 
-<!-- @ts-nocheck -->
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous" referrerpolicy="no-referrer"
-></script>
-<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/lunr.js/2.3.9/lunr.min.js" integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg==" crossorigin="anonymous" referrerpolicy="no-referrer"
-></script>
-
 <section class="max-w-3xl mx-auto px-3">
   <div class="searchBoxContainer">
-    <input type="text" id="searchBox" class="searchBox w-full px-2 py-1 bg-bg-terciary text-text-terciary border-border" placeholder="Search..." data-test="search-input" />
-    <!-- <p class="flex mt-2 text-center">TIP: use '#' to search by tag (e.g. #docker)</p> -->
+    <input type="search" id="searchBox" required min="2" max="24" class="searchBox w-full px-2 py-1 bg-bg-terciary text-text-terciary border-border" placeholder="Search..." data-test="search-input" />
+    <p class="flex mt-2 mb-8 text-center">TIP: use '#' to search by tag (e.g. #docker)</p>
   </div>
 </section>
-
+<p id="searchReadout"></p>
 <div id="searchResults" class="searchResults lg:pl-8"></div>
-
 <script>
-  // @ts-nocheck
-  let lunrIndex;
-  let lunrResult;
-  let pagesIndex;
-  let prevQuery;
-  const MAX_PAGES = 10;
-  const BODY_LENGTH = 100;
+  import DOMPurify from "dompurify";
+  import Fuse from "fuse.js";
 
+  interface ISearchData {
+    slug: string;
+    title: string;
+    description: string;
+    date: string;
+    tags: string;
+    body: string;
+  }
+
+  const BODY_LENGTH = 100;
+  let PREV_QUERY: String | undefined;
+  let SEARCH_DATA: ISearchData[];
+  let FUSE_INSTANCE: any;
+  const FUSE_OPTIONS = {
+    includeScore: true,
+    shouldSort: true,
+    threshold: 0.4,
+    keys: [
+      {
+        name: "title",
+        weight: 1,
+      },
+      {
+        name: "description",
+        weight: 0.75,
+      },
+      {
+        name: "body",
+        weight: 0.5,
+      },
+    ],
+  };
 
   const searchResults = {
-    element: document.querySelector("#searchResults") as HTMLElement,
+    element: document.getElementById("searchResults") as HTMLElement,
+    searchReadout: document.getElementById("searchReadout") as HTMLElement,
     show() {
-      this.element.style.display = "block"; 
+      this.element.style.display = "block";
     },
     hide() {
       this.element.style.display = "none";
@@ -38,144 +59,106 @@
     clear() {
       while (this.element.firstChild) this.element.removeChild(this.element.firstChild);
     },
-    showEmpty(query) {
-      let resultPage = document.createElement("div");
-      resultPage.className = "searchResultPage";
-      resultPage.innerHTML = `No results found for query ${query ?? ""}`;
-      this.element.append(resultPage);
+    showEmpty(query?: string) {
+      let searchResultItem = document.createElement("div");
+      searchResultItem.className = "searchResultItem";
+      searchResultItem.innerHTML = `No results found for query ${query ?? ""}`;
+      this.element.append(searchResultItem);
     },
-    add(result, metadata){
+    add(result: { item: ISearchData }) {
+      console.log(result);
       let resultPage = document.createElement("div");
-      resultPage.className = "searchResultPage";
-      let matchPosition = metadata[Object.keys(metadata)[0]].body.position[0][0];
-      let bodyStartPosition = matchPosition - BODY_LENGTH / 2 > 0 ? matchPosition - BODY_LENGTH / 2 : 0;
+      resultPage.style = "margin-bottom: 1.5rem";
+      resultPage.className = "searchResultItem";
 
       let resultTitle = document.createElement("a");
       resultTitle.className = "searchResultTitle";
-      resultTitle.href = `/${result.category}/${result.slug}`;
-      resultTitle.innerHTML = result.title;
+      resultTitle.href = `/${result.item.slug}`;
+      resultTitle.innerHTML = result.item.title;
       resultPage.append(resultTitle);
 
       let resultBody = document.createElement("div");
       resultBody.className = "searchResultBody";
-      resultBody.innerHTML = result.body.substr(bodyStartPosition, BODY_LENGTH);
+      resultBody.innerHTML = (result.item.description ?? result.item.body).substring(0, BODY_LENGTH);
       resultPage.append(resultBody);
       this.element.append(resultPage);
+    },
+    updateMetadata(query?: string) {
+      document.title = query ? `Search results for “${query}”` : "Search the Blog";
+      this.searchReadout.textContent = query ? `Search results for “${query}”` : "";
+    },
+    updateHistory(query?: string) {
+      if (query) {
+        const url = new URL(window.location.href);
+        url.searchParams.set("query", query);
+        window.history.replaceState(null, "", url);
+      }
+    },
+  };
+
+  async function search(query?: string): Promise<any[] | undefined> {
+    if (query?.length === 0) return;
+    if (!SEARCH_DATA) {
+      try {
+        const res = await fetch("/search/search-index.json");
+        if (!res.ok) {
+          throw new Error("Something went wrong… please try again");
+        }
+        const data = await res.json();
+        SEARCH_DATA = data;
+      } catch (e) {
+        console.error(e);
+      }
     }
-    
+    if (SEARCH_DATA && query?.startsWith("#")) {
+      const tag = query?.substring(1)?.toLocaleLowerCase();
+      return SEARCH_DATA.filter((item) => item.tags.includes(tag))
+        .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
+        .map((item) => {
+          return { item };
+        });
+    } else {
+      if (SEARCH_DATA && !FUSE_INSTANCE) {
+        FUSE_INSTANCE = new Fuse(SEARCH_DATA, FUSE_OPTIONS);
+      }
+      if (!FUSE_INSTANCE) return;
+      return FUSE_INSTANCE.search(query)?.sort((a: any, b: any) => a.refIndex - b.refIndex);
+    }
   }
 
-  const bigramTokeniser = (obj, metadata) => {
-    if (obj == null || obj == undefined) {
-      return [];
-    }
-
-    let str = obj.toString().trim().toLowerCase();
-    let tokens = [];
-
-    for (let i = 0; i <= str.length - 2; i++) {
-      let tokenMetadata = lunr.utils.clone(metadata) || {};
-      tokenMetadata["position"] = [i, i + 2];
-      tokenMetadata["index"] = tokens.length;
-      tokens.push(new lunr.Token(str.slice(i, i + 2), tokenMetadata));
-    }
-
-    return tokens;
-  };
-
-  const queryNgramSeparator = (query) => {
-    const str = query.toString().trim().toLowerCase();
-    const tokens = [];
-
-    for (let i = 0; i <= str.length - 2; i++) {
-      tokens.push(str.slice(i, i + 2));
-    }
-
-    return tokens.join(" ");
-  };
-
-  const initLunr = () => {
-    let request = new XMLHttpRequest();
-    request.open("GET", "/search-index.json", true);
-    request.onload = function () {
-      if (this.status >= 200 && this.status < 400) {
-        pagesIndex = JSON.parse(this.response);
-        lunrIndex = lunr(function () {
-          this.tokenizer = bigramTokeniser;
-          this.pipeline.reset();
-          this.ref("slug");
-          this.field("title", { boost: 10 });
-          this.field("body");
-          this.metadataWhitelist = ["position"];
-          pagesIndex.forEach((page) => {
-            this.add(page);
-          }, this);
-        });
-      }
-    };
-    request.onerror = function () {
-      console.error("connection error");
-    };
-    request.send();
-  };
-
-  const search = (query: string) => {
-    lunrResult = lunrIndex?.search(queryNgramSeparator(query));
-    return lunrResult.map((result) => {
-      return pagesIndex?.filter((page) => {
-        return page.slug === result.ref;
-      })[0];
-    });
-  };
-
-  const initUI = () => {
-    const searchBox = document.querySelector("#searchBox");
-    if (searchBox === null) {
+  async function triggerSearch(query: string) {
+    // Only trigger a search when 2 chars. at least have been provided and the query has changed
+    if (query.length < 2) {
+      searchResults.hide();
+      return;
+    } else if (PREV_QUERY === query) {
       return;
     }
-    function triggerFunction(event) {
-      let query = event.currentTarget.value;
-
-      // Only trigger a search when 2 chars. at least have been provided and the query has changed
-      if (query.length < 2) {
-        searchResults.hide();
-        return;
-      } else if (prevQuery === query) {
-        return;
-      }
-      // Display search results
-      prevQuery = query;
-      renderResults(search(query));
-      searchResults.show();
-    }
-    searchBox.addEventListener("keyup", triggerFunction);
-    searchBox.addEventListener("focus", triggerFunction);
-  };
-
-  const renderResults = (results: Object[]) => {
-    const searchBox = document.querySelector("#searchBox") as HTMLInputElement;
-    const query = searchBox.value;
-    // Clear search result
+    // Display search results
+    PREV_QUERY = query;
     searchResults.clear();
-    // Show message when results is empty
-    if (!results.length) {
-      searchResults.showEmpty(query);
-      return;
+    const searchResultList = await search(query);
+    if ((searchResultList ?? []).length > 0) {
+      (searchResultList ?? []).forEach((result: any) => searchResults.add(result));
+      searchResults.updateMetadata(query);
+      searchResults.show();
+    } else {
+      searchResults.clear();
+      searchResults.showEmpty();
     }
-    // Only show the ten first results
-    let instance = new Mark(searchResults.element);
-    results.slice(0, MAX_PAGES).forEach((result, idx) => {
-      searchResults.add(result, lunrResult[idx].matchData.metadata)
-      instance.mark(query);
-    });
-  };
+  }
 
-  initLunr();
-  initUI();
-</script>
+  const searchBox = document.getElementById("searchBox") as HTMLInputElement;
+  searchBox.addEventListener("input", () => {
+    const query = DOMPurify.sanitize(searchBox.value);
+    triggerSearch(query);
+    searchResults.updateHistory(query);
+  });
 
-<script>
-  const search = document.getElementById("searchBox") as HTMLInputElement;
-  search.value = decodeURI(document.location.search?.substring(1) ?? "");
-  setTimeout(() => search.focus(), 500);
+  window.addEventListener("DOMContentLoaded", () => {
+    const query = DOMPurify.sanitize(new URLSearchParams(window.location.search).get("query") ?? "");
+    triggerSearch(query);
+    searchBox.value = query;
+    searchBox.focus();
+  });
 </script>
