@@ -2,19 +2,20 @@
 import { getCollection } from "astro:content";
 import BackToPage from "../../components/BackToPage.astro";
 import PostLayout from "../../layouts/PostLayout.astro";
-import type { IPost } from "../../utils/types";
+import type { IPostEntry } from "../../utils/types";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("voting");
-  return blogEntries.map((entry: IPost) => ({
+  return blogEntries.map((entry: IPostEntry) => ({
     params: { slug: `/voting/${entry.slug}` },
     props: { entry },
   }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content }: any = await entry.render();
 ---
+
 <PostLayout post={entry}>
   <Content />
 </PostLayout>

@@ -29,3 +29,7 @@ export interface IPaginator {
   prev?: string;
   next?: string;
 }
+
+export interface IPostEntry extends IPost {
+  render(): unknown;
+}
