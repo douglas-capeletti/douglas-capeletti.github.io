@@ -6,11 +6,18 @@ tags: ["linux", "wsl", "ubuntu"]
 ---
 
 ## O que vamos instalar?
-- aliases (apelidos para comandos)
-- Pacotes básicos de sistema
-- Softwares básicos de desennvolvimento
-- Runtimes de linguagens de programação
-- Chave SSH
+- [O que vamos instalar?](#o-que-vamos-instalar)
+    - [Aliases \& Path](#aliases--path)
+    - [Pacotes básicos](#pacotes-básicos)
+    - [Google Chrome](#google-chrome)
+    - [Docker](#docker)
+    - [Java](#java)
+    - [Node](#node)
+    - [Golang](#golang)
+    - [Chave SSH](#chave-ssh)
+    - [Intellij (Toolbox)](#intellij-toolbox)
+    - [VsCode](#vscode)
+
 
 ### Aliases & Path
 Primeiro vamos baixar o vim (opcional) para editar alguns arquivos durante o processo
@@ -39,8 +46,9 @@ alias clean='sudo apt -y autoclean && sudo apt -y autoremove'
 alias q='exit'
 alias c='clear'
 alias home='cd ~/'
-alias chrome='google-chrome &'
-alias google='google-chrome &'
+alias chrome='google-chrome $@ &'
+alias google='google-chrome $@ &'
+alias toolbox='~/toolbox/jetbrains-toolbox'
 
 # PATH
 export PATH=$PATH:/usr/local/go/bin
@@ -56,7 +64,7 @@ com estes aliases fica muito mais fácil daqui para frente, agora podemos utiliz
 ### Pacotes básicos
 ``` sh
 update
-sudo apt install -y git zip unzip nautilus
+sudo apt install -y git zip unzip nautilus fuse
 ```
 
 <br>
@@ -65,6 +73,7 @@ Para finalizar a configuração do git, é necessário configurar as informaçõ
 ``` sh
 git config --global user.name "Your Name"
 git config --global user.email "your@email.com"
+git config pull.rebase true
 ```
 
 ### Google Chrome
@@ -164,15 +173,36 @@ cat ~/.ssh/id_ed25519.pub
 ```
 copie a chave no final da execução, aí é só [colar no github](https://github.com/settings/ssh/new)
 
-Parabéns✨ 
+### Intellij (Toolbox)
 
-Agora você já tem o essencial instalado dentro do WSL. Caso queira utilizar o [VSCode](https://code.visualstudio.com/), instale diretamente no windows e utilize diretamente do linux a partir do comando *code*, em caso de problemas com a sua instalação, remova os arquivos de configuração do linux utilizando:
+[Baixe o Jetbrains toolbox](https://www.jetbrains.com/pt-br/lp/toolbox/), ele é um gerenciador de ferramentas da Jetbrains lá você pode baixa o Intellij (Goland, WebStorm...).
+navegue até o diretório que se encontra o arquivo (provavelmente Downloads)
+``` sh
+google-chrome https://www.jetbrains.com/pt-br/lp/toolbox/
+cd ~/Downloads
+```
+
+Agora descompacte e mova o arquivo para o lugar certo.
+
+``` sh
+tar -xvf jetbrains-toolbox-*.tar.gz # Descompacta
+rm jetbrains-toolbox-*.tar.gz # Exclui o zip
+mv jetbrains-toolbox-* ~/toolbox # Move os arquivos para a pasta toolbox
+```
+
+Pronto agora é só utilizar o comando `toolbox` configurado lá nos aliases e baixar o Intellij pela interface gráfica do Toolbox
+
+### VsCode
+ Caso queira utilizar o [VSCode](https://code.visualstudio.com/), instale diretamente no windows e utilize diretamente do linux a partir do comando *code*, em caso de problemas com a sua instalação, 
+ remova os arquivos de configuração do linux utilizando:
 
 ``` sh
 rm -rf ~/.vscode-*
 ```
 
 <br>
+Agora você já tem o essencial instalado dentro do WSL. Parabéns✨ 
+
 Happy coding 🧑‍💻
 
 
