@@ -64,7 +64,7 @@ com estes aliases fica muito mais fácil daqui para frente, agora podemos utiliz
 ### Pacotes básicos
 ``` sh
 update
-sudo apt install -y git zip unzip nautilus fuse
+sudo apt install -y git zip unzip nautilus fuse net-tools
 ```
 
 <br>
@@ -73,7 +73,8 @@ Para finalizar a configuração do git, é necessário configurar as informaçõ
 ``` sh
 git config --global user.name "Your Name"
 git config --global user.email "your@email.com"
-git config pull.rebase true
+git config --global core.autocrlf true
+git config --global pull.rebase true
 ```
 
 ### Google Chrome
@@ -153,11 +154,18 @@ npm install -g pnpm
 ### Golang
 
 Para instalar a versão mais atualizada [verifique no site oficial](https://go.dev/doc/install) a versão atual e atualize o comando de acordo com o número da versão (existe um pacote apt chamado golang-go, porém este costuma estar desatualizado)
+
+``` sh
+export GO_VERSION='go1.23.1'
+```
+
+Com a versão definida na nossa variável podemos baixar somente copiando os comandos abaixo e executar o mesmo processo caso precisarmos atualizar o go futuramente 
 ``` sh
 sudo rm -rf /usr/local/go 
-wget https://go.dev/dl/go1.23.1.linux-amd64.tar.gz
-sudo tar -C /usr/local -xzf go1.23.1.linux-amd64.tar.gz
-rm go1.23.1.linux-amd64.tar.gz
+wget https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf ${GO_VERSION}.linux-amd64.tar.gz
+rm ${GO_VERSION}.linux-amd64.tar.gz
+go version
 ```
 
 ### Chave SSH
