@@ -159,7 +159,7 @@ Para instalar a versão mais atualizada [verifique no site oficial](https://go.d
 export GO_VERSION='go1.23.1'
 ```
 
-Com a versão definida na nossa variável podemos baixar somente copiando os comandos abaixo e executar o mesmo processo caso precisarmos atualizar o go futuramente 
+Com a versão definida na nossa variável podemos baixar somente copiando os comandos abaixo e no futudo executar o mesmo processo caso precisarmos atualizar o go
 ``` sh
 sudo rm -rf /usr/local/go 
 wget https://go.dev/dl/${GO_VERSION}.linux-amd64.tar.gz
