@@ -10,10 +10,10 @@
     "preinstall": "npx only-allow pnpm"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.3",
+    "@astrojs/check": "^0.9.4",
     "@stylistic/eslint-plugin": "^2.9.0",
     "@types/dompurify": "^3.0.5",
-    "astro": "^4.16.7",
+    "astro": "^5.0.3",
     "eslint": "^9.13.0",
     "globals": "^15.11.0",
     "globby": "^13.2.2",
@@ -23,9 +23,9 @@
     "typescript-eslint": "^8.11.0"
   },
   "dependencies": {
-    "@astrojs/preact": "^3.5.3",
-    "@astrojs/sitemap": "^3.1.6",
-    "@astrojs/ts-plugin": "^1.10.2",
+    "@astrojs/preact": "^4.0.0",
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/ts-plugin": "^1.10.4",
     "autoprefixer": "^10.4.14",
     "dompurify": "^3.1.7",
     "fuse.js": "^7.0.0",

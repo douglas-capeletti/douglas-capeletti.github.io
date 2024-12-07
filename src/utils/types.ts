@@ -1,17 +1,21 @@
-export interface IPost {
-  id: string,
-  collection: string,
-  slug: string,
-  body: string,
-  data: IPostData
+import type { AnyEntryMap, InferEntrySchema, RenderedContent } from "astro:content"
+
+export interface IEntry<T extends keyof AnyEntryMap> {
+  id: string;
+  body?: string;
+  collection: string;
+  data: InferEntrySchema<T>;
+  rendered?: RenderedContent;
+  filePath?: string;
+
 }
 
-export interface IPostData {
+export interface IPost {
   title: string;
   description?: string;
   pubDate?: Date;
   hero?: string;
-  tags: string[];
+  tags?: string[];
   video?: string;
 }
 
@@ -30,6 +34,3 @@ export interface IPaginator {
   next?: string;
 }
 
-export interface IPostEntry extends IPost {
-  render(): unknown;
-}

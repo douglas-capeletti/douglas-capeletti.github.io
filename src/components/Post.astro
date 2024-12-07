@@ -1,8 +1,8 @@
 ---
 import { formatDate } from "../utils";
-import type { IPostData } from "../utils/types";
+import type { IPost } from "../utils/types";
 
-export interface Props extends IPostData {}
+export interface Props extends IPost {}
 const { title, pubDate, hero, tags, video } = Astro.props;
 
 // primeiro rascunho da funcionalidade de back-reference

@@ -1,20 +1,22 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import BackToPage from "../../components/BackToPage.astro";
-import PostLayout from "../../layouts/PostLayout.astro";
-import type { IPost } from "../../utils/types";
 import CardList from "../../components/CardList.astro";
+import PostLayout from "../../layouts/PostLayout.astro";
+import type { IEntry } from "../../utils/types";
+
+type PostEntry = IEntry<"voting">;
 
 const votingEntries = await getCollection("voting");
 const entriesByType: any = {};
-votingEntries.forEach((v: IPost) => {
+votingEntries.forEach((v: PostEntry) => {
     const type = v.id.split("/")?.[0] ?? "none";
     if (!entriesByType[type]) entriesByType[type] = [];
     entriesByType[type].push(v);
 });
 
-const indexEntry = entriesByType["index.md"][0];
-const { Content } = await indexEntry.render();
+const indexEntry = entriesByType["index"][0];
+const { Content } = await render(indexEntry);
 
 const specs = entriesByType["specs"];
 const tools = entriesByType["tools"];
@@ -26,10 +28,10 @@ const tools = entriesByType["tools"];
     {
         (
             <CardList
-                cards={specs.map((x: IPost) => {
+                cards={specs.map((x: PostEntry) => {
                     return {
                         title: x.data.title,
-                        url: `/projects/voting/${x.slug}`,
+                        url: `/projects/voting/${x.id}`,
                     };
                 })}
             />
@@ -39,10 +41,10 @@ const tools = entriesByType["tools"];
     {
         (
             <CardList
-                cards={tools.map((x: IPost) => {
+                cards={tools.map((x: PostEntry) => {
                     return {
                         title: x.data.title,
-                        url: `/projects/voting/${x.slug}`,
+                        url: `/projects/voting/${x.id}`,
                     };
                 })}
             />

@@ -3,17 +3,19 @@ import type { GetStaticPathsOptions, Page } from "astro";
 import { getCollection } from "astro:content";
 import TopicLayout from "../../layouts/TopicLayout.astro";
 import { PAGE_SIZE } from "../../utils/constants";
-import type { ICard, IPost } from "../../utils/types";
+import type { ICard, IEntry } from "../../utils/types";
+
+type PostEntry = IEntry<"shards">
 
 export async function getStaticPaths(options: GetStaticPathsOptions) {
-  const entries = await getCollection("shards");
-  const sortedEntries = entries.sort((a, b) => new Date(b.data.pubDate).valueOf() - new Date(a.data.pubDate).valueOf());
+  const entries: PostEntry[] = await getCollection("shards");
+  const sortedEntries = entries.sort((a, b) => new Date(b.data?.pubDate ?? "").valueOf() - new Date(a.data?.pubDate ?? "").valueOf());
   return options.paginate(sortedEntries, {
     pageSize: PAGE_SIZE,
   });
 }
 
-const page: Page<IPost> = Astro.props?.page;
+const page: Page<PostEntry> = Astro.props?.page;
 const totalPages = Math.ceil(page.total / page.size);
 const pageCounter = totalPages > 1 ? `page ${page.currentPage} of ${totalPages}` : undefined;
 
@@ -22,12 +24,12 @@ const description = 'Shards ou "Fragmentos", anotações menores de assuntos com
 
 const cards: ICard[] = page.data.map((p) => {
   return {
-    tag: p.data.tags[0] === "draft" ? "Draft✏️" : undefined,
+    tag: p.data.tags?.[0] === "draft" ? "Draft✏️" : undefined,
     hero: p.data.hero,
     title: p.data.title,
     description: p.data.description,
     pubDate: p.data.pubDate,
-    url: `/${p.collection}/${p.slug}`,
+    url: `/${p.collection}/${p.id}`,
   };
 });
 ---

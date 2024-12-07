@@ -66,7 +66,6 @@
       this.element.append(searchResultItem);
     },
     add(result: { item: ISearchData }) {
-      console.log(result);
       let resultPage = document.createElement("div");
       resultPage.style.marginBottom = "2rem";
       resultPage.className = "searchResultItem";
@@ -79,7 +78,7 @@
 
       let resultBody = document.createElement("div");
       resultBody.className = "searchResultBody";
-      resultBody.innerHTML = (result.item.description ?? result.item.body).substring(0, BODY_LENGTH);
+      resultBody.innerHTML = (result.item.description ?? result.item.body)?.substring(0, BODY_LENGTH) ?? "";
       resultPage.append(resultBody);
       this.element.append(resultPage);
     },
@@ -112,6 +111,7 @@
     }
     if (SEARCH_DATA && query?.startsWith("#")) {
       const tag = query?.substring(1)?.toLocaleLowerCase();
+      console.log(tag)
       return SEARCH_DATA.filter((item) => item.tags.includes(tag))
         .sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
         .map((item) => {

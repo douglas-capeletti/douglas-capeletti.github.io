@@ -21,7 +21,6 @@ const { props, label } = Astro.props;
   var themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
   var themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
 
-  console.log(themeToggleDarkIcon)
   if (localStorage.getItem("color-theme") === "dark") {
     themeToggleLightIcon?.classList.remove("hidden");
   } else {
