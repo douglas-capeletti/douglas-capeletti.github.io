@@ -1,5 +1,6 @@
 ---
-title: "Diagrama C4"
+title: "Documentação de Software"
+hero: "/images/software-documentation.webp"
 pubDate: "2024-09-29"
 tags: ["draft", "documentation"]
 ---

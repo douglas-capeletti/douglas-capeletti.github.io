@@ -1,7 +1,7 @@
 ---
 title: "Fundamentos de arquitetura de software"
 pubDate: "2024-10-17"
-hero: "/images/C4.png"
+hero: "/images/C4.webp"
 tags: ["draft", "architecture", "fundamentals"]
 ---
 

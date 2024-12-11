@@ -7,8 +7,7 @@ const schema = z.object({
   pubDate: z.coerce.date().optional(),
   hero: z.string().optional(),
   tags: z.array(z.string()).optional(),
-  video: z.string().optional(),
-  isDraft: z.boolean().optional()
+  video: z.string().optional()
 })
 
 const notes = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/notes" }) })

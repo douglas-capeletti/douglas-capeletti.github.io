@@ -1,7 +1,7 @@
 ---
 title: "Como Docker funciona"
 pubDate: "2023-09-13"
-hero: "/images/docker-inside.png"
+hero: "/images/docker-inside.webp"
 tags: ["draft", "docker", "containers"]
 ---
 

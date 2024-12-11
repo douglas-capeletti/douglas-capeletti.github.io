@@ -1,7 +1,7 @@
 ---
 title: "Como usar o Docker"
 pubDate: "2023-09-28"
-hero: "/images/docker.jpg"
+hero: "/images/docker.webp"
 tags: ["draft", "docker", "containers"]
 ---
 

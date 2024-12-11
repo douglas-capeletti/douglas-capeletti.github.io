@@ -1,7 +1,7 @@
 ---
 title: "Golang - Guia básico"
 pubDate: "2024-09-16"
-hero: "/images/golang.jpg"
+hero: "/images/golang.webp"
 tags: ["golang", "programming languages"]
 ---
 
