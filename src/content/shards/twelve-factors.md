@@ -6,7 +6,7 @@ tags: ["architecture"]
 
 I - Base de Código <br>
 Uma base de código com rastreamento utilizando controle de revisão, muitos deploys
-   
+
 II - Dependências <br>
 Declare e isole as dependências
 
@@ -39,6 +39,5 @@ Trate logs como fluxo de eventos
 
 XII - Processos de Admin <br>
 Executar tarefas de administração/gerenciamento como processos pontuais
-
 
 Veja mais em: [The Twelve Factor App](twelve-factors)

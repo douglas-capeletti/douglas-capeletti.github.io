@@ -76,6 +76,6 @@ Ao final do tempo de votação, a sessão será encerrada e o resultado será ex
 - O resultado deverá ser exibido em ordem decrescente de votos.
 - O resultado deverá ser exibido em porcentagem e em total de votos.
 
-# Sequência de eventos
+## Sequência de eventos
 
 ![Sequência de eventos da versão 1](/images/voting-sequence-v1.svg)

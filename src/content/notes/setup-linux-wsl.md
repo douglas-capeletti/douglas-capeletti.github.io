@@ -1,5 +1,5 @@
 ---
-title: "Setup linux (wsl)"
+title: "Setup Linux (wsl)"
 pubDate: "2024-09-25"
 hero: "/images/wsl.webp"
 tags: ["linux", "wsl", "ubuntu"]
@@ -98,7 +98,7 @@ cd ..
 
 ### Docker
 
-Ao instalar o Docker diretamente no wsl ao invés do docker desktop, fica muito mais prático utilizar o Docker como ele seria utilizado em uma máquina linux e com cli. Caso prefira o Docker com interface gráfica e botões bonitinhos, pule esta etapa e instale o Docker desktop.
+Ao instalar o Docker diretamente no wsl ao invés do docker desktop, fica muito mais prático utilizar o Docker como ele seria utilizado em uma máquina Linux e com cli. Caso prefira o Docker com interface gráfica e botões bonitinhos, pule esta etapa e instale o Docker desktop.
 
 ``` sh
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
@@ -118,7 +118,7 @@ docker --version
 
 ### Java
 
-SDKman é com certeza absoluta a forma mais prática de instalar e gerenciar uma ou várias versões do java no linux, mas também te ajuda a baixar `Kotlin`, `Groovy`, `Maven`, `Gradle` entre outras ferramentas.
+SDKman é com certeza absoluta a forma mais prática de instalar e gerenciar uma ou várias versões do java no Linux, mas também te ajuda a baixar `Kotlin`, `Groovy`, `Maven`, `Gradle` entre outras ferramentas.
 
 ``` sh
 curl -s "https://get.sdkman.io" | bash
@@ -171,7 +171,7 @@ Para instalar a versão mais atualizada [verifique no site oficial](https://go.d
 export GO_VERSION='go1.23.1'
 ```
 
-Com a versão definida na nossa variável podemos baixar somente copiando os comandos abaixo e no futudo executar o mesmo processo caso precisarmos atualizar o go
+Com a versão definida na nossa variável podemos baixar somente copiando os comandos abaixo e no futuro executar o mesmo processo caso precisarmos atualizar o go
 
 ``` sh
 sudo rm -rf /usr/local/go 
@@ -217,8 +217,8 @@ Pronto agora é só utilizar o comando `toolbox` configurado lá nos aliases e b
 
 ### VsCode
 
- Caso queira utilizar o [VSCode](https://code.visualstudio.com/), instale diretamente no windows e utilize diretamente do linux a partir do comando *code*, em caso de problemas com a sua instalação,
- remova os arquivos de configuração do linux utilizando:
+ Caso queira utilizar o [VSCode](https://code.visualstudio.com/), instale diretamente no windows e utilize diretamente do Linux a partir do comando *code*, em caso de problemas com a sua instalação,
+ remova os arquivos de configuração do Linux utilizando:
 
 ``` sh
 rm -rf ~/.vscode-*

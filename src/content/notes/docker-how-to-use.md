@@ -18,7 +18,7 @@ docker ps
 
 | Parametro | Função                                                                       |
 | --------- | ---------------------------------------------------------------------------- |
-| -a        | incluir containers que não estao mais rodando                                |
+| -a        | incluir containers que não estão mais rodando                                |
 | -q        | só o id do container, útil para usar de dado de entrada para outros comandos |
 
 ### Rodando coisas no Docker
@@ -42,9 +42,8 @@ docker run hello-world
 | -rm       | remove o container assim que ele cair                 |
 | --name    | define um nome para o container                       |
 
-
 Entrando em um container
-obs.:  "-it"  ==  "-i -t" 
+obs.:  "-it"  ==  "-i -t"
 
 ``` sh
 docker run -it ubuntu bash
@@ -59,7 +58,6 @@ docker run -p 8080:80 nginx
 
 assim podemos acessar o nginx [localmente através da porta 8080](http://localhost:8080)
 
-
 os containers tambem podem ser nomeados para serem removidos pelo nome dado a eles e nao pelo nome gerado
 
 ``` sh
@@ -73,8 +71,9 @@ para acessar um container já em execução, utilizamos o exec
 docker exec -it server bash
 ```
 
-### Bind mounts 
-mapeamento de pastas para dentro de um container atraves de *volumes*
+### Bind mounts
+
+mapeamento de pastas para dentro de um container através de *volumes*
 Primeiro criando um arquivo na máquina local
 
 ```` html
@@ -87,15 +86,14 @@ Primeiro criando um arquivo na máquina local
 ````
 
 depois mapeando este volume arquivo para um diretorio dentro do container
-Obs.: a estrutura do container muda de acordo com a imagem usada, caso nao saiba a estrutura do container em utilizacao, pesquise ou entre nele via bash para ver
+Obs.: a estrutura do container muda de acordo com a imagem usada, caso nao saiba a estrutura do container em utilização, pesquise ou entre nele via bash para ver
 
 ``` sh
 docker run -d -p 8080:80 -v ~/Projects/files/:/usr/share/nginx/html --name server nginx
 ```
 
 tip: usar guia anonima para nao ter problemas com cache
-tip(2): da pra usar "$(pwd)" no path do comando para referenciar o diretorio atual
-
+tip(2): da pra usar "$(pwd)" no path do comando para referenciar o diretório atual
 
 A forma mais elegante e atual de executar essa mesma ação
 
@@ -103,7 +101,7 @@ A forma mais elegante e atual de executar essa mesma ação
 docker run -d -p 8080:80 --mount type=bind,source=~/Projects/files/,target=/usr/share/nginx/html --name server nginx
 ```
 
-diferenças: --mount é mais explicito o bind, se o source for incorreto, o -v cria o diretorio novo, o --mount da erro
+diferenças: --mount é mais explicito o bind, se o source for incorreto, o -v cria o diretório novo, o --mount da erro
 
 ### Como criar volumes
 
@@ -132,17 +130,20 @@ resultado:
   }
 ]
 ```
+
 agora da pra usar o volume criado igual qualquer outro e estes arquivos vao ser compartilhados pelos containers que utilizarem estes volumes
 
 ``` sh
 docker run -d -p 8080:80 --mount source=meuVolume,target=/app --name server nginx
 ```
+
 ou
+
 ``` sh
 docker run -d -p 8080:80 -v meuVolume:/app --name server nginx
 ```
 
-porem criando varios volumes, ao longo do tempo vamos tomando muito espaco em disco, para limpar os volumes do docker, use:
+porem criando vários volumes, ao longo do tempo vamos tomando muito espaço em disco, para limpar os volumes do docker, use:
 
 ``` sh
 docker volume prune
@@ -153,10 +154,10 @@ docker volume prune
 podemos criar arquivos docker para criar uma imagem personalizada de acordo com a nossa necessidade
 
 ``` yaml
-# imagem base usada para a criacao da nova imagem
+# imagem base usada para a criação da nova imagem
 FROM nginx:latest
 
-# comandos a serem executados na criacao da imagem
+# comandos a serem executados na criação da imagem
 RUN apt update
 RUN apt install -y vim
 ```
@@ -167,10 +168,12 @@ para executarmos este docker file, abrimos o terminal na pasta onde o arquivo se
 docker build -t nginx-vim:latest .
 ```
 
-o parametro '-t' define a tag da imagem, assim como usamos antes o nginx antes, agora temos uma versao do 'nginx' com o vim instalado chamada de 'nginx-vim'
+o parâmetro '-t' define a tag da imagem, assim como usamos antes o nginx antes, agora temos uma versão do 'nginx' com o vim instalado chamada de 'nginx-vim'
 
-já o '.' no final se refere a localizacao do arquivo Dockerfile, como estamos com o terminal aberto no mesmo diretorio do arquivo Dockerfile, usamos o ponto, caso nao seja o caso, devemos usar o caminho relativo do arquivo
+já o '.' no final se refere a localização do arquivo Dockerfile, como estamos com o terminal aberto no mesmo diretório do arquivo Dockerfile, usamos o ponto, caso nao seja o caso, devemos usar o caminho relativo do arquivo
 
 ...
-#### #todo
-* ver diferencas de docker [kill | stop | rm];
+
+### #todo
+
+* ver diferenças de docker [kill | stop | rm];

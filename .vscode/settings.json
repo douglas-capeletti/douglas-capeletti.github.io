@@ -12,4 +12,19 @@
   "plantuml.exportSubFolder": false,
   "plantuml.diagramsRoot": "public/diagrams",
   "plantuml.exportOutDir": "public/images",
+  "cSpell.words": [
+    "autoclean",
+    "autoremove",
+    "Componentização",
+    "containerd",
+    "DDOS",
+    "dearmor",
+    "Govulncheck",
+    "keyrings",
+    "LGPD",
+    "linux",
+    "nginx",
+    "salesforce",
+    "sdkman"
+  ],
 }

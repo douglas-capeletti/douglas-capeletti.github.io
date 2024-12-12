@@ -5,15 +5,15 @@ hero: "/images/docker-inside.webp"
 tags: ["draft", "docker", "containers"]
 ---
 
-# O que precisamos entender
+## O que precisamos entender
 
 - [O que precisamos entender](#o-que-precisamos-entender)
-  - [O que são Containers?](#o-que-são-containers)
-    - [Namespaces](#namespaces)
-    - [Cgroups](#cgroups)
-    - [Overlay File Systems (OFS)](#overlay-file-systems-ofs)
-    - [Dockerfile](#dockerfile)
-    - [Client - Host](#client---host)
+- [O que são Containers?](#o-que-são-containers)
+  - [Namespaces](#namespaces)
+  - [Cgroups](#cgroups)
+  - [Overlay File Systems (OFS)](#overlay-file-systems-ofs)
+  - [Dockerfile](#dockerfile)
+  - [Client - Host](#client---host)
 
 ## O que são Containers?
 

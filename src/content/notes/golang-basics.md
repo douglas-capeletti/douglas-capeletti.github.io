@@ -5,36 +5,38 @@ hero: "/images/golang.webp"
 tags: ["golang", "programming languages"]
 ---
 
-# o que veremos aqui:
-- [o que veremos aqui:](#o-que-veremos-aqui)
-  - [Características básicas](#características-básicas)
-    - [Padrões de uso](#padrões-de-uso)
-  - [Módulos \& Pacotes](#módulos--pacotes)
-    - [Entrypoint](#entrypoint)
-  - [Tipos de dados](#tipos-de-dados)
-    - [Declarando Valores](#declarando-valores)
-    - [Tipos básicos](#tipos-básicos)
-    - [STRINGS, RUNES \& BYTES](#strings-runes--bytes)
-    - [Operações matemáticas básicas](#operações-matemáticas-básicas)
-  - [Estruturas de controle](#estruturas-de-controle)
-    - [IF](#if)
-    - [Switch-case](#switch-case)
-    - [For](#for)
-  - [Funções](#funções)
-    - [Métodos](#métodos)
-  - [Estruturas de dados](#estruturas-de-dados)
-    - [ARRAYS](#arrays)
-    - [SLICES](#slices)
-    - [MAPS](#maps)
-  - [Structs \& Interfaces](#structs--interfaces)
-  - [Pointers](#pointers)
-  - [Goroutines](#goroutines)
-  - [Channels](#channels)
-  - [Generics](#generics)
+## o que veremos aqui
+
+- [o que veremos aqui](#o-que-veremos-aqui)
+- [Características básicas](#características-básicas)
+  - [Padrões de uso](#padrões-de-uso)
+- [Módulos \& Pacotes](#módulos--pacotes)
+  - [Entrypoint](#entrypoint)
+- [Tipos de dados](#tipos-de-dados)
+  - [Declarando Valores](#declarando-valores)
+  - [Tipos básicos](#tipos-básicos)
+  - [STRINGS, RUNES \& BYTES](#strings-runes--bytes)
+  - [Operações matemáticas básicas](#operações-matemáticas-básicas)
+- [Estruturas de controle](#estruturas-de-controle)
+  - [IF](#if)
+  - [Switch-case](#switch-case)
+  - [For](#for)
+- [Funções](#funções)
+  - [Métodos](#métodos)
+- [Estruturas de dados](#estruturas-de-dados)
+  - [ARRAYS](#arrays)
+  - [SLICES](#slices)
+  - [MAPS](#maps)
+- [Structs \& Interfaces](#structs--interfaces)
+- [Pointers](#pointers)
+- [Goroutines](#goroutines)
+- [Channels](#channels)
+- [Generics](#generics)
 
 ---
 
 ## Características básicas
+
 - Linguagem compilada direto para binário
 - Compilação rápida (porém, binário grande)
 - Linguagem pensada para ser simples em sua estrutura
@@ -42,8 +44,9 @@ tags: ["golang", "programming languages"]
 - [É possível instalar em qualquer plataforma](http://go.dev/doc/install)
 
 ### Padrões de uso
+
 - Letra inicial maiúscula em uma função determina que ela será publica ou não
-- Não há getters nem setters, porém caso necessário: 
+- Não há getters nem setters, porém caso necessário:
   - Declare o campo com letra minuscula
   - Crie um método com o mesmo nome do campo porém com letra maiúscula
   - Desta forma a função será exportada e quem utilizar não verá diferença
@@ -94,7 +97,8 @@ require github.com/go-chi/chi/v5 v5.1.0 # indirect
 E também um arquivo *go.sum* com os checksums das dependências para validação das versões.
 
 ### Entrypoint
-Uma aplicação go pode ter mais de um entrypoint identificado pelo arquivo *main.go*, este arquivo deve conter uma função *main()*, caso contrário teremos um erro de compilação. 
+
+Uma aplicação go pode ter mais de um entrypoint identificado pelo arquivo *main.go*, este arquivo deve conter uma função *main()*, caso contrário teremos um erro de compilação.
 
 Uma estrutura comum de ser utilizada em projetos go é ter uma pasta chamada *cmd* e dentro dela subpastas distintas para cara entrypoint diferente da aplicação, pois quando evocado o pacote depois ele terá o nome da pasta e não do arquivo no caso do *main.go*
 
@@ -135,6 +139,7 @@ go build cmd/main.go
 # ou compilar e executar consecutivamente com o comando run
 go run cmd/main.go
 ```
+
 <br>
 
 ---
@@ -164,6 +169,7 @@ look, again := 3, 4 // look = 3, again = 4
 ```
 
 ### Tipos básicos
+
 ``` yaml
 Boolean: 
   Default: false
@@ -194,6 +200,7 @@ Inteiro:
 ```
 
 ### STRINGS, RUNES & BYTES
+
 Strings em go são imutáveis e naturalmente UTF-8, e ocupam 7 bits + 1 bit de sinal, porém UTF-8 tem um encoding dinâmico que pode se extender até 32 bits, cobrindo UTF-32, e assim podendo armazenar caracteres chineses, emojis e outros símbolos.
 
 ``` go
@@ -280,6 +287,7 @@ fmt.Println(numInt1 % numInt2) // 1 | operação com resto de divisão
 
 var myBoolean bool = false // como qualquer linguagem, simples
 ```
+
 <br>
 
 ---
@@ -289,6 +297,7 @@ var myBoolean bool = false // como qualquer linguagem, simples
 Em go teremos estruturas como 'if', 'switch-case', 'for', (não tem 'while'), e select (veremos em [channels](#channels))
 
 ### IF
+
 ``` go
 // if, switch, for, não tem parêntesis
 value := "something"
@@ -306,6 +315,7 @@ if value == "Hi" {
 ```
 
 ### Switch-case
+
 ``` go
 // no switch, o break é implícito sobre cada condição
 switch {
@@ -334,6 +344,7 @@ default:
 ```
 
 ### For
+
 ``` go
 // Loop básico 'while'
 var i int = 0
@@ -370,6 +381,7 @@ for _, value := range intSlice {
   fmt.Println("Index: " + index + " Value: " + value)
 }
 ```
+
 <br>
 
 ---
@@ -418,7 +430,8 @@ if err!=nil {
 // para que ele não seja ignorado acidentalmente
 _, response2 := withError(false)
 ```
-### Métodos 
+
+### Métodos
 
 métodos são funções atribuídas a um tipo de dado (ou objeto) específico.
 veja também: [Função ou Método?](/shards/function-or-method)
@@ -436,6 +449,7 @@ newBall := ball.New()
 // podemos atribuir métodos novos para o tipo string por exemplo
 newBall.roll()
 ```
+
 <br>
 
 ---
@@ -445,7 +459,8 @@ newBall.roll()
 Assim também como outras linguagens, temos algumas estruturas pré existentes na linguagem como 'Arrays' e 'Maps', porém em go ainda temos os 'slices', que veremos aqui.
 
 ### ARRAYS
-- características: 
+
+- características:
   - Tamanho fixo
   - mesmo tipo de dados
   - indexável
@@ -467,7 +482,8 @@ fmt.Println(anotherIntArr[0:3])
 ```
 
 ### SLICES
-- características: 
+
+- características:
   - wrapper para array
   - geração pode ser dinâmica
 
@@ -503,6 +519,7 @@ for index, value := range intSlice2 {
 ```
 
 ### MAPS
+
 ``` go
 // podemos criar um mapa desta forma
 var myMap map[string]uint8 = make(map[string]uint8)
@@ -529,11 +546,13 @@ for key, value := range myMap2 {
   fmt.Println("Name: " + key + " Name length: " + value)
 }
 ```
+
 <br>
 
 ---
 
 ## Structs & Interfaces
+
 Structs em go nada mais são do que objeto, que por sua vez, podem conter métodos.
 Mas go é orientado a objetos? Não necessariamente, em go não existe herança por exemplo.
 
@@ -553,11 +572,11 @@ type person struct{
 
 ```
 
-Interfaces por sua vez tem um comportamento mais 'passivo'. 
+Interfaces por sua vez tem um comportamento mais 'passivo'.
 
 Ao definir as funções de uma interface, toda struct que conter estas funções será considerada compatível com a interface. Desta forma não precisaremos explicitamente atribuir a interface para aquela struct, desta forma podemos trabalhar melhor com bibliotecas externas definindo interfaces que sejam compatíveis com structs já existentes nestas bibliotecas.
 
-``` go 
+``` go
 type owner struct {
   name string
 }
@@ -612,11 +631,13 @@ func main() {
   fmt.Println("Electric car: ", willReachDestination(myOtherCar, distance))
 }
 ```
+
 <br>
 
 ---
 
 ## Pointers
+
 Ponteiros são um tipo especial de dados que armazena (ou 'aponta') um endereço de memória.
 Ponteiros são identificados por um `*` na declaração da variável.
 
@@ -662,6 +683,7 @@ fmt.Println("updating by value...")
 fmt.Printf("'c' value is: %v \n", c)
 fmt.Printf("'d' value is: %v \n", d)
 ```
+
 | Variável | Valor    | Endereço |
 | -------- | -------- | -------- |
 | a        | *0x1b05* | 0x1b00   |
@@ -682,28 +704,29 @@ fmt.Println(slice)
 fmt.Println(sliceCopy)
 ```
 
-Voltando no ponto sobre atualizar por referência ou por valor, todo parâmetro de função será implicitamente passado por valor, ou seja, ao passarmos um *array* por parâmetro, a função criará uma cópia do *array* original, desta forma DUPLICANDO a memória, o que pode fazer sentido para alguns casos de uso, mas não para todos. 
+Voltando no ponto sobre atualizar por referência ou por valor, todo parâmetro de função será implicitamente passado por valor, ou seja, ao passarmos um *array* por parâmetro, a função criará uma cópia do *array* original, desta forma DUPLICANDO a memória, o que pode fazer sentido para alguns casos de uso, mas não para todos.
 
 Sendo assim podemos enviar um ponteiro, quando quisermos evitar este tipo de cenário porém tendo em mente que o array possivelmente será modificado, causando efeitos colaterais, desejados ou não.
 
 Neste exemplo temos duas funções que calculam o valor quadrado, uma recebendo um array/slice por parâmetro e outra um ponteiro para este array/slice.
+
 ``` go
 func square(thing2 [5]int32) [5]int32 {
-	fmt.Printf("Memory location of thing2: %p \n", &thing2)
-	for i := range thing2 {
-		thing2[i] = thing2[i] * thing2[i]
-	}
-	return thing2
+ fmt.Printf("Memory location of thing2: %p \n", &thing2)
+ for i := range thing2 {
+  thing2[i] = thing2[i] * thing2[i]
+ }
+ return thing2
 }
 
 func squareRef(thing3 *[5]int32) [5]int32 {
-	// aqui nao precisa do '&' esta variável já é um ponteiro
-	// usando '&' o resultado será o endereço do ponteiro (ponteiro do ponteiro)
-	fmt.Printf("Memory location of thing3: %p \n", thing3)
-	for i := range thing3 {
-		thing3[i] = thing3[i] * thing3[i]
-	}
-	return *thing3
+ // aqui nao precisa do '&' esta variável já é um ponteiro
+ // usando '&' o resultado será o endereço do ponteiro (ponteiro do ponteiro)
+ fmt.Printf("Memory location of thing3: %p \n", thing3)
+ for i := range thing3 {
+  thing3[i] = thing3[i] * thing3[i]
+ }
+ return *thing3
 }
 ```
 
@@ -732,6 +755,7 @@ Result ref value: [1 4 9 16 25]
 thing1 new value: [1 4 9 16 25] 
 *\
 ```
+
 <br>
 
 ---
@@ -740,9 +764,9 @@ thing1 new value: [1 4 9 16 25]
 
 Primeira coisa a ser comentada sobre Goroutines é, Goroutine é uma ferramenta de concorrência e não paralelismo. Caso este assunto cause alguma confusão ainda na sua cabeça, tente [dar uma olhada aqui antes](/shards/concurrency-is-not-parallelism).
 
-
 Alguns pontos sobre Goroutines
-- Não são threads, são bem mais leves 
+
+- Não são threads, são bem mais leves
 - São gerenciadas pelo scheduler interno do go e não pelo Sistema operacional
 - É um modelo concorrente, podendo também ser paralelo (mas não necessariamente)
 
@@ -756,23 +780,23 @@ var wg = sync.WaitGroup{}
 var dbData = []string{"ID[1]", "ID[2]", "ID[3]", "ID[4]", "ID[5]"}
 
 func main() {
-	t0 := time.Now()
-	for i := 0; i < len(dbData); i++ {
-		// adiciona 1 ao contador
-		wg.Add(1)
-		go dbCall(i)
-	}
-	wg.Wait()
-	fmt.Printf("Total execution time: %v \n", time.Since(t0))
+ t0 := time.Now()
+ for i := 0; i < len(dbData); i++ {
+  // adiciona 1 ao contador
+  wg.Add(1)
+  go dbCall(i)
+ }
+ wg.Wait()
+ fmt.Printf("Total execution time: %v \n", time.Since(t0))
 }
 
 // simulando delay da chamada ao banco
 func dbCall(i int) {
-	var delay float32 = rand.Float32() * 2000
-	time.Sleep(time.Duration(delay) * time.Millisecond)
-	fmt.Println("Result from DB:", dbData[i])
-	// remove 1 do contador
-	wg.Done()
+ var delay float32 = rand.Float32() * 2000
+ time.Sleep(time.Duration(delay) * time.Millisecond)
+ fmt.Println("Result from DB:", dbData[i])
+ // remove 1 do contador
+ wg.Done()
 }
 ```
 
@@ -789,38 +813,38 @@ var dbData = []string{"ID[1]", "ID[2]", "ID[3]", "ID[4]", "ID[5]"}
 var results = []string{}
 
 func main() {
-	t0 := time.Now()
-	for i := 0; i < len(dbData); i++ {
-		// adiciona 1 ao contador
-		wg.Add(1)
-		go dbCall(i)
-	}
-	wg.Wait()
-	fmt.Printf("Total execution time: %v \n", time.Since(t0))
-	fmt.Printf("The results are: %v \n", results)
+ t0 := time.Now()
+ for i := 0; i < len(dbData); i++ {
+  // adiciona 1 ao contador
+  wg.Add(1)
+  go dbCall(i)
+ }
+ wg.Wait()
+ fmt.Printf("Total execution time: %v \n", time.Since(t0))
+ fmt.Printf("The results are: %v \n", results)
 }
 
 // simulando delay da chamada ao banco
 func dbCall(i int) {
-	// fixando o tempo para forçar cenários concorrentes
-	var delay float32 = 2000
-	time.Sleep(time.Duration(delay) * time.Millisecond)
-	fmt.Println("Result from DB:", dbData[i])
-	save(dbData[i])
-	// remove 1 do contador
-	wg.Done()
+ // fixando o tempo para forçar cenários concorrentes
+ var delay float32 = 2000
+ time.Sleep(time.Duration(delay) * time.Millisecond)
+ fmt.Println("Result from DB:", dbData[i])
+ save(dbData[i])
+ // remove 1 do contador
+ wg.Done()
 }
 
 func save(result string) {
-	// bloqueando a escrita para evitar condição de corrida
-	m.Lock()
-	results = append(results, result)
-	// liberando o acesso para outras Goroutines
-	m.Unlock()
+ // bloqueando a escrita para evitar condição de corrida
+ m.Lock()
+ results = append(results, result)
+ // liberando o acesso para outras Goroutines
+ m.Unlock()
 }
 ```
 
-Agora sim, funcionando bem, mas... e se eu quiser ir logando conforme os valores são inseridos? 
+Agora sim, funcionando bem, mas... e se eu quiser ir logando conforme os valores são inseridos?
 
 O *Mutex* em go tem uma funcionalidade a mais, utilizando um *RWMutex* mutex de leitura e escrita, podemos especificar se nosso lock será somente de leitura ou não
 
@@ -831,41 +855,41 @@ var dbData = []string{"ID[1]", "ID[2]", "ID[3]", "ID[4]", "ID[5]"}
 var results = []string{}
 
 func main() {
-	t0 := time.Now()
-	for i := 0; i < len(dbData); i++ {
-		// adiciona 1 ao contador
-		wg.Add(1)
-		go dbCall(i)
-	}
-	wg.Wait()
-	fmt.Printf("Total execution time: %v \n", time.Since(t0))
+ t0 := time.Now()
+ for i := 0; i < len(dbData); i++ {
+  // adiciona 1 ao contador
+  wg.Add(1)
+  go dbCall(i)
+ }
+ wg.Wait()
+ fmt.Printf("Total execution time: %v \n", time.Since(t0))
 }
 
 // simulate DB call delay
 func dbCall(i int) {
-	// fixando o tempo para forçar cenários concorrentes
-	var delay float32 = 2000
-	time.Sleep(time.Duration(delay) * time.Millisecond)
-	save(dbData[i])
-	log()
-	// remove 1 do contador
-	wg.Done()
+ // fixando o tempo para forçar cenários concorrentes
+ var delay float32 = 2000
+ time.Sleep(time.Duration(delay) * time.Millisecond)
+ save(dbData[i])
+ log()
+ // remove 1 do contador
+ wg.Done()
 }
 
 func save(result string) {
-	// bloqueando a escrita para evitar condição de corrida
-	m.Lock()
-	results = append(results, result)
-	// liberando o acesso para outras Goroutines
-	m.Unlock()
+ // bloqueando a escrita para evitar condição de corrida
+ m.Lock()
+ results = append(results, result)
+ // liberando o acesso para outras Goroutines
+ m.Unlock()
 }
 
 func log() {
-	// bloqueia somente a leitura
-	m.RLock()
-	fmt.Printf("Current results: %v \n", results)
-	// desbloqueia a leitura
-	m.RUnlock()
+ // bloqueia somente a leitura
+ m.RLock()
+ fmt.Printf("Current results: %v \n", results)
+ // desbloqueia a leitura
+ m.RUnlock()
 }
 ```
 
@@ -878,6 +902,7 @@ Bom, isso é o básico para mexer com Goroutines, para fazer mais que isso preci
 O que é isso? São canais de comunicação, desenhados para trabalhar com Goroutines.
 
 O que isso faz?
+
 - Escuta/espera por dados
 - Armazena dados
 - Formato FIFO (fila)
@@ -904,13 +929,13 @@ Como channels foram desenhadas para trabalhar junto com Goroutines, no momento e
 
 ``` go
 func main() {
-	var c = make(chan int)
-	go process(c)
-	fmt.Println("Valor processado:", <-c)
+ var c = make(chan int)
+ go process(c)
+ fmt.Println("Valor processado:", <-c)
 }
 
 func process(c chan int) {
-	c <- 1
+ c <- 1
 }
 ```
 
@@ -922,21 +947,21 @@ Podemos utilizar os channels dentro de *for-range*, porém caso o channel não f
 func main() {
   // Inicializando o chan com 5 irá liberar espaço para a execução toda neste caso
   // teste removendo o 5 e veja o que muda
-	var c = make(chan int, 5)
-	go process(c)
-	for i := range c {
-		fmt.Println("Valor processado:", i)
-	}
-	fmt.Println("Fim do processamento")
+ var c = make(chan int, 5)
+ go process(c)
+ for i := range c {
+  fmt.Println("Valor processado:", i)
+ }
+ fmt.Println("Fim do processamento")
 }
 
 func process(c chan int) {
   // defer??? é uma palavra reservada
   // uma expressão que será executada no momento antes da função terminar
-	defer close(c)
-	for i := 0; i < 5; i++ {
-		c <- i
-	}
+ defer close(c)
+ for i := 0; i < 5; i++ {
+  c <- i
+ }
 }
 ```
 
@@ -944,36 +969,37 @@ Outra ferramenta útil é o *select*, que funciona como um *switch* para channel
 
 ``` go
 func main() {
-	oddChan := make(chan int)
-	pairChan := make(chan int)
-	numbers := []int{1, 3, 6, 8, 9, 10}
+ oddChan := make(chan int)
+ pairChan := make(chan int)
+ numbers := []int{1, 3, 6, 8, 9, 10}
 
-	for i := range numbers {
-		go processNumber(numbers[i], oddChan, pairChan)
-	}
-	for range numbers {
-		results(oddChan, pairChan)
-	}
+ for i := range numbers {
+  go processNumber(numbers[i], oddChan, pairChan)
+ }
+ for range numbers {
+  results(oddChan, pairChan)
+ }
 
 }
 
 func results(oddChan chan int, pairChan chan int) {
-	select {
-	case value := <-oddChan:
-		fmt.Println("Valor ímpar encontrado:", value)
-	case value := <-pairChan:
-		fmt.Println("Valor Par encontrado:", value)
-	}
+ select {
+ case value := <-oddChan:
+  fmt.Println("Valor ímpar encontrado:", value)
+ case value := <-pairChan:
+  fmt.Println("Valor Par encontrado:", value)
+ }
 }
 
 func processNumber(number int, oddChan chan int, pairChan chan int) {
-	if number%2 > 0 {
-		oddChan <- number
-	} else {
-		pairChan <- number
-	}
+ if number%2 > 0 {
+  oddChan <- number
+ } else {
+  pairChan <- number
+ }
 }
 ```
+
 <br>
 
 ---
@@ -984,13 +1010,13 @@ Tipos genéricos demoraram um pouco para entrar na linguagem devido o uso de int
 
 ``` go
 func main() {
-	intSlice := []int{1, 3, 6, 8, 9, 10}
-	intSum := processNumbers(intSlice)
-	fmt.Println("Sum of Integers:", intSum)
+ intSlice := []int{1, 3, 6, 8, 9, 10}
+ intSum := processNumbers(intSlice)
+ fmt.Println("Sum of Integers:", intSum)
 
-	floatSlice := []float32{1.2, 3.1, 6.4, 8.3, 9.2, 10.8}
-	floatSum := processNumbers(floatSlice)
-	fmt.Println("Sum of Floats:", floatSum)
+ floatSlice := []float32{1.2, 3.1, 6.4, 8.3, 9.2, 10.8}
+ floatSum := processNumbers(floatSlice)
+ fmt.Println("Sum of Floats:", floatSum)
 }
 
 // Aqui definimos que o tipo T pode ser [int | float32 | float64]
@@ -998,10 +1024,10 @@ func main() {
 // outro detalhe any nada mais é do que um alias para uma interface vazia :P
 func processNumbers[T int | float32 | float64](slice []T) T {
   sum:= 0
-	for _, v := range slice {
-		sum += v
-	}
-	return sum
+ for _, v := range slice {
+  sum += v
+ }
+ return sum
 }
 ```
 
@@ -1009,45 +1035,46 @@ Lembra do exemplo de interfaces com structs? vamos adapta-lo para utilizar tipos
 
 ``` go
 type electricCar struct {
-	kpkwh      uint8
-	batteryCap uint8
+ kpkwh      uint8
+ batteryCap uint8
 }
 
 func (e electricCar) kmLeft() uint {
-	return uint(e.batteryCap) * uint(e.kpkwh)
+ return uint(e.batteryCap) * uint(e.kpkwh)
 }
 
 type car[T gasCar | electricCar] struct {
-	owner
-	engine T
+ owner
+ engine T
 }
 
 type engine interface {
-	kmLeft() uint
+ kmLeft() uint
 }
 
 func willReachDestination(e engine, distance uint) bool {
-	return e.kmLeft() >= distance
+ return e.kmLeft() >= distance
 }
 
 func main() {
-	// uma struct pode ser inicializada desta forma
-	var myCar car[gasCar] = car[gasCar]{owner: owner{"Someone"}, engine: gasCar{kml: 15, tankCap: 40}}
-	// e ser alterada desta forma
-	myCar.engine.kml = 20
-	fmt.Println(myCar.engine.kmLeft())
+ // uma struct pode ser inicializada desta forma
+ var myCar car[gasCar] = car[gasCar]{owner: owner{"Someone"}, engine: gasCar{kml: 15, tankCap: 40}}
+ // e ser alterada desta forma
+ myCar.engine.kml = 20
+ fmt.Println(myCar.engine.kmLeft())
 
-	// nomes de variáveis podem ser omitidos, enviando os parâmetros em ordem
-	var myOtherCar car[electricCar] = car[electricCar]{owner{"Someone"}, electricCar{4, 100}}
-	fmt.Println(myOtherCar.engine.kmLeft())
+ // nomes de variáveis podem ser omitidos, enviando os parâmetros em ordem
+ var myOtherCar car[electricCar] = car[electricCar]{owner{"Someone"}, electricCar{4, 100}}
+ fmt.Println(myOtherCar.engine.kmLeft())
 
-	// ao usar a função podemos utilizar ambos os carros
-	// pois ambos satisfazem os requisitos da interface
-	var distance uint = 500
-	fmt.Println("Gas Car: ", willReachDestination(myCar.engine, distance))
-	fmt.Println("Electric car: ", willReachDestination(myOtherCar.engine, distance))
+ // ao usar a função podemos utilizar ambos os carros
+ // pois ambos satisfazem os requisitos da interface
+ var distance uint = 500
+ fmt.Println("Gas Car: ", willReachDestination(myCar.engine, distance))
+ fmt.Println("Electric car: ", willReachDestination(myOtherCar.engine, distance))
 }
 ```
+
 <br>
 
 Fim✨, do básico até o não tão básico, cobrindo grande parte das estruturas da linguagem. Espero ter ajudado pelo menos um pouco no entendimento de como utilizar Golang

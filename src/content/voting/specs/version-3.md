@@ -4,7 +4,7 @@ title: "Versão 3"
 
 Especificação para construção da API versão 3
 
-# Configuração da sessão
+## Configuração da sessão
 
 Para configurar uma sessão, é necessário escolher um _tipo de voto_ e um _modo de votação_, pesos e critérios de desempate personalizados podem ser configurados, se necessário.
 

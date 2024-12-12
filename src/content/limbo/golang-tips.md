@@ -5,11 +5,11 @@ hero: "/images/gopher.webp"
 tags: ["draft", "golang"]
 ---
 
-# Variáveis de ambiente do golang
+## Variáveis de ambiente do golang
 
 | Variável   | Descrição                                                                 |
 | ---------- | ------------------------------------------------------------------------- |
-| GOMAXPROCS | configura o numero maximo de processos que podem ser criados pela runtime |
+| GOMAXPROCS | configura o numero máximo de processos que podem ser criados pela runtime |
 
 ## TODO
 
@@ -21,4 +21,5 @@ tags: ["draft", "golang"]
 ``` bash
 # código
 ```
+
 algum texto

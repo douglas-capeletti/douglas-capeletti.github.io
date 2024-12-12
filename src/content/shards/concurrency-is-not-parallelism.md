@@ -7,7 +7,7 @@ video: oV9rvDllKEg
 
 ### Notas sobre o Vídeo
 
-- "O mundo não é orientado a objetos e sim paralelo" 
+- "O mundo não é orientado a objetos e sim paralelo"
 <br>
 
 - Concorrencia é sobre lidar com várias coisas ao mesmo tempo.

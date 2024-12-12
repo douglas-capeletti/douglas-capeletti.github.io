@@ -6,6 +6,7 @@ tags: ["draft", "architecture", "fundamentals"]
 ---
 
 ## Tipos de arquiteto
+
 - Técnológico
   - Expert em uma tecnologia específica
   - Grau de profundidade extremo
@@ -35,16 +36,17 @@ tags: ["draft", "architecture", "fundamentals"]
   - Auxilia nos momentos de crise
   - Reforça boas práticas (visão arquitetural de baixo nível)
   - Code reviews
-  - Papel commumente exercido por tech-leads ou sêniors sem necessariamente a atribuição de cargo
+  - Papel comumente exercido por tech-leads ou sêniores sem necessariamente a atribuição de cargo
   - Pode ser uma área dentro da empresa, sem necessariamente sem uma posição
 
 ## Importância de aprender arquitetura de software
+
 - Habilidade de entender a visão macro e micro dos softwares da empresa
 - Entender mais possibilidades de resolutividade de um problema
 - Habilidade de pensamento ao longo prazo e sustentabilidade de um software
 - Melhor entendimento de boas práticas
 - Clareza no impacto do software na organização
-- Mais segurança na tomada de decições
+- Mais segurança na tomada de decisões
 
 ## Arquitetura VS Design
 
@@ -87,8 +89,8 @@ tags: ["draft", "architecture", "fundamentals"]
   - Definições claras
   - Independência de pessoas
 
-
 ## Requisitos arquiteturais (RAs)
+
 ### (Não funcionais)
 
 - Performance
@@ -119,10 +121,10 @@ tags: ["draft", "architecture", "fundamentals"]
 
 Estas são características que devem ser avaliadas que são requisitos não necessariamente funcionais durante o processo de planejamento e arquitetura um software.
 
-
 Veja também: Metodologia dos [Doze fatores](/shards/twelve-factors) para construção de software
 
 ### Características operacionais
+
 - Disponibilidade
   - SLA - Service Level Agreement
     - Métrica definida com o cliente
@@ -146,9 +148,10 @@ Veja também: Metodologia dos [Doze fatores](/shards/twelve-factors) para constr
   - Vertical ou horizontal para comportar a necessidade do negócio
 
 ### Características estruturais
+
 - Configurável
   - Variáveis de ambiente
-  - Agnostica ao ambiente
+  - Agnóstica ao ambiente
 - Extensibilidade
   - Facilidade para mudanças de bibliotecas
   - Habilidade de fazer trocas de vendors (e.g. salesforce)
@@ -167,17 +170,18 @@ Veja também: Metodologia dos [Doze fatores](/shards/twelve-factors) para constr
   - SOLID
   - Design Patterns
   - Estruturas da aplicação
-  - Extensabilidade
+  - Extensibilidade
   - Testes
 - Portabilidade
   - Habilidade de trocar de provedores de banco de dados
   - Troca de provedores de serviço (e.g. AWS)
 - Fácil suporte
   - Logs
-  - Debbuging
+  - Debugging
   - Observabilidade
 
 ### Características cross-cutting
+
 - Acessibilidade
   - Boas práticas para de tela
   - Padrões de design
@@ -186,7 +190,7 @@ Veja também: Metodologia dos [Doze fatores](/shards/twelve-factors) para constr
 - Autenticação e Autorização
   - Autenticação via Identity provider ou API Gateway
   - Autenticação entre microsserviços
-  - Politícas do segurança
+  - Politicas do segurança
 - Legal
   - Conformidade as demandas legais locais
 - Privacidade
