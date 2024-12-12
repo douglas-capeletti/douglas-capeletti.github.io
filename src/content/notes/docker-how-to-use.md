@@ -1,5 +1,5 @@
 ---
-title: "Como usar o Docker"
+title: "Docker - Como utilizar"
 pubDate: "2023-09-28"
 hero: "/images/docker.webp"
 tags: ["draft", "docker", "containers"]
@@ -31,16 +31,16 @@ docker run hello-world
 
 ### parâmetros úteis
 
-| Parametro | Função                                               |
-| --------- | ---------------------------------------------------- |
-| -d        | destravar o terminal e roda o container em backgroud |
-| -e        | passar variáveis de ambiente                         |
-| -i        | modo interativo, mantém o stdin                      |
-| -p        | mapeamento de portas docker -> máquina local         |
-| -t        | alocar um tty para acessar o container               |
-| -v        | vincular volumes ao container                        |
-| -rm       | remove o container assim que ele cair                |
-| --name    | define um nome para o container                      |
+| Parametro | Função                                                |
+| --------- | ----------------------------------------------------- |
+| -d        | destravar o terminal e roda o container em background |
+| -e        | passar variáveis de ambiente                          |
+| -i        | modo interativo, mantém o stdin                       |
+| -p        | mapeamento de portas docker -> máquina local          |
+| -t        | alocar um tty para acessar o container                |
+| -v        | vincular volumes ao container                         |
+| -rm       | remove o container assim que ele cair                 |
+| --name    | define um nome para o container                       |
 
 
 Entrando em um container

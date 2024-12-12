@@ -5,6 +5,16 @@ hero: "/images/docker-inside.webp"
 tags: ["draft", "docker", "containers"]
 ---
 
+# O que precisamos entender
+
+- [O que precisamos entender](#o-que-precisamos-entender)
+  - [O que são Containers?](#o-que-são-containers)
+    - [Namespaces](#namespaces)
+    - [Cgroups](#cgroups)
+    - [Overlay File Systems (OFS)](#overlay-file-systems-ofs)
+    - [Dockerfile](#dockerfile)
+    - [Client - Host](#client---host)
+
 ## O que são Containers?
 
 Containers são uma forma de virtualização de sistemas operacionais.
@@ -24,8 +34,8 @@ cada container tem seu próprio namespace.
 
 Usado para limitar e isolar recursos, exemplo: Esse processo/namespace vai utilizar só:
 
-* memory=500mb
-* cpu_shares=512
+- memory=500mb
+- cpu_shares=512
 
 ### Overlay File Systems (OFS)
 
@@ -53,13 +63,13 @@ ao efetuar um commit dentro de uma imagem docker, é possivel gerar uma imagem n
 
 ### Client - Host
 
-* Host
-  * Daemon - API
-  * Network (entre containers)
-  * Volumes (fora do container, dado persistente)
-  * Cache (registry)
+- Host
+  - Daemon - API
+  - Network (entre containers)
+  - Volumes (fora do container, dado persistente)
+  - Cache (registry)
 
-* Client
-  * Containers
-  * Volumes
-  * Network
+- Client
+  - Containers
+  - Volumes
+  - Network
