@@ -15,7 +15,8 @@
   import Fuse from "fuse.js";
 
   interface ISearchData {
-    slug: string;
+    collection: string;
+    urn: string;
     title: string;
     description: string;
     date: string;
@@ -72,8 +73,8 @@
 
       let resultTitle = document.createElement("a");
       resultTitle.className = "searchResultTitle";
-      resultTitle.href = `/${result.item.slug}`;
-      resultTitle.innerHTML = result.item.title;
+      resultTitle.href = result.item.urn;
+      resultTitle.innerHTML = `[${result.item.collection}] ${result.item.title}`;
       resultPage.append(resultTitle);
 
       let resultBody = document.createElement("div");

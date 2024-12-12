@@ -11,7 +11,8 @@ function mapPosts<T extends IEntry<keyof AnyEntryMap>>(posts: T[]) {
   return posts
     .sort((a: T, b: T) => (a.data.pubDate?.valueOf() ?? 0) - (b.data.pubDate?.valueOf() ?? 0))
     .map((post: T) => ({
-      slug: `${post.collection}/${post.id}`,
+      collection: post.collection,
+      urn: `/${post.collection}/${post.id}`,
       title: post.data.title,
       description: post.data.description,
       date: post.data.pubDate,
