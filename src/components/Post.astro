@@ -21,16 +21,16 @@ const references: { link: string; name: string }[] = [];
 const hasReferences: boolean = references?.length > 0;
 ---
 
-<article class="max-w-5xl mx-auto px-3">
-  <header class="mx-auto max-w-3xl flex flex-col flex-start content items-center justify-start mb-10">
+<article class="px-3">
+  <header class="flex flex-col flex-start content items-center justify-start mb-10">
     <h1 class="basis-1/2">{title}</h1>
     {pubDate && <h5 class="font-semibold ">{formatDate(pubDate)}</h5>}
     {
       tags && (
         <div class="flex flex-wrap justify-center">
           {tags.map((tag) => (
-            <a class="text-sm text-text-terciary mr-2 mt-4" href={`/search?query=%23${tag}`}>
-              <button class="font-bold underline bg-bg-terciary hover:bg-bg-terciary-hover rounded-full px-3 py-1">#{tag}</button>
+            <a class="text-sm text-text-tertiary mr-2 mt-4" href={`/search?query=%23${tag}`}>
+              <button class="font-bold underline bg-bg-tertiary hover:bg-bg-tertiary-hover rounded-full px-3 py-1">#{tag}</button>
             </a>
           ))}
         </div>
@@ -49,7 +49,7 @@ const hasReferences: boolean = references?.length > 0;
       </div>
     )
   }
-  <section class="max-w-3xl mx-auto py-6 lg:py-12 content">
+  <section class="py-6 lg:py-12 content">
     <slot />
     {
       hasReferences && (

@@ -8,26 +8,16 @@ const { tag, hero, title, description, pubDate, url, blank } = Astro.props;
 const tagStyle = "tag-wrapper border-4 border-btn-primary hover:border-contrast";
 ---
 
-<a
-  href={url}
-  class=`transition-all duration-75 ease-in-out h-full block relative top-0 hover:-top-3 shadow-lg hover:shadow-xl bg-bg-terciary hover:bg-bg-terciary-hover rounded-xl overflow-hidden ${tag ? tagStyle : "is border-2 border-border"}`
-  data-test="article-card"
-  target={blank ? "_blank" : "_self"}>
-  {tag && <div class="tag font-bold">{tag}</div>}
-  {hero && <img src={hero} alt={title} width="360" height="192" />}
-  <div class="py-6 px-8">
-    <h2 class="font-bold text-2xl leading-tight text-text-terciary">
-      {title}
-    </h2>
-    {description && <p class="font-medium text-s text-text-terciary mt-4 flex items-center">{description}</p>}
-    {pubDate && <p class="font-medium text-s text-text-terciary mt-4 flex items-center">{formatDate(pubDate)}</p>}
-  </div>
-</a>
-
-<style>
-  img {
-    width: 100%;
-    aspect-ratio: 15/7;
-    object-fit: cover;
-  }
-</style>
+<div class=`card transition-all duration-75 ease-in-out h-full block relative top-0 hover:-top-3 shadow-lg hover:shadow-xl bg-bg-tertiary hover:bg-bg-tertiary-hover rounded-xl overflow-hidden ${tag ? tagStyle : "is border-2 border-border"}`>
+  <a href={url} data-test="article-card" target={blank ? "_blank" : "_self"}>
+    {tag && <div class="tag font-bold">{tag}</div>}
+    {hero && <img src={hero} alt={title} width="360" height="192" />}
+    <div class="py-6 px-8">
+      <p class="font-bold text-2xl leading-tight text-text-tertiary">
+        {title}
+      </p>
+      {description && <p class="font-medium text-s text-text-tertiary mt-4 flex items-center">{description}</p>}
+      {pubDate && <p class="font-medium text-s text-text-tertiary mt-4 flex items-center">{formatDate(pubDate)}</p>}
+    </div>
+  </a>
+</div>

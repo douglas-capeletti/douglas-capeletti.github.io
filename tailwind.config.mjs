@@ -101,11 +101,11 @@ export default {
       colors: {
         "text-primary": "var(--color-text-primary)",
         "text-secondary": "var(--color-text-secondary)",
-        "text-terciary": "var(--color-text-terciary)",
+        "text-tertiary": "var(--color-text-tertiary)",
         "bg-primary": "var(--color-bg-primary)",
         "bg-secondary": "var(--color-bg-secondary)",
-        "bg-terciary": "var(--color-bg-terciary)",
-        "bg-terciary-hover": "var(--color-bg-terciary-hover)",
+        "bg-tertiary": "var(--color-bg-tertiary)",
+        "bg-tertiary-hover": "var(--color-bg-tertiary-hover)",
         "btn-primary": "var(--color-btn-primary)",
         "border": "var(--color-border)",
         "contrast": "var(--color-contrast)"
