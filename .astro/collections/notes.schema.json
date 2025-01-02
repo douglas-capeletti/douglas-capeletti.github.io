@@ -38,9 +38,6 @@
         "video": {
           "type": "string"
         },
-        "isDraft": {
-          "type": "boolean"
-        },
         "$schema": {
           "type": "string"
         }
