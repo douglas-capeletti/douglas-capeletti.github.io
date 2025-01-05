@@ -24,7 +24,7 @@ const hasReferences: boolean = references?.length > 0;
 <article class="px-3">
   <header class="flex flex-col flex-start content items-center justify-start mb-10">
     <h1 class="basis-1/2">{title}</h1>
-    {pubDate && <h5 class="font-semibold ">{formatDate(pubDate)}</h5>}
+    {pubDate && <p class="font-semibold">{formatDate(pubDate)}</p>}
     {
       tags && (
         <div class="flex flex-wrap justify-center">

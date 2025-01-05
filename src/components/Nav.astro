@@ -18,8 +18,11 @@ const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", Abo
 
 <div>
   <nav>
-    <div class="max-w-6xl mx-auto px-3 py-3 flex items-center justify-between h-16">
-      <a href="/" class="font-bold text-xl hover:text-contrast">{SITE_URI}</a>
+    <div class="max-w-5xl mx-auto px-3 py-3 flex items-center justify-between h-16">
+      <div class="flex gap-2">
+        <img class="" style="max-height: 1.75rem" loading="lazy" src={"/images/logo.webp"} alt={"Logo"} />
+        <a href="/" class="font-bold text-xl hover:text-contrast">{SITE_URI}</a>
+      </div>
       <div class="hidden md:flex font-semibold -ml-6">
         {
           Object.entries(options).map((value) => (

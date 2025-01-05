@@ -4,7 +4,7 @@ import type { IPost } from "../utils/types";
 import BasePageLayout from "./BasePageLayout.astro";
 
 const post = Astro.props.post;
-const { title, pubDate, description, hero, tags, video } = post.data as IPost;
+const { title, pubDate, description, hero, tags, video } = post?.data ?? {} as IPost;
 ---
 
 <BasePageLayout title={title}>

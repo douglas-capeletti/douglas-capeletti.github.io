@@ -7,14 +7,14 @@ tags: ["draft", "architecture", "fundamentals"]
 
 ## Tipos de arquiteto
 
-- Técnológico
+- Tecnológico
   - Expert em uma tecnologia específica
   - Grau de profundidade extremo
     - Arquiteto AWS, Elastic, Java, DB (dba), SAP
 - Corporativo
   - Avalia o impacto estratégico do software organização
     - Vendors, tecnologias, custos
-  - Planejamento de implatações
+  - Planejamento de implantações
     - Softwares core da organização
     - Migrações
 - Solução
@@ -29,7 +29,7 @@ tags: ["draft", "architecture", "fundamentals"]
   - Afeta a estrutura organizacional
     - Formação de times
     - [Lei de conway](/shards/conways-law)
-    - "É a organização fundamental de um software e seus componentes, suas relações, seu ambiente, bem como os princípios que guiam seu design e evolução" [(IEEE Standard 1471)]()
+    - "É a organização fundamental de um software e seus componentes, suas relações, seu ambiente, bem como os princípios que guiam seu design e evolução" [(IEEE Standard 1471)](https://en.wikipedia.org/wiki/IEEE_1471)
   - Como transformar um requisito de negócio em arquitetura de aplicação
   - Orquestra desenvolvedores e experts de domínio
   - Entendimento profundo de conceitos e modelos arquiteturais
@@ -134,7 +134,7 @@ Veja também: Metodologia dos [Doze fatores](/shards/twelve-factors) para constr
     - Indicador real de performance
   - SRE - Site Reliability Engineering
     - Soluções de engenharia para garantir a confiabilidade do software
-- Recuperação de disastres
+- Recuperação de desastres
   - Planejamento de redundâncias de dados
   - Testes de redundâncias e backups
   - Plano de ação para possíveis problemas (de qualquer tipo)

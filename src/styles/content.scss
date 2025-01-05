@@ -1,42 +1,27 @@
 .content {
   h1 {
     @apply font-display uppercase font-bold leading-none mb-4 mt-10;
-
-    font-size: min(max(3rem, 6vw), 6rem);
-
-    @supports (font-size: clamp(3rem, 6vw, 6rem)) {
-      font-size: clamp(3rem, 6vw, 6rem);
-    }
+    font-size: clamp(3.5rem, 9vw, 4.5rem);
   }
 
   h2 {
     @apply font-display uppercase leading-none mb-4 mt-10;
-
-    font-size: min(max(2.5rem, 5vw), 5rem);
-
-    @supports (font-size: clamp(2.5rem, 5vw, 5rem)) {
-      font-size: clamp(2.5rem, 5vw, 5rem);
-    }
+    font-size: clamp(3rem, 8vw, 4rem);
   }
 
   h3 {
-    @apply font-display tracking-widest leading-none mb-4 mt-10;
-
-    font-size: min(max(2rem, 4vw), 4rem);
-
-    @supports (font-size: clamp(2rem, 4vw, 4rem)) {
-      font-size: clamp(2rem, 4vw, 4rem);
-    }
+    @apply font-display tracking-wide leading-none mb-4 mt-10;
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
   }
 
   h4 {
+    @apply font-display tracking-wider leading-none mb-4 mt-10;
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  h5 {
     @apply font-display tracking-widest leading-none mb-4 mt-10;
-
-    font-size: min(max(1.5rem, 3vw), 3rem);
-
-    @supports (font-size: clamp(1.5rem, 3vw, 3rem)) {
-      font-size: clamp(1.5rem, 3vw, 3rem);
-    }
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
   }
 
   >p {

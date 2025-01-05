@@ -8,17 +8,14 @@ video: oV9rvDllKEg
 ### Notas sobre o Vídeo
 
 - "O mundo não é orientado a objetos e sim paralelo"
-<br>
 
-- Concorrencia é sobre lidar com várias coisas ao mesmo tempo.
+- Concorrência é sobre lidar com várias coisas ao mesmo tempo.
 - Paralelismo é sobre fazer várias coisas ao mesmo tempo.
 - Um é sobre estrutura, o outro sobre execução
-<br>
 
 - Concorrência provém uma forma de estruturar a solução para um problema, que pode ou não ser paralelo
-  - e.g. Um sistema operacional gerencia para que um mouse um teclado, um monitor, um auto-falante funcione, mesmo que o sistema tenha um ou mais núcleos de processamento, o modelo de programação é concorrênte, podendo ou não ser paralelo
+  - e.g. Um sistema operacional gerencia para que um mouse um teclado, um monitor, um auto-falante funcione, mesmo que o sistema tenha um ou mais núcleos de processamento, o modelo de programação é concorrente, podendo ou não ser paralelo
 - Concorrência é a forma de estruturar o um programa, quebrando ele em partes que podem ser executadas independentemente
-<br>
 
 - Acesse os [slides](https://go.dev/talks/2012/waza.slide#6)
 
