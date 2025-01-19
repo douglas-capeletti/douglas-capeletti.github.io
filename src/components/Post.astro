@@ -4,21 +4,6 @@ import type { IPost } from "../utils/types";
 
 export interface Props extends IPost {}
 const { title, pubDate, hero, tags, video } = Astro.props;
-
-// primeiro rascunho da funcionalidade de back-reference
-// existe uma forma de escanear os arquivos md capturando as informações para isso
-// https://docs.astro.build/en/guides/markdown-content/
-// porém implementar isso pode ser um pouco complicado
-// preciso saber onde cada arquivo foi referenciado e como chegar no post que fez a referencia
-// precisa ser algo bilateral, escanear a pagina, procurar links e adicionar eles na listagem no final da página
-// junto com o link para todas as páginas onde a página atual foi referenciada
-// basicamente um mapa gigante, estou pensando em processar essas referencias em um arquivo como um processo separado
-// ai lendo do arquivo fica muito menos custoso, dado que...
-// no futuro podem ter MUITOS posts e MUITAS referencias e POUCO processamento no tier gratuito 🤣
-// 
-// OK, ignora isso, agora estamos usando astro collections, tem que ver uma solução usando isso
-const references: { link: string; name: string }[] = [];
-const hasReferences: boolean = references?.length > 0;
 ---
 
 <article class="px-3">
@@ -51,21 +36,5 @@ const hasReferences: boolean = references?.length > 0;
   }
   <section class="py-6 lg:py-12 content">
     <slot />
-    {
-      hasReferences && (
-        <div class="also-see">
-          <p>Veja também:</p>
-          <ul>
-            {references?.map((ref) => {
-              return (
-                <li>
-                  <a href={ref.link}>{ref.name}</a>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )
-    }
   </section>
 </article>
