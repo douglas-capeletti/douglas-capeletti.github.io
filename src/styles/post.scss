@@ -1,0 +1,61 @@
+// HTML ELEMENTS ONLY
+.post {
+  >p {
+    @apply text-lg leading-relaxed mb-4;
+  }
+
+  >img {
+    @apply my-8;
+  }
+
+  a {
+    @apply font-bold underline text-contrast;
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+  }
+
+  ul:not(.list-none) {
+    @apply pl-0 list-disc ml-8 mb-4 text-lg;
+
+    li {
+      @apply mb-1;
+    }
+  }
+
+  ol {
+    @apply pl-0 list-decimal ml-8 mb-4 text-lg;
+
+    li {
+      @apply mb-1;
+    }
+  }
+
+  table {
+    @apply w-full text-left border-2 border-collapse mb-8 text-sm;
+
+    th {
+      @apply font-bold p-4 text-xl border-t-4 border-b;
+    }
+
+    td {
+      @apply p-4 border-b;
+    }
+
+  }
+
+  // Generated Code
+  pre {
+    margin: 0.25rem 0 1rem 0;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    overflow: auto;
+  }
+
+  // Generated italic
+  em { 
+    letter-spacing: 0.05em;
+    text-decoration: underline;
+  }
+}

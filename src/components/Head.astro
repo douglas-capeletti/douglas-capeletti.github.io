@@ -1,0 +1,49 @@
+---
+import "../styles/main.scss";
+import { SITE_URL } from "../utils/constants";
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+---
+
+<head>
+  <script>
+    if (localStorage.getItem("color-theme") === "dark") {
+      document.documentElement.classList.add("dark");
+    } else if (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("color-theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("color-theme", "light");
+    }
+  </script>
+
+  <!-- Global Metadata -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link rel="sitemap" href="/sitemap.xml" />
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
+
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title} />
+  <meta name="description" content={description ?? title} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={SITE_URL} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description ?? title} />
+  <meta property="og:image" content="/images/logo.webp" />
+
+  <!-- Prism CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-tomorrow.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/toolbar/prism-toolbar.min.css" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&family=Poppins:ital,wght@0,400;0,600;1,400;1,700&display=swap" rel="stylesheet" />
+</head>

@@ -1,32 +1,14 @@
 ---
-import { formatDate } from "../utils";
 import type { IPost } from "../utils/types";
+import PostHeader from "./PostHeader.astro";
 
 export interface Props extends IPost {}
 const { title, pubDate, hero, tags, video } = Astro.props;
 ---
 
-<article class="px-3">
-  <header class="flex flex-col flex-start content items-center justify-start mb-10">
-    <h1 class="basis-1/2">{title}</h1>
-    {pubDate && <p class="font-semibold">{formatDate(pubDate)}</p>}
-    {
-      tags && (
-        <div class="flex flex-wrap justify-center">
-          {tags.map((tag) => (
-            <a class="text-sm text-text-tertiary mr-2 mt-4" href={`/search?query=%23${tag}`}>
-              <button class="font-bold underline bg-bg-tertiary hover:bg-bg-tertiary-hover rounded-full px-3 py-1">#{tag}</button>
-            </a>
-          ))}
-        </div>
-      )
-    }
-  </header>
-
-  <!-- Image -->
+<article>
+  <PostHeader title={title} pubDate={pubDate} tags={tags} />
   {hero && <img class="rounded-xl mx-auto" style="min-width: 80%; max-height: 30em" loading="lazy" src={hero} alt={title} />}
-
-  <!-- Video -->
   {
     video && (
       <div class="embed-responsive aspect-ratio-16/9 mt-6 lg:mt-12">
@@ -34,7 +16,7 @@ const { title, pubDate, hero, tags, video } = Astro.props;
       </div>
     )
   }
-  <section class="py-6 lg:py-12 content">
+  <section class="py-6 lg:py-12 post">
     <slot />
   </section>
 </article>

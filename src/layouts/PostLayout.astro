@@ -1,17 +1,17 @@
 ---
 import Post from "../components/Post.astro";
 import type { IPost } from "../utils/types";
-import BasePageLayout from "./BasePageLayout.astro";
+import PageLayout from "./PageLayout.astro";
 
 const post = Astro.props.post;
 const { title, pubDate, description, hero, tags, video } = post?.data ?? {} as IPost;
 ---
 
-<BasePageLayout title={title}>
+<PageLayout title={title}>
   <Post title={title} pubDate={pubDate} description={description} hero={hero} tags={tags} video={video}>
     <slot />
   </Post>
-</BasePageLayout>
+</PageLayout>
 
 <script>
   import { enableCopyToClipboardButton } from "../utils";

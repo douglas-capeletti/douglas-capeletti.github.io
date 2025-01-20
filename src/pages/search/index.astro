@@ -1,17 +1,21 @@
 ---
 import BackToPage from "../../components/BackToPage.astro";
 import Header from "../../components/Header.astro";
-import SearchInput from "../../components/SearchInput.astro";
-import BasePageLayout from "../../layouts/BasePageLayout.astro";
+import PageLayout from "../../layouts/PageLayout.astro";
 
 let title = "Search";
 let pageDescription = "Search for any Note or Shard";
 ---
 
-<BasePageLayout title={title}>
-  <article class="px-3 content">
-    <Header title={title} subTitles={[pageDescription]} />
-    <SearchInput />
-  </article>
+<PageLayout title={title}>
+  <Header title={title} subTitles={[pageDescription]} />
+  <input type="search" id="searchBox" required min="2" max="24" class="searchBox w-full px-2 py-1 bg-bg-tertiary text-text-tertiary border-border" placeholder="Search..." data-test="search-input" />
+  <p class="flex my-2 text-center mb-12">TIP: use '#' to search by tag (e.g. #docker)</p>
+  <div id="searchResults" class="searchResults lg:pl-8"></div>
   <BackToPage />
-</BasePageLayout>
+</PageLayout>
+
+<script>
+  import { enableSearch } from ".";
+  enableSearch();
+</script>

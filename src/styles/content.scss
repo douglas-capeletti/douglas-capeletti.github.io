@@ -1,88 +1,24 @@
-.content {
-  h1 {
+h1 {
     @apply font-display uppercase font-bold leading-none mb-4 mt-10;
     font-size: clamp(3.5rem, 9vw, 4.5rem);
-  }
-
-  h2 {
-    @apply font-display uppercase leading-none mb-4 mt-10;
-    font-size: clamp(3rem, 8vw, 4rem);
-  }
-
-  h3 {
-    @apply font-display tracking-wide leading-none mb-4 mt-10;
-    font-size: clamp(2.5rem, 7vw, 3.5rem);
-  }
-
-  h4 {
-    @apply font-display tracking-wider leading-none mb-4 mt-10;
-    font-size: clamp(2rem, 6vw, 3rem);
-  }
-
-  h5 {
-    @apply font-display tracking-widest leading-none mb-4 mt-10;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-  }
-
-  >p {
-    @apply text-lg leading-relaxed mb-4;
-  }
-
-  >img {
-    @apply my-8;
-  }
-
-  a {
-    @apply font-bold underline text-contrast;
-
-    &:hover {
-      color: var(--color-text-primary);
-    }
-  }
-
-  ul:not(.list-none) {
-    @apply pl-0 list-disc ml-8 mb-4 text-lg;
-
-    li {
-      @apply mb-1;
-    }
-  }
-
-  ol {
-    @apply pl-0 list-decimal ml-8 mb-4 text-lg;
-
-    li {
-      @apply mb-1;
-    }
-  }
-
-  table {
-    @apply w-full text-left border-2 border-collapse mb-8 text-sm;
-
-    th {
-      @apply font-bold p-4 text-xl border-t-4 border-b;
-    }
-
-    td {
-      @apply p-4 border-b;
-    }
-
-  }
-
-  pre {
-    position: relative;
-    margin: 0.25rem 0 1rem 0;
-    padding: 1rem;
-    border-radius: 0.3rem;
-    overflow: auto;
-  }
-
-  em {
-    letter-spacing: 0.05em;
-    text-decoration: underline;
-  }
 }
 
-.content section>*:first-child {
-  @apply mt-0 pt-0;
+h2 {
+    @apply font-display uppercase leading-none mb-4 mt-10;
+    font-size: clamp(3rem, 8vw, 4rem);
+}
+
+h3 {
+    @apply font-display tracking-wide leading-none mb-4 mt-10;
+    font-size: clamp(2.5rem, 7vw, 3.5rem);
+}
+
+h4 {
+    @apply font-display tracking-wider leading-none mb-4 mt-10;
+    font-size: clamp(2rem, 6vw, 3rem);
+}
+
+h5 {
+    @apply font-display tracking-widest leading-none mb-4 mt-10;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
 }

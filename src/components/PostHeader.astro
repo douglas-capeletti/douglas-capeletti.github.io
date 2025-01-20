@@ -1,0 +1,28 @@
+---
+import { formatDate } from '../utils';
+
+export interface Props {
+  title: string;
+  pubDate?: Date;
+  tags?: Array<string>;
+  subTitles?: Array<string | undefined>;
+}
+const { title, pubDate, tags } = Astro.props;
+// const subTitles = (Astro.props.subTitles ?? []).filter(x => x)
+---
+
+<header class="flex flex-col flex-start items-center justify-start mb-10">
+  <h1 class="basis-1/2">{title}</h1>
+  {pubDate && <p class="font-semibold mb-2">{formatDate(pubDate)}</p>}
+  {
+    tags && (
+      <div class="flex flex-wrap justify-center">
+        {tags.map((tag) => (
+          <a class="text-sm text-text-tertiary mr-2 mt-4" href={`/search?query=%23${tag}`}>
+            <button class="font-bold underline bg-bg-tertiary hover:bg-bg-tertiary-hover rounded-full px-3 py-1">#{tag}</button>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</header>

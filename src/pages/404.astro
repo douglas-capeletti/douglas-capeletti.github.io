@@ -1,15 +1,11 @@
 ---
-import BasePageLayout from "../layouts/BasePageLayout.astro";
+import BackToPage from "../components/BackToPage.astro";
+import Header from "../components/Header.astro";
+import PageLayout from "../layouts/PageLayout.astro";
 ---
 
-<BasePageLayout title="Page not found">
-  <article class="px-3">
-    <header class="mx-auto max-w-3xl text-center content">
-      <h1 class="mb-4">Oops, I think you're lost</h1>
-      <p>Not much to see here. Don't wait for your life to be over. There are other pages. Let's go <i><a href="/">home</a></i></p>
-      <div>
-        <img alt="Sad cat" src="/images/404.webp" />
-      </div>
-    </header>
-  </article>
-</BasePageLayout>
+<PageLayout title="Page not found">
+  <Header title="Oops, I think you're lost" subTitles={["Not much to see here..."]} />
+  <BackToPage />
+  <img class="mx-auto max-w-2xl" alt="Mad Cat" src="/images/404.webp" />
+</PageLayout>

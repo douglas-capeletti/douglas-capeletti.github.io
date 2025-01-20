@@ -1,5 +1,5 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
+import Head from "../components/Head.astro";
 import Nav from "../components/Nav.astro";
 import { SITE_NAME, SITE_URI } from "../utils/constants";
 
@@ -12,13 +12,11 @@ const seoTitle = `${title ?? SITE_NAME} | ${SITE_URI}`;
 ---
 
 <html lang="en" class="dark">
-  <head>
-    <BaseHead title={seoTitle} />
-  </head>
+  <Head title={seoTitle} />
 
   <body class="bg-bg-primary text-text-primary font-body leading-normal">
     <Nav />
-    <main class="max-w-5xl mx-auto py-4 lg:py-8">
+    <main class="max-w-5xl px-5 mx-auto py-4 lg:py-8">
       <slot />
     </main>
   </body>

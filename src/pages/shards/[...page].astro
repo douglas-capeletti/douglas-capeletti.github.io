@@ -1,7 +1,7 @@
 ---
 import type { GetStaticPathsOptions, Page } from "astro";
 import { getCollection } from "astro:content";
-import TopicLayout from "../../layouts/TopicLayout.astro";
+import CardLayout from "../../layouts/CardLayout.astro";
 import { PAGE_SIZE } from "../../utils/constants";
 import type { ICard, IEntry } from "../../utils/types";
 
@@ -34,4 +34,4 @@ const cards: ICard[] = page.data.map((p) => {
 });
 ---
 
-<TopicLayout title={title} subTitles={[description, pageCounter]} cards={cards} />
+<CardLayout title={title} subTitles={[description, pageCounter]} cards={cards} />
