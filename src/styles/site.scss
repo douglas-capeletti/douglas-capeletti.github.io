@@ -22,3 +22,10 @@ h5 {
   @apply font-display tracking-widest leading-none mb-4 mt-10;
   font-size: clamp(1.5rem, 5vw, 2.5rem);
 }
+
+table,
+th,
+td {
+  border: 1px solid;
+  color: var(--color-border);
+}
