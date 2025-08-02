@@ -15,18 +15,27 @@
   "cSpell.words": [
     "autoclean",
     "autoremove",
+    "bennettfeely",
     "Capeletti",
+    "clippy",
     "Componentização",
     "containerd",
     "crashar",
     "DDOS",
     "dearmor",
+    "Flink",
     "Govulncheck",
     "keyrings",
+    "kube",
+    "kubelet",
     "LGPD",
     "linux",
     "nginx",
+    "RDBMS",
+    "rgba",
     "salesforce",
-    "sdkman"
+    "sdkman",
+    "SGBD",
+    "Traefik"
   ],
 }
