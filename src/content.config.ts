@@ -1,5 +1,5 @@
-import { z, defineCollection } from "astro:content"
 import { glob } from 'astro/loaders'
+import { defineCollection, z } from "astro:content"
 
 const schema = z.object({
   title: z.string(),
@@ -10,8 +10,18 @@ const schema = z.object({
   video: z.string().optional()
 })
 
-const notes = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/notes" }) })
-const shards = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/shards" }) })
-const voting = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/voting" }) })
+const notes_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/notes/pt" }) })
+const notes_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/notes/en" }) })
+const shards_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/shards/pt" }) })
+const shards_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/shards/en" }) })
+const voting_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/voting/pt" }) })
+const voting_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/voting/en" }) })
 
-export const collections = { notes, shards, voting }
+export const collections = {
+  notes_pt,
+  notes_en,
+  shards_pt,
+  shards_en,
+  voting_pt,
+  voting_en
+}

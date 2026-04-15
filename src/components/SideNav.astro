@@ -1,0 +1,48 @@
+---
+import { defaultLang, type Lang, useTranslations } from "../i18n/translations";
+import { SITE_PAGES, SITE_URI } from "../utils/constants";
+import LangToggle from "./LangToggle.astro";
+import SearchButton from "./SearchButton.astro";
+import SideNavToggle from "./SideNavToggle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+
+const lang = (Astro.currentLocale ?? defaultLang) as Lang;
+const strings = useTranslations(lang);
+---
+
+<div id="sideMenu" role="dialog" aria-modal="true" style="display: none;">
+  <div class="fixed inset-0 z-50"></div>
+  <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-bg-primary sm:max-w-sm sm:ring-2 sm:ring-bg-tertiary">
+    <div class="max-w-5xl mx-auto px-3 py-3 flex items-center justify-between h-16">
+      <div>
+        <div class="sm:hidden flex gap-2">
+          <img style="max-height: 1.75rem" loading="lazy" src={"/images/logo.webp"} alt={"Logo"} />
+          <a href="/" class="font-bold text-xl hover:text-contrast">{SITE_URI}</a>
+        </div>
+      </div>
+      <SideNavToggle state={true} />
+    </div>
+    <div class="w-full border-b-2 border-border"></div>
+    <div class="mt-6 flow-root -my-6">
+      <div class="space-y-2 py-6">
+        {
+          SITE_PAGES.map((value) => (
+            <a href={`/${lang}/${value.path}`} class="-mx-3 block rounded-lg px-3 py-2 text-text-primary font-semibold leading-7 mr-5 hover:text-contrast">
+              {strings(value.name)}
+            </a>
+          ))
+        }
+      </div>
+      <SearchButton label="search.title" classList="-mx-3 flex gap-1 rounded-lg px-3 py-2 font-semibold leading-7 text-md hover:text-contrast" />
+      <ThemeToggle prefix="SideNav" label="ui.change-theme" classList="-mx-3 flex gap-1 rounded-lg px-3 py-2 font-semibold leading-7 text-md hover:text-contrast" />
+      <LangToggle prefix="SideNav" label="ui.change-lang" classList="-mx-3 flex gap-1 rounded-lg px-3 py-2 font-semibold leading-7 text-md hover:text-contrast" />
+    </div>
+  </div>
+</div>`
+
+<script>
+  import { LANG, THEME } from "../utils/constants";
+  import { toggle } from "../utils/toggle";
+  toggle("SideNav", LANG);
+  toggle("SideNav", THEME);
+</script>

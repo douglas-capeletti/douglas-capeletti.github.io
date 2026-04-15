@@ -1,13 +1,14 @@
-import type { AnyEntryMap, InferEntrySchema, RenderedContent } from "astro:content"
+import type { AnyEntryMap, InferEntrySchema, RenderedContent } from "astro:content";
 
-export interface IEntry<T extends keyof AnyEntryMap> {
+export type IEntryKey = keyof AnyEntryMap
+
+export interface IEntry<T extends IEntryKey> {
   id: string;
   body?: string;
   collection: string;
   data: InferEntrySchema<T>;
   rendered?: RenderedContent;
   filePath?: string;
-
 }
 
 export interface IPost {
@@ -34,3 +35,8 @@ export interface IPaginator {
   next?: string;
 }
 
+export interface IToggle {
+  id: string;
+  defaultOption: string;
+  alternativeOption: string;
+}

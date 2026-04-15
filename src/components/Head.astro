@@ -9,21 +9,23 @@ export interface Props {
 const { title, description } = Astro.props;
 ---
 
-<head>
-  <script>
-    if (localStorage.getItem("color-theme") === "dark") {
-      document.documentElement.classList.add("dark");
-    } else if (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("color-theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("color-theme", "light");
-    }
-  </script>
+<script is:inline>
+  // Inicialização do Tema
+  let theme = localStorage.getItem("theme");
+  if (!theme) {
+    theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  document.documentElement.classList.add(theme);
 
+  // Inicialização do Idioma
+  const lang = localStorage.getItem("lang") ?? document.documentElement.lang ?? "pt";
+  document.documentElement.lang = lang;
+  document.documentElement.classList.add(lang);
+</script>
+
+<head>
   <!-- Global Metadata -->
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width" />
   <link rel="sitemap" href="/sitemap.xml" />
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />

@@ -1,15 +1,19 @@
 ---
+import { defaultLang, type Lang, useTranslations } from "../i18n/translations";
 import type { IPaginator } from "../utils/types";
 
 export interface Props extends IPaginator {}
 const { prev, next } = Astro.props;
+
+const lang = (Astro.currentLocale ?? defaultLang) as Lang;
+const strings = useTranslations(lang);
 ---
 
 <section class="flex space-x-8 justify-center text-xl pt-16 font-bold">
   {
     prev && (
       <a href={prev} class="mr-8" data-test="paginator-prev">
-        <span>&larr;</span> Previous page
+        <span>&larr;</span> {strings('ui.previous')}
       </a>
     )
   }
@@ -17,7 +21,7 @@ const { prev, next } = Astro.props;
   {
     next && (
       <a href={next} data-test="paginator-next">
-        Next Page <span>&rarr;</span>
+        {strings('ui.next')} <span>&rarr;</span>
       </a>
     )
   }

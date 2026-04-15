@@ -162,27 +162,51 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		"notes": Record<string, {
+		"notes_en": Record<string, {
   id: string;
   body?: string;
-  collection: "notes";
-  data: InferEntrySchema<"notes">;
+  collection: "notes_en";
+  data: InferEntrySchema<"notes_en">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"shards": Record<string, {
+"notes_pt": Record<string, {
   id: string;
   body?: string;
-  collection: "shards";
-  data: InferEntrySchema<"shards">;
+  collection: "notes_pt";
+  data: InferEntrySchema<"notes_pt">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;
-"voting": Record<string, {
+"shards_en": Record<string, {
   id: string;
   body?: string;
-  collection: "voting";
-  data: InferEntrySchema<"voting">;
+  collection: "shards_en";
+  data: InferEntrySchema<"shards_en">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"shards_pt": Record<string, {
+  id: string;
+  body?: string;
+  collection: "shards_pt";
+  data: InferEntrySchema<"shards_pt">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"voting_en": Record<string, {
+  id: string;
+  body?: string;
+  collection: "voting_en";
+  data: InferEntrySchema<"voting_en">;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
+"voting_pt": Record<string, {
+  id: string;
+  body?: string;
+  collection: "voting_pt";
+  data: InferEntrySchema<"voting_pt">;
   rendered?: RenderedContent;
   filePath?: string;
 }>;

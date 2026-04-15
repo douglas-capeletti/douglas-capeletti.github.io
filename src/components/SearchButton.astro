@@ -1,11 +1,21 @@
 ---
-const { props, label } = Astro.props;
+import type { TranslationKey } from "../i18n/translations";
+import { defaultLang, type Lang, useTranslations } from "../i18n/translations";
+
+export interface Props {
+    classList?: string;
+    label?: TranslationKey;
+}
+
+const { classList, label } = Astro.props;
+
+const lang = (Astro.currentLocale ?? defaultLang) as Lang;
+const strings = useTranslations(lang);
 ---
 
-<a href="/search" class={props}>
-    {label && "Search"}
-    <span class="sr-only">Search for posts</span>
+<a href={`/${lang}/search`} class={classList}>
     <svg xmlns="http://www.w3.org/2000/svg" class="stroke-border hover:stroke-contrast h-6 w-6" fill="none" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
     </svg>
+    {label && <span>{strings(label)}</span>}
 </a>

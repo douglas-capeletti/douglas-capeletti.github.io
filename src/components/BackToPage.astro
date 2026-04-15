@@ -1,13 +1,18 @@
 ---
+import { defaultLang, type Lang, type TranslationKey, useTranslations } from '../i18n/translations';
+
 export interface Props {
-  pageName?: string;
+  pageName?: TranslationKey;
   path?: string;
 }
 let { pageName, path } = Astro.props;
+
+const lang = (Astro.currentLocale ?? defaultLang) as Lang;
+const strings = useTranslations(lang);
 ---
 
 <section class="flex space-x-8 justify-center text-xl pt-4 pb-12 font-bold">
   <a href={`${path ?? "/"}`} class="ml-8 hover:text-contrast" data-test="see-all-link">
-    <span>&larr;</span> Back to {pageName ?? "Home"} page
+    <span>&larr;</span> {`${strings('ui.back-to-page.message')} ${strings(pageName ?? 'pages.home')}`}
   </a>
 </section>

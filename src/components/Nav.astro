@@ -1,20 +1,15 @@
 ---
-import DarkModeToggle from "./DarkModeToggle.astro";
-import { SITE_URI } from "../utils/constants";
+import { defaultLang, useTranslations, type Lang } from "../i18n/translations";
+import { SITE_PAGES, SITE_URI } from "../utils/constants";
+import LangToggle from "./LangToggle.astro";
 import SearchButton from "./SearchButton.astro";
+import SideNav from "./SideNav.astro";
+import SideNavToggle from "./SideNavToggle.astro";
+import ThemeToggle from "./ThemeToggle.astro";
 
-const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", About: "/about" };
+const lang = (Astro.currentLocale ?? defaultLang) as Lang;
+const strings = useTranslations(lang);
 ---
-
-<script>
-  const sideMenu = document?.getElementById("sideMenu") as HTMLElement;
-  document?.getElementById("closeMenu")?.addEventListener("click", () => {
-    sideMenu.style.display = "none";
-  });
-  document?.getElementById("openMenu")?.addEventListener("click", () => {
-    sideMenu.style.display = "flex";
-  });
-</script>
 
 <div>
   <nav>
@@ -23,59 +18,30 @@ const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", Abo
         <img style="max-height: 1.75rem" loading="lazy" src={"/images/logo.webp"} alt={"Logo"} />
         <a href="/" class="font-bold text-xl hover:text-contrast">{SITE_URI}</a>
       </div>
-      <div class="hidden md:flex font-semibold -ml-6">
+      <div class="hidden md:flex font-semibold -ml-6 gap-3">
         {
-          Object.entries(options).map((value) => (
-            <a href={value[1]} class="mr-5 text-text-primary font-semibold hover:text-contrast">
-              {value[0]}
+          SITE_PAGES.map((value) => (
+            <a href={`/${lang}/${value.path}`} class="text-text-primary font-semibold hover:text-contrast">
+              {strings(value.name)}
             </a>
           ))
         }
-        <SearchButton props="mr-5 h6 w-6 hover:text-contrast" />
-        <DarkModeToggle props="h6 w-6 hover:text-contrast" />
+        <SearchButton classList="h6 w-6 hover:text-contrast" />
+        <div class="ml-4 flex items-center gap-2">
+          <ThemeToggle prefix="Nav" classList="h6 w-6 hover:text-contrast" />
+          <LangToggle prefix="Nav" classList="h6 w-6 hover:text-contrast" />
+        </div>
       </div>
-      <div class="flex md:hidden">
-        <button id="openMenu" type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
-          <span class="sr-only">Open side nav</span>
-          <svg class="stroke-border hover:stroke-contrast h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-          </svg>
-        </button>
-      </div>
+      <SideNavToggle state={false} />
     </div>
   </nav>
   <div class="w-full border-b-2 border-border"></div>
-  <!-- Mobile menu, show/hide based on menu open state. -->
-  <div id="sideMenu" role="dialog" aria-modal="true" style="display: none;">
-    <!-- Background backdrop, show/hide based on slide-over state. -->
-    <div class="fixed inset-0 z-50"></div>
-    <div class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-bg-primary px-6 py-6 sm:max-w-sm sm:ring-2 sm:ring-bg-tertiary">
-      <div class="flex items-center justify-between">
-        <a href="/" class="font-bold text-xl hover:text-contrast">{SITE_URI}</a>
-        <button id="closeMenu" type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
-          <span class="sr-only">Close side nav</span>
-          <svg class="stroke-border hover:stroke-contrast h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <div class="mt-6 flow-root">
-        <div class="-my-6 divide-y divide-bg-tertiary">
-          <div class="space-y-2 py-6">
-            {
-              Object.entries(options).map((value) => (
-                <a href={value[1]} class="-mx-3 block rounded-lg px-3 py-2 text-text-primary font-semibold leading-7 mr-5 hover:text-contrast">
-                  {value[0]}
-                </a>
-              ))
-            }
-          </div>
-          <div class="py-6">
-            <SearchButton label props="-mx-3 flex gap-1 rounded-lg px-3 py-2 font-semibold leading-7 text-md hover:text-contrast" />
-            <!-- <DarkModeToggle label props="-mx-3 flex gap-1 rounded-lg px-3 py-2 font-semibold leading-7 text-md hover:text-contrast" /> -->
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <SideNav />
 </div>
+
+<script>
+  import { LANG, THEME } from "../utils/constants";
+  import { toggle } from "../utils/toggle";
+  toggle("Nav", LANG);
+  toggle("Nav", THEME);
+</script>

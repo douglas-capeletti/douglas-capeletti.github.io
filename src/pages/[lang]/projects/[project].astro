@@ -1,0 +1,73 @@
+---
+import { getCollection, render } from "astro:content";
+import BackToPage from "../../../components/BackToPage.astro";
+import CardList from "../../../components/CardList.astro";
+import { type Lang } from "../../../i18n/translations";
+import PostLayout from "../../../layouts/PostLayout.astro";
+import type { IEntry } from "../../../utils/types";
+
+export async function getStaticPaths() {
+  const langs: Lang[] = ["pt", "en"];
+  
+  // 💡 Add future projects here to generate their landing pages automatically
+  const activeProjects = ["voting"];
+  
+  return langs.flatMap((lang) => 
+    activeProjects.map((project) => ({
+      params: { lang, project },
+    }))
+  );
+}
+
+type PostEntry = IEntry<any>;
+
+const { lang, project } = Astro.params;
+const projectEntries = await getCollection(`${project}_${lang}` as any);
+const entriesByType: any = {};
+projectEntries.forEach((v: PostEntry) => {
+    const type = v.id.split("/")?.[0] ?? "none";
+    if (!entriesByType[type]) entriesByType[type] = [];
+    entriesByType[type].push(v);
+});
+
+const indexEntry = entriesByType["index"]?.[0] || entriesByType[project]?.[0] || projectEntries[0];
+const { Content } = await render(indexEntry);
+
+const specs = entriesByType["specs"] || [];
+const tools = entriesByType["tools"] || [];
+---
+
+<PostLayout post={indexEntry}>
+    <Content />
+    {
+        specs.length > 0 && (
+            <>
+                <h2>Project Specs</h2>
+            <CardList
+                cards={specs.map((x: PostEntry) => {
+                    return {
+                        title: x.data.title,
+                            url: `/${lang}/projects/${project}/${x.id}`,
+                    };
+                })}
+            />
+            </>
+        )
+    }
+    {
+        tools.length > 0 && (
+            <>
+                <h2>Project Tools</h2>
+            <CardList
+                cards={tools.map((x: PostEntry) => {
+                    return {
+                        title: x.data.title,
+                            url: `/${lang}/projects/${project}/${x.id}`,
+                    };
+                })}
+            />
+            </>
+        )
+    }
+</PostLayout>
+<BackToPage pageName={"pages.projects"} path={`/${lang}/projects`} />

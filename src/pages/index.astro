@@ -1,24 +1,16 @@
 ---
-import Header from "../components/Header.astro";
-import PageLayout from "../layouts/PageLayout.astro";
-import { SITE_NAME } from "../utils/constants";
 
-const title = SITE_NAME;
-const description = "My codes and notes as a software engineer.";
-const options = { Notes: "/notes", Shards: "/shards", Projects: "/projects", About: "/about" };
 ---
 
-<PageLayout title={description}>
-  <article class="py-12 lg:py-20 my-auto">
-    <Header title={title} subTitles={[description]} />
-    <section class="flex sm:flex-row flex-col gap-5 justify-center justify-items-center items-center" data-test="articles-section">
-      {
-        Object.entries(options).map((value) => (
-          <a href={value[1]}>
-            <button class="font-bold p-3 text-text-secondary bg-btn-primary rounded-xl">{value[0]}</button>
-          </a>
-        ))
-      }
-    </section>
-  </article>
-</PageLayout>
+<script>
+    const supportedLangs = ["pt", "en"];
+    let lang = localStorage.getItem("lang");
+    
+    if (!lang) {
+        const browserLang = navigator.language.split('-')[0] ?? "pt";
+        lang = supportedLangs.includes(browserLang) ? browserLang : "pt";
+    }
+
+    console.log(`Redirecting to /${lang}/`);
+    window.location.replace(`/${lang}/`);
+</script>

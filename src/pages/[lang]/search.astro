@@ -1,0 +1,30 @@
+---
+import BackToPage from "../../components/BackToPage.astro";
+import Header from "../../components/Header.astro";
+import { defaultLang, type Lang, useTranslations } from "../../i18n/translations";
+import PageLayout from "../../layouts/PageLayout.astro";
+import { SITE_LANGUAGE_PARAMS } from "../../utils/constants";
+
+export function getStaticPaths() {
+  return SITE_LANGUAGE_PARAMS;
+}
+
+const lang = (Astro.currentLocale ?? defaultLang) as Lang;
+const strings = useTranslations(lang);
+
+let title = strings('search.title');
+let pageDescription = strings('search.sub-title');
+---
+
+<PageLayout title={title}>
+  <Header title={title} subTitles={[pageDescription]} />
+  <input type="search" id="searchBox" required min="2" max="24" class="searchBox w-full px-2 py-2 bg-bg-tertiary text-text-tertiary border-border" placeholder="Search..." data-test="search-input" />
+  <p class="flex my-2 text-center mb-12">{strings('search.tip')}</p>
+  <div id="searchResults" class="searchResults lg:pl-8"></div>
+  <BackToPage />
+</PageLayout>
+
+<script>
+  import { enableSearch } from "../../utils/search";
+  enableSearch();
+</script>

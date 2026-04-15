@@ -1,0 +1,32 @@
+---
+import { render } from "astro:content";
+import BackToPage from "../../../components/BackToPage.astro";
+import PostLayout from "../../../layouts/PostLayout.astro";
+import { getLocalizedCollection } from "../../../utils/collections";
+import { ActiveProjects } from "../../../utils/constants";
+import type { TranslationKey } from "../../../i18n/translations";
+
+export async function getStaticPaths() {
+  return await getLocalizedCollection(ActiveProjects, (project, lang, posts) =>
+    posts.map((post) => ({
+      params: {
+        lang,
+        slug: `${project}/${post.id}`,
+      },
+      props: {
+        post,
+        path: `/${lang}/projects/${project}`,
+        pageName: `pages.projects`,
+      },
+    })),
+  );
+}
+
+const { post, path, pageName } = Astro.props;
+const { Content }: any = await render(post);
+---
+
+<PostLayout post={post}>
+  <Content />
+</PostLayout>
+<BackToPage pageName={pageName as TranslationKey} path={path} />

@@ -5,10 +5,11 @@ import type { ICard } from "../utils/types";
 export interface Props extends ICard {}
 
 const { tag, hero, title, description, pubDate, url, blank } = Astro.props;
-const tagStyle = "tag-wrapper border-4 border-btn-primary hover:border-contrast";
+const tagStyle = "tag-wrapper border-btn-primary";
 ---
 
-<div class=`card transition-all duration-75 ease-in-out h-full block relative top-0 hover:-top-3 shadow-lg hover:shadow-xl bg-bg-tertiary hover:bg-bg-tertiary-hover rounded-xl overflow-hidden ${tag ? tagStyle : "is border-2 border-border"}`>
+<div
+  class=`card transition-all duration-75 ease-in-out h-full block relative top-0 hover:-top-3 shadow-lg hover:shadow-xl bg-bg-tertiary hover:bg-bg-tertiary-hover rounded-xl overflow-hidden border-4 ${tag ? tagStyle : "is border-border hover:border-contrast"}`>
   <a href={url} data-test="article-card" target={blank ? "_blank" : "_self"}>
     {tag && <div class="tag font-bold">{tag}</div>}
     {hero && <img src={hero} alt={title} width="360" height="192" />}

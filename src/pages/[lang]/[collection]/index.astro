@@ -1,0 +1,44 @@
+---
+import { defaultLang, useTranslations, type Lang, type TranslationKey } from "../../../i18n/translations";
+import CardLayout from "../../../layouts/CardLayout.astro";
+import { getLocalizedCollection } from "../../../utils/collections";
+import { CollectionsEnum } from "../../../utils/constants";
+import type { ICard } from "../../../utils/types";
+
+export async function getStaticPaths() {
+  const collections = [CollectionsEnum.SHARDS, CollectionsEnum.NOTES];
+  return await getLocalizedCollection(collections, (collection, lang, posts) => ({
+    params: {
+      lang,
+      collection,
+    },
+    props: {
+      posts,
+      pageName: `pages.${collection}`,
+      pageDescription: `${collection}.title`,
+    },
+  }));
+}
+
+const { collection } = Astro.params;
+const lang = (Astro.currentLocale ?? defaultLang) as Lang;
+const strings = useTranslations(lang);
+
+const { posts, pageName, pageDescription } = Astro.props;
+const cards: ICard[] = posts?.map((p) => {
+  return {
+    tag: p.data.tags?.includes("draft") ? strings("ui.draft") : undefined,
+    hero: p.data.hero,
+    title: p.data.title,
+    description: p.data.description,
+    pubDate: p.data.pubDate,
+    url: `/${lang}/${collection}/${p.id}`,
+  };
+});
+---
+
+<CardLayout 
+  title={strings(pageName as TranslationKey)} 
+  subTitles={[strings(pageDescription as TranslationKey)]} 
+  cards={cards} 
+/>
