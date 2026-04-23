@@ -1,13 +1,13 @@
 ---
-title: "Tech Glossary"
+title: "Tech glossary"
 pubDate: "2024-10-17"
 tags: ["architecture"]
 ---
 
-OK, who hasn't heard a term or acronym that perfectly summarizes something, but you had no idea what it meant?
+OK, who hasn't heard someone drop a term or acronym that perfectly summarizes something, but you had no idea what it meant?
 
-That's why we are going to gather some of them here and expand our *buzzword* vocabulary.
+That's why we are going to centralize a few here and expand our *buzzword* vocabulary.
 
-| Term | Meaning                                                                                                                             |
-| ---- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| SPoF | Single point of failure, it is that application component that centralizes a lot of responsibility and can make everything *crash*! |
+| Term | Meaning                                                                                                                    |
+| ---- | -------------------------------------------------------------------------------------------------------------------------- |
+| SPoF | Single Point of Failure, it's that component in the application that centralizes too much responsibility and can make everything *crash*! |

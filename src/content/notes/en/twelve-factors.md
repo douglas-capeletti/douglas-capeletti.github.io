@@ -1,5 +1,5 @@
 ---
-title: "The Twelve Factors of building software"
+title: "The Twelve-Factor App"
 pubDate: "2024-10-17"
 tags: ["architecture"]
 ---
@@ -40,4 +40,4 @@ Treat logs as event streams
 XII - Admin processes <br>
 Run admin/management tasks as one-off processes
 
-See more at: [The Twelve Factor App](https://12factor.net/)
+See more at: [[The Twelve-Factor App](twelve-factors)](https://12factor.net/)

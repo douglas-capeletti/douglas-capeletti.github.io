@@ -6,4 +6,4 @@ tags: ["architecture"]
 
 "Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure."
 
-See more at: [Conway's law | Martin Fowler](https://martinfowler.com/bliki/ConwaysLaw.html)
+See more at: [Conway's Law | Martin Fowler](https://martinfowler.com/bliki/ConwaysLaw.html)

@@ -9,22 +9,23 @@ export const ui = {
   pt: {
     // Home
     'pages.home': 'Página inicial',
-    'home.title': 'Meus códigos e anotações como engenheiro de software.',
+    'home.title': 'Meu bloco de notas compartilhado como engenheiro de software',
     // Guides
     'pages.guides': 'Guias',
-    'guides.title': 'Meus guias sobre diversos tópicos de engenharia de software.',
+    'guides.title': 'Guias sobre alguns tópicos relevantes.',
     // Notes
     'pages.notes': 'Notas',
-    'notes.title': 'Meus pequenos trechos de código e anotações rápidas.',
+    'notes.title': 'Pequenos trechos de código e anotações menores.',
     // Projects
     'pages.projects': 'Projetos',
-    'projects.title': 'Meus projetos e anotações.',
+    'projects.title': 'Minha coleção de projetos pessoais (inacabados).',
     'projects.voting': 'Votação',
     // About
     'pages.about': 'Sobre',
+    'about.title': 'Sobre mim e este site.',
     // Search
     "pages.search": "Pesquisar",
-    "search.title": "Pesquise por qualquer anotação ou fragmento",
+    "search.title": "Pesquise por qualquer guia ou nota",
     "search.tip": "Dica: use '#' para pesquisar por tag (ex. #docker)",
     // Not Found
     'pages.not-found': 'Página não encontrada',
@@ -41,23 +42,24 @@ export const ui = {
   en: {
     // Home
     'pages.home': 'Home Page',
-    "home.title": "My codes and notes as a software engineer.",
+    'home.title': 'My shared notepad as a software engineer',
     // Guides
-    "pages.guides": "Guides",
-    "guides.title": "My guides on various software engineering topics.",
+    'pages.guides': 'Guides',
+    'guides.title': 'Guides on some relevant topics.',
     // Notes
-    "pages.notes": "Notes",
-    "notes.title": "My notes on various software engineering topics.",
+    'pages.notes': 'Notes',
+    'notes.title': 'Small code snippets and minor notes.',
     // Projects
-    "pages.projects": "Projects",
-    "projects.title": "My projects and notes.",
-    "projects.voting": "Voting",
+    'pages.projects': 'Projects',
+    'projects.title': 'My collection of personal (unfinished) projects.',
+    'projects.voting': 'Voting',
     // About
-    "pages.about": "About",
+    'pages.about': 'About',
+    'about.title': 'About me and this website.',
     // Search
-    "pages.search": "Search",
-    "search.title": "Search for any Note or Shard",
-    "search.tip": "TIP: use '#' to search by tag (e.g. #docker)",
+    'pages.search': 'Search',
+    'search.title': 'Search for any guide or note',
+    'search.tip': "TIP: use '#' to search by tag (e.g. #docker)",
     // Not Found
     'pages.not-found': 'Page not found',
     'not-found.title': "Oops, I think you're lost",
