@@ -1,5 +1,6 @@
 import { glob } from 'astro/loaders'
-import { defineCollection, z } from "astro:content"
+import { defineCollection } from "astro:content"
+import { z } from "astro/zod"
 
 const schema = z.object({
   title: z.string(),
@@ -10,18 +11,18 @@ const schema = z.object({
   video: z.string().optional()
 })
 
+const guides_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/guides/pt" }) })
+const guides_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/guides/en" }) })
 const notes_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/notes/pt" }) })
 const notes_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/notes/en" }) })
-const shards_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/shards/pt" }) })
-const shards_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/shards/en" }) })
 const voting_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/voting/pt" }) })
 const voting_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/voting/en" }) })
 
 export const collections = {
+  guides_pt,
+  guides_en,
   notes_pt,
   notes_en,
-  shards_pt,
-  shards_en,
   voting_pt,
   voting_en
 }

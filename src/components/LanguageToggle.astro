@@ -21,7 +21,7 @@ const { id, classList, defaultOptionId, alternativeOptionId } = Astro.props;
   </svg>
 </button>
 
-<script define:vars={{ id, defaultOptionId, alternativeOptionId }}>
+<script is:inline define:vars={{ id, defaultOptionId, alternativeOptionId }}>
   import { toggleTheme } from "../utils/toggle";
   toggleTheme(id, defaultOptionId, alternativeOptionId);
 </script>

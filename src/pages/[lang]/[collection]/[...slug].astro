@@ -3,11 +3,11 @@ import { render } from "astro:content";
 import BackToPage from "../../../components/BackToPage.astro";
 import { type TranslationKey } from "../../../i18n/translations";
 import PostLayout from "../../../layouts/PostLayout.astro";
-import { getLocalizedCollection } from "../../../utils/collections";
+import { getLocalizedCollection } from "../../../utils";
 import { CollectionsEnum } from "../../../utils/constants";
 
 export async function getStaticPaths() {
-  const collections = [CollectionsEnum.SHARDS, CollectionsEnum.NOTES];
+  const collections = [CollectionsEnum.NOTES, CollectionsEnum.GUIDES];
   return await getLocalizedCollection(collections, (collection, lang, posts) =>
     posts.map((post) => ({
       params: {

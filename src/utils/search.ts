@@ -1,5 +1,6 @@
 import DOMPurify from "dompurify"
 import Fuse from "fuse.js"
+import { useTranslations, type Lang, type TranslationKey } from "../i18n/translations"
 
 interface ISearchData {
   item: ISearchItem
@@ -20,6 +21,7 @@ export function enableSearch() {
   const BODY_LENGTH = 100
   let PREV_QUERY: string | undefined
   let SEARCH_DATA: ISearchItem[]
+  let SEARCH_LANG: Lang
   let FUSE_INSTANCE: Fuse<ISearchItem>
   const FUSE_OPTIONS = {
     includeScore: true,
@@ -43,6 +45,11 @@ export function enableSearch() {
 
   const searchResults = {
     element: document.getElementById("searchResults") as HTMLElement,
+
+    _translate(key: string) {
+      return useTranslations(SEARCH_LANG)(key as TranslationKey)
+    },
+
     show() {
       this.element.style.display = "block"
     },
@@ -66,7 +73,7 @@ export function enableSearch() {
       const resultTitle = document.createElement("a")
       resultTitle.className = "searchResultTitle"
       resultTitle.href = result.item.urn
-      resultTitle.innerHTML = `[${result.item.collection}] ${result.item.title}`
+      resultTitle.innerHTML = `[${this._translate(`pages.${result.item.collection}`)}] ${this._translate(result.item.title)}`
       resultPage.append(resultTitle)
 
       const resultBody = document.createElement("div")
@@ -91,8 +98,8 @@ export function enableSearch() {
     if (query?.length === 0) return
     if (!SEARCH_DATA) {
       try {
-        const lang = document.documentElement.lang || "pt"
-        const res = await fetch(`/${lang}/search-index.json`)
+        SEARCH_LANG = (document.documentElement.lang || "pt") as Lang
+        const res = await fetch(`/${SEARCH_LANG}/search-index`)
         if (!res.ok) {
           throw new Error("Something went wrong… please try again")
         }

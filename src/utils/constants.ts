@@ -1,21 +1,29 @@
-import type { TranslationKey } from "../i18n/translations"
+import type { Lang, TranslationKey } from "../i18n/translations"
 import type { IToggle } from "./types"
 
-export const SITE_URL = "https://developingnotes.com"
-export const SITE_URI = "DevelopingNotes.com"
-export const SITE_NAME = "Developing Notes"
+export const SITE_URL = "https://thecodecodex.com"
+export const SITE_URI = "TheCodeCodex.com"
+export const SITE_NAME = "The Code Codex"
 export const PAGE_SIZE = 21
 
-export const SITE_LANGUAGE_PARAMS = [
-  { params: { lang: "pt" } },
-  { params: { lang: "en" } }
+export const LANGS: Lang[] = ["pt", "en"]
+
+export function siteLangParams() {
+  return [
+    { params: { lang: "pt" } },
+    { params: { lang: "en" } }
+  ]
+}
+
+export const SITE_PAGES: { title: TranslationKey, path: string }[] = [
+  { title: "pages.guides", path: "guides" },
+  { title: "pages.notes", path: "notes" },
+  { title: "pages.projects", path: "projects" },
+  { title: "pages.about", path: "about" },
 ]
 
-export const SITE_PAGES: { name: TranslationKey, path: string }[] = [
-  { name: "pages.notes", path: "notes" },
-  { name: "pages.shards", path: "shards" },
-  { name: "pages.projects", path: "projects" },
-  { name: "pages.about", path: "about" },
+export const SITE_PROJECTS: { title: TranslationKey, path: string }[] = [
+  { title: "projects.voting", path: "voting" },
 ]
 
 export const THEME: IToggle = {
@@ -31,8 +39,8 @@ export const LANG: IToggle = {
 }
 
 export enum CollectionsEnum {
+  GUIDES = "guides",
   NOTES = "notes",
-  SHARDS = "shards",
   VOTING = "voting"
 }
 

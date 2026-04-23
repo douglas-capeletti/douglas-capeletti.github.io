@@ -22,7 +22,7 @@ const strings = useTranslations(lang);
         {
           SITE_PAGES.map((value) => (
             <a href={`/${lang}/${value.path}`} class="text-text-primary font-semibold hover:text-contrast">
-              {strings(value.name)}
+              {strings(value.title)}
             </a>
           ))
         }

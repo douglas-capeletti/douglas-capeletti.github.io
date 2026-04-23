@@ -3,18 +3,18 @@ import BackToPage from "../components/BackToPage.astro";
 import Header from "../components/Header.astro";
 import { defaultLang, useTranslations, type Lang } from "../i18n/translations";
 import PageLayout from "../layouts/PageLayout.astro";
-import { SITE_LANGUAGE_PARAMS } from "../utils/constants";
+import { siteLangParams } from "../utils/constants";
 
 export function getStaticPaths() {
-  return SITE_LANGUAGE_PARAMS;
+  return siteLangParams();
 }
 
 const lang = (Astro.currentLocale ?? defaultLang) as Lang;
 const strings = useTranslations(lang);
 ---
 
-<PageLayout title={strings("not-found.title")}>
-  <Header title={strings("not-found.header.title")} subTitles={[strings("not-found.header.sub-title")]} />
+<PageLayout title={strings("pages.not-found")}>
+  <Header title={strings("not-found.title")} subTitles={[strings("not-found.sub-title")]} />
   <BackToPage />
-  <img class="mx-auto max-w-2xl" alt="Mad Cat" src="/images/404.webp" />
+  <img class="mx-auto max-w-xs md:max-w-2xl" alt="Mad Cat" src="/images/404.webp" />
 </PageLayout>

@@ -1,26 +1,18 @@
 ---
-import CardLayout from "../../../layouts/CardLayout.astro";
 import { defaultLang, useTranslations, type Lang } from "../../../i18n/translations";
+import CardLayout from "../../../layouts/CardLayout.astro";
+import { SITE_PROJECTS, siteLangParams } from "../../../utils/constants";
 
 export async function getStaticPaths() {
-  const langs: Lang[] = ["pt", "en"];
-  return langs.map((lang) => ({
-    params: { lang },
-  }));
+  return siteLangParams();
 }
 
 const { lang } = Astro.params;
 const strings = useTranslations((lang as Lang) ?? defaultLang);
-
-// 💡 Add more project collections here in the future! (e.g. ["voting", "portfolio"])
-const activeProjects = ["voting"];
+const cards = SITE_PROJECTS.map((project) => ({
+  title: strings(project.title) as string,
+  url: `/${lang}/projects/${project.path}`,
+}));
 ---
 
-<CardLayout
-  title={strings("pages.projects") as string}
-  cards={activeProjects.map((project) => ({
-    title: project.charAt(0).toUpperCase() + project.slice(1),
-    url: `/${lang}/projects/${project}`
-  }))}
-  wideCards
-/>
+<CardLayout title={strings("pages.projects") as string} subTitles={[strings("projects.title") as string]} cards={cards} wideCards />

@@ -25,6 +25,7 @@
     "dearmor",
     "Flink",
     "Govulncheck",
+    "grimoires",
     "keyrings",
     "kube",
     "kubelet",

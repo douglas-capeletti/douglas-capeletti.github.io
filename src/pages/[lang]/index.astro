@@ -2,27 +2,25 @@
 import Header from "../../components/Header.astro";
 import { defaultLang, type Lang, useTranslations } from "../../i18n/translations";
 import PageLayout from "../../layouts/PageLayout.astro";
-import { SITE_LANGUAGE_PARAMS, SITE_NAME, SITE_PAGES } from "../../utils/constants";
+import { siteLangParams, SITE_NAME, SITE_PAGES } from "../../utils/constants";
 
 export function getStaticPaths() {
-  return SITE_LANGUAGE_PARAMS;
+  return siteLangParams();
 }
 const lang = (Astro.currentLocale ?? defaultLang) as Lang;
 const strings = useTranslations(lang);
-const description = strings('home.title');
+const description = strings("home.title");
 ---
 
-<PageLayout title={description}>
-  <article class="py-12 lg:py-20 my-auto">
-    <Header title={SITE_NAME} subTitles={[description]} />
+<PageLayout title={description} className="py-2 md:py-20">
+    <Header title={SITE_NAME} subTitles={[description]}/>
     <section class="flex sm:flex-row flex-col gap-5 justify-center justify-items-center items-center" data-test="articles-section">
       {
         SITE_PAGES.map((value) => (
           <a href={`/${lang}/${value.path}`}>
-            <button class="font-bold p-3 text-text-secondary bg-btn-primary rounded-xl">{strings(value.name)}</button>
+            <button class="font-bold p-3 text-text-secondary bg-btn-primary rounded-xl">{strings(value.title)}</button>
           </a>
         ))
       }
     </section>
-  </article>
 </PageLayout>

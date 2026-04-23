@@ -6,9 +6,10 @@ import { SITE_NAME, SITE_URI, THEME } from "../utils/constants";
 
 export interface Props {
   title: string;
+  className?: string;
 }
 
-const { title } = Astro.props;
+const { title, className } = Astro.props;
 const lang = (Astro.currentLocale ?? defaultLang) as Lang;
 const seoTitle = `${title ?? SITE_NAME} | ${SITE_URI}`;
 ---
@@ -17,7 +18,7 @@ const seoTitle = `${title ?? SITE_NAME} | ${SITE_URI}`;
   <Head title={seoTitle} />
   <body class="bg-bg-primary text-text-primary font-body leading-normal">
     <Nav />
-    <main class="max-w-5xl px-5 mx-auto py-4 lg:py-8">
+    <main class={`max-w-5xl px-5 mx-auto py-0 ${className}`}>
       <slot />
     </main>
   </body>

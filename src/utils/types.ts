@@ -1,12 +1,13 @@
-import type { AnyEntryMap, InferEntrySchema, RenderedContent } from "astro:content";
+import type { CollectionEntry, DataEntryMap, InferEntrySchema, RenderedContent } from "astro:content"
 
-export type IEntryKey = keyof AnyEntryMap
+export type IEntryKey = keyof DataEntryMap
+export type IEntryCollection = CollectionEntry<IEntryKey>
 
-export interface IEntry<T extends IEntryKey> {
+export interface IEntry {
   id: string;
   body?: string;
   collection: string;
-  data: InferEntrySchema<T>;
+  data: InferEntrySchema<IEntryKey>;
   rendered?: RenderedContent;
   filePath?: string;
 }
