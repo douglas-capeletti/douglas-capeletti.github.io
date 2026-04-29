@@ -1,6 +1,6 @@
 ---
 title: "Setup Linux (wsl)"
-pubDate: "2026-04-22"
+pubDate: "2026-04-22T00:00:00Z"
 hero: "/images/wsl.webp"
 tags: ["linux", "wsl", "ubuntu"]
 ---
@@ -11,13 +11,14 @@ tags: ["linux", "wsl", "ubuntu"]
   - [WSL Install](#wsl-install)
   - [Aliases \& Path](#aliases--path)
   - [Basic packages](#basic-packages)
-  - [Google Chrome](#google-chrome)
-  - [Docker](#docker)
+  - [SSH Key](#ssh-key)
   - [Java](#java)
   - [Node](#node)
   - [Golang](#golang)
-  - [SSH Key](#ssh-key)
+  - [Docker](#docker)
+  - [Google Chrome](#google-chrome)
   - [Intellij (Toolbox)](#intellij-toolbox)
+  - [Android Studio (Toolbox)](#android-studio-toolbox)
   - [VsCode](#vscode)
 
 ---
@@ -29,12 +30,14 @@ On Powershell, install WSL
 ```
 wsl --install
 ```
-On you user folder `C:\Users\{user}` (%USERPROFILE%) add a file named `.wslconfig` with the following content. 
+On you user folder `C:\Users\{user}` (%USERPROFILE%) add a file named [.wslconfig](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#main-wsl-settings) with the following content. 
 This will mirror the wsl network on windows and allow you to access apps running on WSL on you LAN 
 
-``` .wslconfig
+``` toml
 [wsl2]
 networkingMode=mirrored
+dnsTunneling=true
+nestedVirtualization=true
 ```
 
 ### Aliases & Path
@@ -69,13 +72,18 @@ alias home='cd ~/'
 alias chrome='google-chrome $@ &'
 alias google='google-chrome $@ &'
 alias toolbox='~/toolbox/bin/jetbrains-toolbox &'
-
-# PATH
-export PATH=$PATH:/usr/local/go/bin
+alias idea='~/.local/share/JetBrains/Toolbox/apps/intellij-idea/bin/idea &'
+alias studio='~/.local/share/JetBrains/Toolbox/apps/android-studio/bin/studio &'
 
 # Vars
 export USER_EMAIL='Your email here'
 export USER_NAME='Your name here'
+export ANDROID_HOME=$HOME/Android/Sdk
+
+# PATH
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:/usr/local/go/bin
 ```
 
 <br>
@@ -105,39 +113,19 @@ git config --global core.autocrlf true
 git config --global pull.rebase true
 ```
 
-### Google Chrome
+### SSH Key
 
-after installation, we will be able to use the shortcuts we configured earlier, *google*, *chrome* or the standard command *google-chrome* (this will lock the terminal)
-
-``` sh
-rm -rf ~/tmp
-mkdir ~/tmp
-cd ~/tmp
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install --fix-missing ./google-chrome-stable_current_amd64.deb
-clean
-cd ..
-```
-
-### Docker
-
-By installing Docker directly on wsl instead of docker desktop, it gets much more practical to use Docker as it would be used on a Linux machine and with CLI. If you prefer Docker with a graphical interface and pretty buttons, skip this step and install Docker desktop.
+Fill in your email before typing the command and confirm or enter password steps as you wish.
 
 ``` sh
-sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-update
-sudo apt install -y docker-ce docker-ce-cli containerd.io
-sudo usermod -aG docker $USER
+ssh-keygen -t ed25519 -C "$USER_EMAIL"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+echo
+cat ~/.ssh/id_ed25519.pub
 ```
 
-<br>
-After installation, since the user was modified, close the terminal and open it again, in case of problems check the installation
-
-``` sh
-docker --version
-```
+copy the key at the end of execution, then just paste it on github
 
 ### Java
 
@@ -204,19 +192,39 @@ rm ${GO_VERSION}.linux-amd64.tar.gz
 go version
 ```
 
-### SSH Key
+### Docker
 
-Fill in your email before typing the command and confirm or enter password steps as you wish.
+By installing Docker directly on wsl instead of docker desktop, it gets much more practical to use Docker as it would be used on a Linux machine and with CLI. If you prefer Docker with a graphical interface and pretty buttons, skip this step and install Docker desktop.
 
 ``` sh
-ssh-keygen -t ed25519 -C "$USER_EMAIL"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-echo
-cat ~/.ssh/id_ed25519.pub
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+sudo usermod -aG docker $USER
 ```
 
-copy the key at the end of execution, then just paste it on github
+<br>
+After installation, since the user was modified, close the terminal and open it again, in case of problems check the installation
+
+``` sh
+docker --version
+```
+
+### Google Chrome
+
+After installation, we will be able to use the shortcuts we configured earlier, *google*, *chrome* or the standard command *google-chrome* (this will lock the terminal)
+
+``` sh
+rm -rf ~/tmp
+mkdir ~/tmp
+cd ~/tmp
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo apt install --fix-missing ./google-chrome-stable_current_amd64.deb
+clean
+cd ..
+```
 
 ### Intellij (Toolbox)
 
@@ -237,6 +245,46 @@ toolbox
 ```
 
 Done, now just use the `toolbox` command configured back in the aliases and download Intellij through the Toolbox graphical interface
+
+### Android Studio (Toolbox)
+
+We will need QEMU-KVM for emulation within linux
+
+``` sh
+sudo apt install qemu-kvm
+```
+
+Let's check if everything is OK
+
+``` sh
+kvm-ok
+```
+
+If it's OK, let's give your user access to KVM
+
+``` sh
+sudo adduser $USER kvm
+grep kvm /etc/group
+```
+
+*Recommendation:* after this change restart WSL in powershell
+
+``` sh
+wsl --shutdown
+```
+
+Now we need Android Studio, let's install it through toolbox
+
+``` sh
+toolbox
+```
+
+Install Android Studio normally, and now install the emulator.
+After the download you can use the `studio` alias to open Android Studio.
+
+**More Action > Virtual Device Manager > Create virtual device > Select a device (Recommended: Medium device)**
+
+*Attention: If there is a warning that your user does not have access to KVM, close Android Studio and Toolbox and open again in a new terminal*
 
 ### VsCode
 

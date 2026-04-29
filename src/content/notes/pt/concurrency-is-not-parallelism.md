@@ -1,6 +1,6 @@
 ---
 title: "Concorrência não é paralelismo"
-pubDate: "2024-10-14"
+pubDate: "2024-10-14T00:00:00Z"
 tags: ["concurrency", "parallelism", "golang"]
 video: oV9rvDllKEg
 ---

@@ -1,6 +1,6 @@
 ---
 title: "Os Doze Fatores da construção de software"
-pubDate: "2024-10-17"
+pubDate: "2024-10-17T00:00:00Z"
 tags: ["architecture"]
 ---
 

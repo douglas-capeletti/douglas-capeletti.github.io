@@ -1,6 +1,6 @@
 ---
 title: "Paradigms"
-pubDate: "2024-10-08"
+pubDate: "2024-10-08T00:00:00Z"
 tags: ["paradigms"]
 ---
 

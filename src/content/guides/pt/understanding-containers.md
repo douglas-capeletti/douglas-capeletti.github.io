@@ -1,6 +1,6 @@
 ---
 title: "Entendendo Docker & containers"
-pubDate: "2025-12-03"
+pubDate: "2025-12-03T00:00:00Z"
 hero: "/images/docker.webp"
 tags: ["docker", "containers"]
 ---

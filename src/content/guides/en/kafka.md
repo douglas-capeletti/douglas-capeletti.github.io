@@ -1,7 +1,7 @@
 ---
 title: "Kafka"
-pubDate: "2025-01-31"
-hero: "/images/observability.webp"
+pubDate: "2025-01-31T00:00:00Z"
+hero: "/images/wip.webp"
 tags: ["draft", "observability", "microservices"]
 ---
 
