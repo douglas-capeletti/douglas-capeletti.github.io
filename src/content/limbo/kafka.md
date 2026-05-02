@@ -5,67 +5,67 @@ hero: "/images/wip.webp"
 tags: ["draft", "observability", "microservices"]
 ---
 
-"Plataforma distribuída de streaming de eventos em alta performance"
-- Alto throughput
-- Latência baixa
-- Escalável
-- Armazenamento
-- Alta disponibilidade
-- Alta conectividade externa
-- Bibliotecas prontas
+"High-performance distributed event streaming platform"
+- High throughput
+- Low latency
+- Scalable
+- Storage
+- High availability
+- High external connectivity
+- Ready-to-use libraries
 
-### Dinâmica de utilização
+### Usage dynamics
 ![[Pasted image 20241018130850.png]]
 
-- Cluster kafka
-	- Mínimo 3 máquinas (recomendação)
-	- Múltiplas máquinas (brokers)
-		- Banco de dados para cara broker
+- Kafka cluster
+	- Minimum of 3 machines (recommended)
+	- Multiple machines (brokers)
+		- Database for each broker
 
 ![[Pasted image 20241018131447.png]]
-- Tópicos
-	- Canal de comunicação
-	- pode ter mais de um consumer 1-*
-	- Persistência de mensagens para serem lidas dentro de um período de tempo por todos os subscribers ou reprocessadas
-	- Filtragem de mensagens
+- Topics
+	- Communication channel
+	- can have more than one consumer 1-*
+	- Message persistence to be read within a timeframe by all subscribers or reprocessed
+	- Message filtering
 	- Real-time streaming
-	- Melhor para casos de broadcasts
-- Filas (rabbitMQ)
-	- Canal de comunicação assim como os tópicos
-	- somente um consumer 1-1
-	- garantia de ordenamento
-	- distribuição de carga (e.g. load balancer)
-	- soluciona casos mais simples de um para um
+	- Best for broadcast cases
+- Queues (rabbitMQ)
+	- Communication channel just like topics
+	- only one consumer 1-1
+	- ordering guarantee
+	- load distribution (e.g. load balancer)
+	- solves simpler one-to-one cases
 
-- Partições
-	- São subdivisões das mensagens de um tópico em mais de uma máquina de forma a distribuir a o overhead de IO, aumentar o throughput do tópico e evitar problemas de concorrência, porém trás problemas de ordenamento (solucionado via keys) dado que podem existir máquinas no cluster com capacidades de processamento diferentes
+- Partitions
+	- They are subdivisions of a topic's messages across multiple machines to distribute IO overhead, increase topic throughput and avoid concurrency issues, however it brings ordering issues (solved via keys) since there can be machines in the cluster with different processing capacities
 	
 	- Offset
 		- Headers
-			- Metadados úteis da mensagem
+			- Useful message metadata
 		- key
-			- chaves de agrupamento e garantia de ordenamento
-			- keys iguais irão para a mesma partição, garantindo a ordem de execução
+			- grouping keys and ordering guarantee
+			- identical keys will go to the same partition, guaranteeing execution order
 		- value
-			- conteúdo
+			- content
 		- Timestamp
-	- Replicação
-		- Replication factory
-			- número de cópias de backup que um brokers deve ter em outro
-			- Número comum: 2 ou 3 (numero de followers)
+	- Replication
+		- Replication factor
+			- number of backup copies a broker must have on another
+			- Common number: 2 or 3 (number of followers)
 			- ![[Pasted image 20241018134437.png]]
 		- Partition leadership
-			- É a partição que será lida durante o acesso ao broker
-			- Em caso de indisponibilidade, uma réplica daquela partição será procurada dentro do cluster e irá se tornar líder (junto com a que já era líder antes), para garantir disponibilidade
+			- It is the partition that will be read when accessing the broker
+			- In case of unavailability, a replica of that partition will be looked up within the cluster and will become leader (along with the one that was leader before), to ensure availability
 			- ![[Pasted image 20241018134806.png]]
-		- Tipos de garantia de entrega
+		- Types of delivery guarantees
 			- None
-				- Ack 0 - sem confirmação de entrega
+				- Ack 0 - no delivery confirmation
 			- Leader
-				- Ack 1 - recebe a confirmação
-				- leader replica a mensagem para os demais brokers (followers)
+				- Ack 1 - receives confirmation
+				- leader replicates the message to other brokers (followers)
 			- All
-				- Ack -1 -recebe a confirmação de todas as réplicas
-				- Só confirma o recebimento depois da garantia de armazenamento dos followers 
+				- Ack -1 - receives confirmation from all replicas
+				- Only confirms receipt after the followers' storage guarantee 
 
-Ver também: [Queues vs Topics: Understanding the Differences in Messaging Frameworks](https://medium.com/version-1/queues-vs-topics-understanding-the-differences-in-messaging-frameworks-88861e2effa8#:~:text=Choosing%20Between%20Queues%20and%20Topics&text=Communication%20model%3A%20If%20your%20system,architecture%2C%20topics%20are%20more%20suitable)
+See also: Queues vs Topics: Understanding the Differences in Messaging Frameworks

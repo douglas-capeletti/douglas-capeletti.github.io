@@ -1,7 +1,7 @@
 // HTML ELEMENTS ONLY
 .post {
   >p {
-    @apply text-lg leading-relaxed mb-4;
+    @apply text-base leading-relaxed mb-4;
   }
 
   >img {
@@ -17,7 +17,7 @@
   }
 
   ul:not(.list-none) {
-    @apply pl-0 list-disc ml-8 mb-4 text-lg;
+    @apply pl-0 list-disc ml-8 mb-4 text-base;
 
     li {
       @apply mb-1;
@@ -25,7 +25,7 @@
   }
 
   ol {
-    @apply pl-0 list-decimal ml-8 mb-4 text-lg;
+    @apply pl-0 list-decimal ml-8 mb-4 text-base;
 
     li {
       @apply mb-1;

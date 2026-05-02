@@ -29,19 +29,52 @@ export const SITE_PROJECTS: { title: TranslationKey, path: string }[] = [
 export const THEME: IToggle = {
   id: 'theme',
   defaultOption: 'dark',
-  alternativeOption: 'light'
+  alternativeOption: 'light',
 }
 
 export const LANG: IToggle = {
   id: 'lang',
   defaultOption: 'pt',
-  alternativeOption: 'en'
+  alternativeOption: 'en',
 }
 
 export enum CollectionsEnum {
   GUIDES = "guides",
   NOTES = "notes",
-  VOTING = "voting"
+  ABOUT = "about",
+  VOTING = "voting",
+}
+
+export const Collections = {
+  [CollectionsEnum.GUIDES]: {
+    name: CollectionsEnum.GUIDES,
+    config: {}
+  },
+  [CollectionsEnum.NOTES]: {
+    name: CollectionsEnum.NOTES,
+    config: {}
+  },
+  [CollectionsEnum.ABOUT]: {
+    name: CollectionsEnum.ABOUT,
+    config: { wideCards: true, printSuggestion: true }
+  },
+  [CollectionsEnum.VOTING]: {
+    name: CollectionsEnum.VOTING,
+    config: {}
+  }
+}
+
+export interface ICollection {
+  name: CollectionsEnum,
+  config: {
+    wideCards?: boolean,
+    printSuggestion?: boolean,
+  },
+}
+
+export interface SiteContentItem {
+  category: string;
+  collections: CollectionsEnum[];
 }
 
 export const ActiveProjects = [CollectionsEnum.VOTING]

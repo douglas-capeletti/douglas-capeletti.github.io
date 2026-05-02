@@ -22,11 +22,11 @@ export interface IPost {
 }
 
 export interface ICard {
-  tag?: string;
-  hero?: string;
   title: string;
   description?: string;
   pubDate?: Date;
+  hero?: string;
+  tag?: string;
   url: string;
   blank?: boolean;
 }

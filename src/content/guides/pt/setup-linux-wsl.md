@@ -8,7 +8,7 @@ tags: ["linux", "wsl", "ubuntu"]
 ## O que vamos instalar?
 
 - [O que vamos instalar?](#o-que-vamos-instalar)
-  - [WSL Install](#wsl-install)
+  - [Instalando o WSL](#instalando-o-wsl)
   - [Aliases \& Path](#aliases--path)
   - [Pacotes básicos](#pacotes-básicos)
   - [Chave SSH](#chave-ssh)
@@ -21,21 +21,34 @@ tags: ["linux", "wsl", "ubuntu"]
   - [Android Studio (Toolbox)](#android-studio-toolbox)
   - [VsCode](#vscode)
 
-### WSL Install
+### Instalando o WSL
 
-On Powershell, install WSL
+Após instalar o WSL primeiro precisamos habilitar alguns recursos do windows para que tudo funcione como esperado, para isso precisamos de uma janela do *PowerShell no modo Administrador*, logo após o Windows irá precisar reiniciar para concluir a instalação, reinicie e então volte para continuarmos.
 
+``` ps1
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform, HypervisorPlatform -All
+```
+
+No PowerShell, vamos instalar o WSL
 ```
 wsl --install
 ```
-On you user folder `C:\Users\{user}` (%USERPROFILE%) add a file named [.wslconfig](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#main-wsl-settings) with the following content. 
-This will mirror the wsl network on windows and allow you to access apps running on WSL on you LAN 
+
+Na sua pasta de usuário `C:\Users\{user}` (%USERPROFILE%) crie um arquivo chamado [.wslconfig](https://learn.microsoft.com/en-us/windows/wsl/wsl-config#main-wsl-settings) com o conteúdo abaixo, esta configuração vai espelhar a rede do WSL na rede do Windows, possibilitando acesso ao WSL via LAN.
 
 ``` toml
 [wsl2]
 networkingMode=mirrored
 dnsTunneling=true
 nestedVirtualization=true
+localhostForwarding=true
+```
+Caso precise reiniciar o WSl para aplicar as alterações, utilize estes comandos no PowerShell
+```ps1
+wsl --shutdown
+# ou
+net stop wslservice
+net start wslservice
 ```
 
 ### Aliases & Path
@@ -276,6 +289,7 @@ Instale o Android Studio de forma padrão, e agora instalar o emulador.
 Após o download você pode utilizar o alias `studio` para abrir o Android Studio.
 
 **More Action > Virtual Device Manager > Create virtual device > Selecione um dispositivo (Recomendo: Medium device)**
+
 *Atenção: Caso haja um aviso que seu usuário não tem acesso ao KVM, feche o Android Studio e o Toolbox e abra novamente em um novo terminal*
 
 

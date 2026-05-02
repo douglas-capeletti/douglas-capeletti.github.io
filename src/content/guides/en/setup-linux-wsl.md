@@ -25,7 +25,13 @@ tags: ["linux", "wsl", "ubuntu"]
 
 ### WSL Install
 
-On Powershell, install WSL
+First, we need to enable some Windows features so everything works as expected. For this, we need a *PowerShell window in Administrator mode*. Windows will need to restart to complete the installation. Restart your computer and then come back to continue.
+
+``` ps1
+Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform, HypervisorPlatform -All
+```
+
+In PowerShell, let's install WSL
 
 ```
 wsl --install

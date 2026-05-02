@@ -17,6 +17,8 @@ const notes_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", b
 const notes_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/notes/en" }) })
 const voting_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/voting/pt" }) })
 const voting_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/voting/en" }) })
+const about_pt = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/about/pt" }) })
+const about_en = defineCollection({ schema, loader: glob({ pattern: "**/*.md", base: "./src/content/about/en" }) })
 
 export const collections = {
   guides_pt,
@@ -24,5 +26,7 @@ export const collections = {
   notes_pt,
   notes_en,
   voting_pt,
-  voting_en
+  voting_en,
+  about_pt,
+  about_en,
 }

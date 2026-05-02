@@ -10,6 +10,6 @@ const subTitles = (Astro.props.subTitles ?? []).filter(x => x)
 <header class="max-w-xl mx-auto text-center">
   <h1 class="mb-4" data-test="header-title">{title}</h1>
   {subTitles && subTitles?.map((desc) => {
-    return <p class="text-lg leading-relaxed mb-4" data-test="header-description">{desc}</p>
+    return <p class="text-base leading-relaxed mb-4" data-test="header-description">{desc}</p>
   })}
 </header>

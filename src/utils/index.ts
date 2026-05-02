@@ -1,18 +1,19 @@
 import { getCollection } from "astro:content"
 import { languages, type Lang } from "../i18n/translations"
-import type { CollectionsEnum } from "./constants"
+import type { CollectionsEnum, ICollection } from "./constants"
 import type { IEntryCollection, IEntryKey } from "./types"
 
 export async function getLocalizedCollection<T>(
-  collections: CollectionsEnum[],
-  mapFn: (collection: CollectionsEnum, lang: Lang, entries: IEntryCollection[]) => T | T[]
+  collections: ICollection[],
+  mapFn: (collection: ICollection, lang: Lang, entries: IEntryCollection[]) => T | T[]
 ): Promise<T[]> {
   const langs = Object.keys(languages) as Lang[]
   const results = await Promise.all(
     collections.flatMap((collection) => langs.map(async (lang) => {
-      const collectionLang = getCollectionName(collection, lang)
+      const collectionLang = getCollectionName(collection.name, lang)
       const entries = await getCollection(collectionLang)
       entries.sort((a, b) => (b.data.pubDate?.getTime() ?? 0) - (a.data.pubDate?.getTime() ?? 0))
+      console.log('collection:', collection)
       return mapFn(collection, lang, entries)
     }))
   )

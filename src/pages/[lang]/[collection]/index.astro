@@ -2,29 +2,33 @@
 import { defaultLang, useTranslations, type Lang, type TranslationKey } from "../../../i18n/translations";
 import CardLayout from "../../../layouts/CardLayout.astro";
 import { getLocalizedCollection } from "../../../utils";
-import { CollectionsEnum } from "../../../utils/constants";
+import { Collections, CollectionsEnum } from "../../../utils/constants";
 import type { ICard } from "../../../utils/types";
 
 export async function getStaticPaths() {
-  const collections = [CollectionsEnum.NOTES, CollectionsEnum.GUIDES];
-  return await getLocalizedCollection(collections, (collection, lang, posts) => ({
-    params: {
-      lang,
-      collection,
+  const collections = [Collections[CollectionsEnum.NOTES], Collections[CollectionsEnum.GUIDES], Collections[CollectionsEnum.ABOUT]];
+  return await getLocalizedCollection(collections, (collection, lang, posts) => [
+    {
+      params: {
+        lang,
+        collection: collection.name,
+      },
+      props: {
+        posts,
+        pageName: `pages.${collection.name}`,
+        pageDescription: `${collection.name}.title`,
+        config: collection.config,
+      },
     },
-    props: {
-      posts,
-      pageName: `pages.${collection}`,
-      pageDescription: `${collection}.title`,
-    },
-  }));
+  ]);
 }
 
 const { collection } = Astro.params;
 const lang = (Astro.currentLocale ?? defaultLang) as Lang;
 const strings = useTranslations(lang);
 
-const { posts, pageName, pageDescription } = Astro.props;
+const { posts, pageName, pageDescription, config } = Astro.props;
+
 const cards: ICard[] = posts?.map((p: any) => {
   return {
     tag: p.data.tags?.includes("draft") ? strings("ui.draft") : undefined,
@@ -37,8 +41,4 @@ const cards: ICard[] = posts?.map((p: any) => {
 });
 ---
 
-<CardLayout 
-  title={strings(pageName as TranslationKey)} 
-  subTitles={[strings(pageDescription as TranslationKey)]} 
-  cards={cards}
-/>
+<CardLayout title={strings(pageName as TranslationKey)} subTitles={[strings(pageDescription as TranslationKey)]} cards={cards} wideCards={config?.wideCards} />

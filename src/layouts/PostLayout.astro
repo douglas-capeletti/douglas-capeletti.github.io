@@ -3,12 +3,12 @@ import Post from "../components/Post.astro";
 import type { IPost } from "../utils/types";
 import PageLayout from "./PageLayout.astro";
 
-const post = Astro.props.post;
+const { post, config } = Astro.props;
 const { title, pubDate, description, hero, tags, video } = post?.data ?? {} as IPost;
 ---
 
 <PageLayout title={title}>
-  <Post title={title} pubDate={pubDate} description={description} hero={hero} tags={tags} video={video}>
+  <Post title={title} pubDate={pubDate} description={description} hero={hero} tags={tags} video={video} printSuggestion={config?.printSuggestion}>
     <slot />
   </Post>
 </PageLayout>
