@@ -13,7 +13,6 @@ export async function getLocalizedCollection<T>(
       const collectionLang = getCollectionName(collection.name, lang)
       const entries = await getCollection(collectionLang)
       entries.sort((a, b) => (b.data.pubDate?.getTime() ?? 0) - (a.data.pubDate?.getTime() ?? 0))
-      console.log('collection:', collection)
       return mapFn(collection, lang, entries)
     }))
   )
