@@ -19,9 +19,23 @@
   a[href="#right"] {
     float: right;
     pointer-events: none;
-    text-decoration: none;
-    color: inherit;
+    text-decoration: none !important;
+    color: inherit !important;
     font-weight: normal;
+  }
+
+  @media print {
+    a[href^="#"]::after {
+      content: none !important;
+    }
+  }
+
+  :has(> a[href="#center"]) {
+    text-align: center;
+  }
+
+  a[href="#center"] {
+    display: none;
   }
 
   ul:not(.list-none) {

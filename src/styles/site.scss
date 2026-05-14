@@ -1,31 +1,32 @@
 h1 {
-  @apply font-display uppercase font-semibold leading-none mb-4 mt-10;
+  @apply font-display uppercase font-black leading-none mb-6 mt-12;
   font-size: clamp(2rem, 4vw, 2.5rem);
 }
 
 h2 {
-  @apply font-display uppercase leading-none mb-4 mt-8;
-  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  @apply font-display uppercase font-extrabold leading-none mb-5 mt-10;
+  font-size: clamp(1.6rem, 3vw, 2rem);
 }
 
 h3 {
-  @apply font-display leading-none mb-4 mt-8;
-  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  @apply font-display font-bold leading-none mb-4 mt-8;
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
 }
 
 h4 {
-  @apply font-display tracking-wide leading-none mb-4 mt-6;
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  @apply font-display tracking-wide font-semibold leading-none mb-4 mt-6;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
 }
 
 h5 {
-  @apply font-display tracking-wide leading-none mb-4 mt-6;
+  @apply font-display tracking-wide font-medium leading-none mb-3 mt-5;
   font-size: clamp(1.125rem, 1.5vw, 1.5rem);
 }
 
 h6 {
-  @apply font-display tracking-wider leading-none mb-4 mt-6;
-  font-size: clamp(1rem, 1vw, 1.25rem);
+  @apply font-display leading-none mb-2 mt-4;
+  font-size: clamp(1.125rem, 1.5vw, 1.5rem);
+  font-weight: 400 !important;
 }
 
 table,
