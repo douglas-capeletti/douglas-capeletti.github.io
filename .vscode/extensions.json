@@ -2,6 +2,9 @@
     "recommendations": [
         "jebbs.plantuml",
         "streetsidesoftware.code-spell-checker",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "streetsidesoftware.code-spell-checker-portuguese-brazilian",
+        "astro-build.astro-vscode",
+        "bradlc.vscode-tailwindcss"
     ]
 }

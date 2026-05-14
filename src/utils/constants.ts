@@ -77,4 +77,4 @@ export interface SiteContentItem {
   collections: CollectionsEnum[];
 }
 
-export const ActiveProjects = [CollectionsEnum.VOTING]
+export const ActiveProjects = [Collections[CollectionsEnum.VOTING]]

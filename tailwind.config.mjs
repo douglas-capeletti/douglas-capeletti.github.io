@@ -111,7 +111,7 @@ export default {
         "contrast": "var(--color-contrast)"
       },
       fontFamily: {
-        display: ["Londrina Solid", "sans-serif"],
+        display: ["Roboto", "sans-serif"],
         body: ["Poppins", "sans-serif"],
       },
       fontSize: {

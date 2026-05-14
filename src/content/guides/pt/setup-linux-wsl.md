@@ -199,7 +199,7 @@ Com a versão definida na nossa variável podemos baixar somente copiando os com
 sudo rm -rf /usr/local/go 
 wget https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 sudo tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz
-rm ${GO_VERSION}.linux-amd64.tar.gz
+rm go${GO_VERSION}.linux-amd64.tar.gz
 go version
 ```
 

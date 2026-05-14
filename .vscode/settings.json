@@ -40,4 +40,5 @@
     "SGBD",
     "Traefik"
   ],
+  "scss.lint.unknownAtRules": "ignore"
 }

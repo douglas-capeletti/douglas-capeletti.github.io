@@ -1,10 +1,10 @@
 ---
 import { render } from "astro:content";
 import BackToPage from "../../../components/BackToPage.astro";
+import type { TranslationKey } from "../../../i18n/translations";
 import PostLayout from "../../../layouts/PostLayout.astro";
 import { getLocalizedCollection } from "../../../utils";
 import { ActiveProjects } from "../../../utils/constants";
-import type { TranslationKey } from "../../../i18n/translations";
 
 export async function getStaticPaths() {
   return await getLocalizedCollection(ActiveProjects, (project, lang, posts) =>

@@ -16,6 +16,14 @@
     }
   }
 
+  a[href="#right"] {
+    float: right;
+    pointer-events: none;
+    text-decoration: none;
+    color: inherit;
+    font-weight: normal;
+  }
+
   ul:not(.list-none) {
     @apply pl-0 list-disc ml-8 mb-4 text-base;
 
