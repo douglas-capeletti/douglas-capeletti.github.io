@@ -13,14 +13,14 @@ const description = strings("home.title");
 ---
 
 <PageLayout title={description} className="py-2 md:py-20">
-    <Header title={SITE_NAME} subTitles={[description]}/>
-    <section class="flex sm:flex-row flex-col gap-5 justify-center justify-items-center items-center" data-test="articles-section">
-      {
-        SITE_PAGES.map((value) => (
-          <a href={`/${lang}/${value.path}`}>
-            <button class="font-bold p-3 text-text-secondary bg-btn-primary rounded-xl">{strings(value.title)}</button>
-          </a>
-        ))
-      }
-    </section>
+  <Header title={SITE_NAME} subTitles={[description]} />
+  <section class="flex sm:flex-row flex-col gap-5 justify-center justify-items-center items-center" data-test="articles-section">
+    {
+      SITE_PAGES.map((value) => (
+        <a href={`/${lang}/${value.path}`}>
+          <button class="font-bold p-3 text-bg-primary bg-btn-primary rounded-xl">{strings(value.title)}</button>
+        </a>
+      ))
+    }
+  </section>
 </PageLayout>
