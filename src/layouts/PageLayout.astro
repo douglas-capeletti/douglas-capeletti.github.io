@@ -2,7 +2,7 @@
 import Head from "../components/Head.astro";
 import Nav from "../components/Nav.astro";
 import { defaultLang, type Lang } from "../i18n/translations";
-import { SITE_NAME, SITE_URI, THEME } from "../utils/constants";
+import { SITE_NAME, THEME } from "../utils/constants";
 
 export interface Props {
   title: string;
@@ -11,7 +11,7 @@ export interface Props {
 
 const { title, className } = Astro.props;
 const lang = (Astro.currentLocale ?? defaultLang) as Lang;
-const seoTitle = `${title ?? SITE_NAME} | ${SITE_URI}`;
+const seoTitle = `${title ?? SITE_NAME} | ${lang}`;
 ---
 
 <html lang={lang} class={THEME.id}>

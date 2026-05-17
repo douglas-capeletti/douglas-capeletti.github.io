@@ -1,9 +1,9 @@
 ---
-import BackToPage from "../../components/BackToPage.astro";
-import Header from "../../components/Header.astro";
-import { defaultLang, type Lang, useTranslations } from "../../i18n/translations";
-import PageLayout from "../../layouts/PageLayout.astro";
-import { siteLangParams } from "../../utils/constants";
+import BackToPage from "../../../components/BackToPage.astro";
+import Header from "../../../components/Header.astro";
+import { defaultLang, type Lang, useTranslations } from "../../../i18n/translations";
+import PageLayout from "../../../layouts/PageLayout.astro";
+import { siteLangParams } from "../../../utils/constants";
 
 export function getStaticPaths() {
   return siteLangParams();
@@ -25,6 +25,6 @@ let pageDescription = strings("search.title");
 </PageLayout>
 
 <script>
-  import { enableSearch } from "../../utils/search";
+  import { enableSearch } from "./search";
   enableSearch();
 </script>

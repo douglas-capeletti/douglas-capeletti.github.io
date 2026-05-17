@@ -3,7 +3,7 @@ title: "Douglas da Rosa Paz Capeletti"
 description: Senior Software Engineer | Fullstack | Cloud Architecture
 ---
 
-Porto Alegre, RS, Brazil | douglas.drpaz@gmail.com | [LinkedIn](https://www.linkedin.com/in/douglas-capeletti/) | [GitHub](https://github.com/douglas-capeletti) | [thecodecodex.com](https://thecodecodex.com/en/about/resume)[](#center)
+Porto Alegre, RS, Brazil | douglas.drpaz@gmail.com | [LinkedIn](https://www.linkedin.com/in/douglas-capeletti/) | [GitHub](https://github.com/douglas-capeletti) | [website](https://thecodecodex.com/en/about/resume)[](#center)
 
 ### PROFESSIONAL SUMMARY
 Senior Software Engineer with over 9 years of solid experience developing high-availability, mission-critical distributed systems. Specialist in microservices architecture using the Java/Spring ecosystem, with extensive experience in the global automotive (BMW NA) and financial sectors (Banking, Fintech, and Payments). Expertise in Cloud Computing (AWS/GCP), technical leadership, and Agility, with a proven track record of delivering scalability, resilience (Active-Active), and performance optimization.

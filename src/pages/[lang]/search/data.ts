@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro'
 import { getCollection } from "astro:content"
-import type { Lang } from '../../i18n/translations'
-import { getCollectionName } from '../../utils'
-import { CollectionsEnum, LANG, siteLangParams } from "../../utils/constants"
-import type { IEntry } from "../../utils/types"
+import type { Lang } from '../../../i18n/translations'
+import { getCollectionName } from '../../../utils'
+import { CollectionsEnum, LANG, siteLangParams } from "../../../utils/constants"
+import type { IEntry } from "../../../utils/types"
 
 export function getStaticPaths() {
   return siteLangParams()
@@ -17,7 +17,7 @@ async function getPosts(lang: Lang) {
 
 function mapPosts<T extends IEntry>(posts: T[], collectionName: string, lang: Lang) {
   if (!posts) return []
-  
+
   return posts
     .sort((a: T, b: T) => (a.data.pubDate?.valueOf() ?? 0) - (b.data.pubDate?.valueOf() ?? 0))
     .map((post: T) => ({

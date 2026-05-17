@@ -1,6 +1,6 @@
 import DOMPurify from "dompurify"
 import Fuse from "fuse.js"
-import { useTranslations, type Lang, type TranslationKey } from "../i18n/translations"
+import { useTranslations, type Lang, type TranslationKey } from "../../../i18n/translations"
 
 interface ISearchData {
   item: ISearchItem
@@ -99,7 +99,7 @@ export function enableSearch() {
     if (!SEARCH_DATA) {
       try {
         SEARCH_LANG = (document.documentElement.lang || "pt") as Lang
-        const res = await fetch(`/${SEARCH_LANG}/search-index`)
+        const res = await fetch(`/${SEARCH_LANG}/search/data`)
         if (!res.ok) {
           throw new Error("Something went wrong… please try again")
         }

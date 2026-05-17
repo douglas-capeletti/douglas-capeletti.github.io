@@ -5,23 +5,23 @@
 @layer base {
     :root {
         --color-text-primary: #12151E;
-        --color-text-secondary: #ffffff;
-        --color-text-tertiary: #12151E;
+        --color-text-secondary: #4B5563;
+        --color-text-tertiary: #ffffff;
         --color-bg-primary: #ffffff;
-        --color-bg-secondary: #12151E;
-        --color-bg-tertiary: #E5E7EB;
-        --color-bg-tertiary-hover: #D1D5DB;
+        --color-bg-secondary: #F3F4F6;
+        --color-bg-tertiary: #12151E;
+        --color-bg-tertiary-hover: #1F2937;
         --color-btn-primary: #0891B2;
-        --color-border: #12151E;
+        --color-border: #374151;
         --color-contrast: #fd2d78;
     }
 
     .dark {
         --color-text-primary: #E5E7EB;
-        --color-text-secondary: #12151E;
+        --color-text-secondary: #9CA3AF;
         --color-text-tertiary: #12151E;
-        --color-bg-secondary: #E5E7EB;
         --color-bg-primary: #12151E;
+        --color-bg-secondary: #1F2937;
         --color-bg-tertiary: #E5E7EB;
         --color-bg-tertiary-hover: #D1D5DB;
         --color-btn-primary: #2dfdfd;

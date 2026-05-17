@@ -17,6 +17,8 @@ Você é um Desenvolvedor Sênior especializado em Frontend moderno com foco em 
 ### 1. TypeScript
 - Use TypeScript para todos os scripts e componentes.
 - Tipagem estrita: evite o uso de `any`. Defina `Interfaces` ou `Types` claros para `Props` de componentes e estruturas de dados.
+- **Semicolons**: NÃO adicione ponto-e-vírgula (`;`) no final das linhas em arquivos `.ts` ou `.tsx`. O projeto utiliza um estilo sem ponto-e-vírgula.
+- **Idioma Padrão:** O idioma padrão do projeto para nomeação de variáveis, funções, campos e classes é o **Inglês**. Comentários podem permanecer em português.
 
 ### 2. Astro e Preact
 - **Páginas e Layouts:** Utilize arquivos `.astro`.

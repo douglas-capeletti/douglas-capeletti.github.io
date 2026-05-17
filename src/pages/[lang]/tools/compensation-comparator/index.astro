@@ -1,0 +1,212 @@
+---
+import PostLayout from "../../../../layouts/PostLayout.astro";
+import { siteLangParams } from "../../../../utils/constants";
+import { useTranslations, type Lang, defaultLang } from "../../../../i18n/translations";
+import { generateComparison } from "./tool";
+
+export async function getStaticPaths() {
+  return siteLangParams();
+}
+
+const { lang } = Astro.params;
+const strings = useTranslations((lang as Lang) ?? defaultLang);
+
+const post = {
+  data: {
+    title: strings("tools.compensation_comparator") as string,
+    description: "",
+  },
+};
+
+const initialOptions = {
+  targetLiquidity: 100_000,
+  pjTaxRate: 0.06,
+  coopAdminFeeRate: 0.03,
+  diasUteisFerias: 10,
+  valorProLabore: 1_000,
+  modelNames: {
+    clt: strings("tools.compensation_comparator.clt") as string,
+    pj: strings("tools.compensation_comparator.pj") as string,
+    coop: strings("tools.compensation_comparator.coop") as string,
+  },
+};
+const comparativo = generateComparison(initialOptions);
+
+const formatCurrency = (value: number) => {
+  return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+};
+---
+
+<PostLayout post={post as any}>
+  <div id="comparator-container" data-model-names={JSON.stringify(initialOptions.modelNames)} class="mb-6 bg-bg-secondary p-6 rounded-lg shadow-md border border-border">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="col-span-1 md:col-span-2 lg:col-span-3">
+        <label for="target-liquidity" class="block text-sm font-medium text-text-secondary mb-2">{strings("tools.target_liquidity")}</label>
+        <div class="flex items-center">
+          <span class="text-text-secondary mr-2 font-bold">R$</span>
+          <input
+            type="number"
+            id="target-liquidity"
+            value={initialOptions.targetLiquidity}
+            step="1000"
+            class="comparator-input bg-bg-primary text-text-primary border border-border rounded px-4 py-2 w-full max-w-xs focus:outline-none focus:border-contrast transition-colors"
+          />
+        </div>
+        <p class="text-xs text-text-secondary mt-2">{strings("tools.target_liquidity_tip")}</p>
+      </div>
+
+      <div class="col-span-1">
+        <label for="pj-tax-rate" class="block text-sm font-medium text-text-secondary mb-2">{strings("tools.pj_tax_rate")}</label>
+        <div class="flex items-center">
+          <input
+            type="number"
+            id="pj-tax-rate"
+            value={initialOptions.pjTaxRate * 100}
+            step="0.5"
+            class="comparator-input bg-bg-primary text-text-primary border border-border rounded px-4 py-2 w-24 focus:outline-none focus:border-contrast transition-colors"
+          />
+          <span class="text-text-secondary ml-2 font-bold">%</span>
+        </div>
+      </div>
+
+      <div class="col-span-1">
+        <label for="coop-admin-fee" class="block text-sm font-medium text-text-secondary mb-2">{strings("tools.coop_admin_fee")}</label>
+        <div class="flex items-center">
+          <input
+            type="number"
+            id="coop-admin-fee"
+            value={initialOptions.coopAdminFeeRate * 100}
+            step="0.5"
+            class="comparator-input bg-bg-primary text-text-primary border border-border rounded px-4 py-2 w-24 focus:outline-none focus:border-contrast transition-colors"
+          />
+          <span class="text-text-secondary ml-2 font-bold">%</span>
+        </div>
+      </div>
+
+      <div class="col-span-1">
+        <label for="coop-vacation-days" class="block text-sm font-medium text-text-secondary mb-2">{strings("tools.coop_vacation_days")}</label>
+        <input
+          type="number"
+          id="coop-vacation-days"
+          value={initialOptions.diasUteisFerias}
+          step="1"
+          class="comparator-input bg-bg-primary text-text-primary border border-border rounded px-4 py-2 w-full focus:outline-none focus:border-contrast transition-colors"
+        />
+      </div>
+
+      <div class="col-span-1">
+        <label for="coop-pro-labore" class="block text-sm font-medium text-text-secondary mb-2">{strings("tools.coop_pro_labore")}</label>
+        <div class="flex items-center">
+          <span class="text-text-secondary mr-2 font-bold">R$</span>
+          <input
+            type="number"
+            id="coop-pro-labore"
+            value={initialOptions.valorProLabore}
+            step="100"
+            class="comparator-input bg-bg-primary text-text-primary border border-border rounded px-4 py-2 w-full focus:outline-none focus:border-contrast transition-colors"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overflow-x-auto rounded-lg shadow-md border border-border">
+    <table class="w-full text-left text-sm whitespace-nowrap border-collapse">
+      <thead class="bg-bg-secondary text-text-primary">
+        <tr id="comparator-thead-tr">
+          <th class="px-6 py-4 font-semibold border border-border">Métrica</th>
+          {comparativo.map((r) => <th class="px-6 py-4 font-semibold border border-border">{r.model}</th>)}
+        </tr>
+      </thead>
+      <tbody id="comparator-tbody" class="bg-bg-primary">
+        <tr class="hover:bg-bg-tertiary transition-colors group">
+          <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Bruto/Faturamento Mensal</td>
+          {comparativo.map((r) => <td class="px-6 py-4 text-text-primary group-hover:text-text-tertiary border border-border">{formatCurrency(r.monthlyGrossOrRevenue)}</td>)}
+        </tr>
+        <tr class="hover:bg-bg-tertiary transition-colors group">
+          <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Impostos/Taxas Mensais</td>
+          {comparativo.map((r) => <td class="px-6 py-4 text-text-primary group-hover:text-text-tertiary border border-border">{formatCurrency(r.monthlyTaxesAndFees)}</td>)}
+        </tr>
+        <tr class="hover:bg-bg-tertiary transition-colors group">
+          <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Liquidez Mensal Regular</td>
+          {comparativo.map((r) => <td class="px-6 py-4 text-text-primary group-hover:text-text-tertiary border border-border">{r.monthlyLiquidity ? formatCurrency(r.monthlyLiquidity) : "-"}</td>)}
+        </tr>
+        <tr class="hover:bg-bg-tertiary transition-colors group">
+          <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Liquidez Anual Alvo</td>
+          {comparativo.map((r) => <td class="px-6 py-4 font-medium text-text-primary group-hover:text-text-tertiary border border-border">{formatCurrency(r.annualLiquidity)}</td>)}
+        </tr>
+        <tr class="hover:bg-bg-tertiary transition-colors group">
+          <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Média Mensal Real</td>
+          {comparativo.map((r) => <td class="px-6 py-4 font-bold text-contrast group-hover:text-text-tertiary border border-border">{formatCurrency(r.monthlyAverageReal)}</td>)}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</PostLayout>
+
+<script>
+  import { generateComparison } from "./tool";
+
+  const inputs = document.querySelectorAll(".comparator-input");
+  const theadTr = document.getElementById("comparator-thead-tr");
+  const tbody = document.getElementById("comparator-tbody");
+  const container = document.getElementById("comparator-container");
+  const modelNames = JSON.parse(container?.dataset.modelNames || "{}");
+
+  const targetEl = document.getElementById("target-liquidity") as HTMLInputElement;
+  const pjTaxEl = document.getElementById("pj-tax-rate") as HTMLInputElement;
+  const coopAdminEl = document.getElementById("coop-admin-fee") as HTMLInputElement;
+  const coopVacationEl = document.getElementById("coop-vacation-days") as HTMLInputElement;
+  const coopProLaboreEl = document.getElementById("coop-pro-labore") as HTMLInputElement;
+
+  const formatCurrency = (value: number) => {
+    return new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(value);
+  };
+
+  const updateTable = () => {
+    if (!tbody || !theadTr || !targetEl) return;
+
+    const options = {
+      targetLiquidity: parseFloat(targetEl.value) || 0,
+      pjTaxRate: (parseFloat(pjTaxEl.value) || 0) / 100,
+      coopAdminFeeRate: (parseFloat(coopAdminEl.value) || 0) / 100,
+      diasUteisFerias: parseFloat(coopVacationEl.value) || 0,
+      valorProLabore: parseFloat(coopProLaboreEl.value) || 0,
+      modelNames: modelNames,
+    };
+
+    const comparativo = generateComparison(options);
+
+    theadTr.innerHTML = `
+      <th class="px-6 py-4 font-semibold border border-border">Métrica</th>
+      ${comparativo.map((r: any) => `<th class="px-6 py-4 font-semibold border border-border">${r.model}</th>`).join("")}
+    `;
+
+    tbody.innerHTML = `
+      <tr class="hover:bg-bg-tertiary transition-colors group">
+        <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Bruto/Faturamento Mensal</td>
+        ${comparativo.map((r: any) => `<td class="px-6 py-4 text-text-primary group-hover:text-text-tertiary border border-border">${formatCurrency(r.monthlyGrossOrRevenue)}</td>`).join("")}
+      </tr>
+      <tr class="hover:bg-bg-tertiary transition-colors group">
+        <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Impostos/Taxas Mensais</td>
+        ${comparativo.map((r: any) => `<td class="px-6 py-4 text-text-primary group-hover:text-text-tertiary border border-border">${formatCurrency(r.monthlyTaxesAndFees)}</td>`).join("")}
+      </tr>
+      <tr class="hover:bg-bg-tertiary transition-colors group">
+        <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Liquidez Mensal Regular</td>
+        ${comparativo.map((r: any) => `<td class="px-6 py-4 text-text-primary group-hover:text-text-tertiary border border-border">${r.monthlyLiquidity ? formatCurrency(r.monthlyLiquidity) : "-"}</td>`).join("")}
+      </tr>
+      <tr class="hover:bg-bg-tertiary transition-colors group">
+        <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Liquidez Anual Alvo</td>
+        ${comparativo.map((r: any) => `<td class="px-6 py-4 font-medium text-text-primary group-hover:text-text-tertiary border border-border">${formatCurrency(r.annualLiquidity)}</td>`).join("")}
+      </tr>
+      <tr class="hover:bg-bg-tertiary transition-colors group">
+        <td class="px-6 py-4 font-semibold text-text-primary group-hover:text-text-tertiary border border-border">Média Mensal Real</td>
+        ${comparativo.map((r: any) => `<td class="px-6 py-4 font-bold text-contrast group-hover:text-text-tertiary border border-border">${formatCurrency(r.monthlyAverageReal)}</td>`).join("")}
+      </tr>
+    `;
+  };
+
+  inputs.forEach((input) => {
+    input.addEventListener("input", updateTable);
+  });
+</script>

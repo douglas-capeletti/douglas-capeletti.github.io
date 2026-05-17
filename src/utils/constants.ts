@@ -18,12 +18,17 @@ export function siteLangParams() {
 export const SITE_PAGES: { title: TranslationKey, path: string }[] = [
   { title: "pages.guides", path: "guides" },
   { title: "pages.notes", path: "notes" },
+  { title: "pages.tools", path: "tools" },
   { title: "pages.projects", path: "projects" },
   { title: "pages.about", path: "about" },
 ]
 
 export const SITE_PROJECTS: { title: TranslationKey, path: string }[] = [
   { title: "projects.voting", path: "voting" },
+]
+
+export const SITE_TOOLS: { title: TranslationKey, path: string }[] = [
+  { title: "tools.compensation_comparator", path: "compensation-comparator" },
 ]
 
 export const THEME: IToggle = {

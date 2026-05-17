@@ -1,0 +1,18 @@
+---
+import { defaultLang, useTranslations, type Lang } from "../../../i18n/translations";
+import CardLayout from "../../../layouts/CardLayout.astro";
+import { SITE_TOOLS, siteLangParams } from "../../../utils/constants";
+
+export async function getStaticPaths() {
+  return siteLangParams();
+}
+
+const { lang } = Astro.params;
+const strings = useTranslations((lang as Lang) ?? defaultLang);
+const cards = SITE_TOOLS.map((tool) => ({
+  title: strings(tool.title) as string,
+  url: `/${lang}/tools/${tool.path}`,
+}));
+---
+
+<CardLayout title={strings("pages.tools") as string} subTitles={[strings("tools.title") as string]} cards={cards} wideCards />
