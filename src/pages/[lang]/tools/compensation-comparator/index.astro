@@ -2,7 +2,7 @@
 import PostLayout from "../../../../layouts/PostLayout.astro";
 import { siteLangParams } from "../../../../utils/constants";
 import { useTranslations, type Lang, defaultLang } from "../../../../i18n/translations";
-import { generateComparison } from "./tool";
+import { generateComparison } from "./_tool";
 
 export async function getStaticPaths() {
   return siteLangParams();
@@ -145,7 +145,7 @@ const formatCurrency = (value: number) => {
 </PostLayout>
 
 <script>
-  import { generateComparison } from "./tool";
+  import { generateComparison } from "./_tool";
 
   const inputs = document.querySelectorAll(".comparator-input");
   const theadTr = document.getElementById("comparator-thead-tr");
